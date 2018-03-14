@@ -2,25 +2,19 @@ import React from 'react';
 
 import { rhythm } from '../utils/typography';
 import Link from 'gatsby-link';
+import Helmet from 'react-helmet';
 
 export default ({ data }) => {
   return (
     <div>
-      <h1 display={'inline-block'} borderBottom={'1px solid'}>
-        Amazing Pandas Eating Things
-      </h1>
       <h4>{data.allMarkdownRemark.totalCount} Posts</h4>
-      {data.allMarkdownRemark.edges.map(({ node }) => (
-        <div key={node.id}>
-          <Link
-            to={node.fields.slug}
-            css={{ textDecoration: `none`, color: `inherit` }}
-          >
-            <h3 marginBottom={rhythm(1 / 4)}>{node.frontmatter.title} </h3>
-            <p>{node.excerpt}</p>
-          </Link>
-        </div>
-      ))}
+      <ul>
+        {data.allMarkdownRemark.edges.map(({ node }) => (
+          <li key={node.id}>
+            <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

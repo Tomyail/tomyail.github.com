@@ -1,8 +1,12 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Default Starter'
+    title: 'Tomyail 的记忆空间',
+    meta: {
+      description: 'test'
+    }
   },
   plugins: [
+    'gatsby-plugin-lodash',
     'gatsby-plugin-emotion',
     'gatsby-plugin-react-helmet',
     {
