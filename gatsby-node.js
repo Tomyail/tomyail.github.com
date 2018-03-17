@@ -1,89 +1,71 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
-
-// You can delete this file if you're not using it
-
-const { createFilePath } = require(`gatsby-source-filesystem`);
-const path = require(`path`);
+const _ = require('lodash');
+const Promise = require('bluebird');
+const path = require('path');
+const { createFilePath } = require('gatsby-source-filesystem');
 
 exports.createPages = ({ graphql, boundActionCreators }) => {
-  const { createLayout } = boundActionCreators;
-  return new Promise((resolve, reject) => {
-    graphql(`
-      {
-        allMarkdownRemark {
-          edges {
-            node {
-              fields {
-                slug
-              }
-            }
-          }
-        }
-      }
-    `).then(result => {
-      boundActionCreators.createLayout({
-        component: path.resolve(`./src/layouts/index.js`),
-        id: 'custom' // optional - if not provided the filename will be used as id
-      });
-      result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-        createPage({
-          path: node.fields.slug,
-          component: path.resolve(`./src/templates/blog-post.js`),
-          context: {
-            // Data passed to context is available in page queries as GraphQL variables.
-            slug: node.fields.slug
-          }
-        });
-      });
-      resolve();
-    });
-  });
-};
-
-exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
-  const { createNodeField } = boundActionCreators;
-  if (node.internal.type === `MarkdownRemark`) {
-    const slug = createFilePath({ node, getNode, basePath: `pages` });
-    createNodeField({
-      node,
-      name: `slug`,
-      value: slug
-    });
-  }
-};
-
-exports.createPages = ({ graphql, boundActionCreators }) => {
-  debugger;
   const { createPage } = boundActionCreators;
+
   return new Promise((resolve, reject) => {
-    graphql(`
-      {
-        allMarkdownRemark {
-          edges {
-            node {
-              fields {
-                slug
+    const blogPost = path.resolve('./src/templates/blog-post.js');
+    resolve(
+      graphql(
+        `
+          {
+            allMarkdownRemark(
+              sort: { fields: [frontmatter___date], order: DESC }
+              limit: 1000
+            ) {
+              edges {
+                node {
+                  frontmatter {
+                    title
+                    path
+                  }
+                }
               }
             }
           }
+        `
+      ).then(result => {
+        if (result.errors) {
+          console.log(result.errors);
+          reject(result.errors);
         }
-      }
-    `).then(result => {
-      result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-        createPage({
-          path: node.fields.slug,
-          component: path.resolve(`./src/templates/blog-post.js`),
-          context: {
-            // Data passed to context is available in page queries as GraphQL variables.
-            slug: node.fields.slug
-          }
+
+        // Create blog posts pages.
+        const posts = result.data.allMarkdownRemark.edges;
+
+        _.each(posts, (post, index) => {
+          const previous =
+            index === posts.length - 1 ? false : posts[index + 1].node;
+          const next = index === 0 ? false : posts[index - 1].node;
+
+          createPage({
+            path: post.node.frontmatter.path,
+            component: blogPost,
+            context: {
+              index,
+              previous,
+              next
+            }
+          });
         });
-      });
-      resolve();
-    });
+      })
+    );
   });
 };
+
+// exports.onCreateNode = ({ node, boundActionCreators, getNode, graphql }) => {
+//   const { createNodeField } = boundActionCreators;
+
+//   if (node.internal.type === `MarkdownRemark`) {
+//     const value = createFilePath({ node, getNode });
+//     console.log('onCreateNode', value);
+//     createNodeField({
+//       name: `slug`,
+//       node,
+//       value
+//     });
+//   }
+// };
