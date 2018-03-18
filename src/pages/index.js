@@ -18,7 +18,6 @@ class BlogIndex extends React.Component {
         {posts.map(({ node }) => {
           const title = get(node, 'frontmatter.title') || node.fields.slug;
           const slug = get(node, 'frontmatter.path');
-          debugger;
           return (
             <div key={slug}>
               <h3
@@ -31,7 +30,6 @@ class BlogIndex extends React.Component {
                 </Link>
               </h3>
               <small>{node.frontmatter.date}</small>
-              <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
             </div>
           );
         })}
