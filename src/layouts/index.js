@@ -4,11 +4,13 @@ import { Container } from 'react-responsive-grid';
 
 import { rhythm, scale } from '../utils/typography';
 import './prism.css';
+import get from 'lodash/get';
 
 class Template extends React.Component {
   render() {
     const { location, children } = this.props;
     let header;
+    const siteTitle = get(this.props, 'data.site.siteMetadata.title');
 
     let rootPath = `/`;
     if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
@@ -32,7 +34,7 @@ class Template extends React.Component {
             }}
             to={'/'}
           >
-            Gatsby Starter Blog
+            {siteTitle}
           </Link>
         </h1>
       );
@@ -40,7 +42,6 @@ class Template extends React.Component {
       header = (
         <h3
           style={{
-            fontFamily: 'Montserrat, sans-serif',
             marginTop: 0,
             marginBottom: rhythm(-1)
           }}
@@ -53,7 +54,7 @@ class Template extends React.Component {
             }}
             to={'/'}
           >
-            Gatsby Starter Blog
+            {siteTitle}
           </Link>
         </h3>
       );
@@ -71,5 +72,17 @@ class Template extends React.Component {
     );
   }
 }
+
+export const pageQuery = graphql`
+  query LayoutQuery {
+    site {
+      siteMetadata {
+        title
+        author
+        siteUrl
+      }
+    }
+  }
+`;
 
 export default Template;

@@ -5,13 +5,20 @@ import get from 'lodash/get';
 
 import Bio from '../components/Bio';
 import { rhythm, scale } from '../utils/typography';
+import Disqus from 'disqus-react';
 
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark;
     const siteTitle = get(this.props, 'data.site.siteMetadata.title');
+    const siteUrl = get(this.props, 'data.site.siteMetadata.siteUrl');
     const { previous, next } = this.props.pathContext;
 
+    const disqusShortname = 'tomyail';
+    const disqusConfig = {
+      url: `${siteUrl}${post.frontmatter.path.replace('/', '')}`,
+      title: post.frontmatter.title
+    };
     return (
       <div>
         <Helmet title={`${post.frontmatter.title} | ${siteTitle}`} />
@@ -59,6 +66,10 @@ class BlogPostTemplate extends React.Component {
             </li>
           )}
         </ul>
+        <Disqus.DiscussionEmbed
+          shortname={disqusShortname}
+          config={disqusConfig}
+        />
       </div>
     );
   }
@@ -72,6 +83,7 @@ export const pageQuery = graphql`
       siteMetadata {
         title
         author
+        siteUrl
       }
     }
     markdownRemark(frontmatter: { path: { eq: $path } }) {
