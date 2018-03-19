@@ -5,16 +5,37 @@ import Helmet from 'react-helmet';
 
 import Bio from '../components/Bio';
 import { rhythm } from '../utils/typography';
+import Lean from '../components/LeancloudCounter';
 
 class BlogIndex extends React.Component {
+  constructor() {
+    super();
+    this.state = { leancloud: [] };
+  }
+  renderCount(slug) {
+    const item = _.find(
+      this.state.leancloud,
+      lean => lean.url.indexOf(slug) >= 0
+    );
+    if (item) {
+      return <div>{item.time}</div>;
+    }
+  }
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title');
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
 
+    const urls = posts.map(({ node }) => get(node, 'frontmatter.path'));
     return (
       <div>
         <Helmet title={siteTitle} />
         <Bio />
+        <Lean
+          urls={urls}
+          onLeancloud={data => {
+            this.setState({ leancloud: data });
+          }}
+        />
         {posts.map(({ node }) => {
           const title = get(node, 'frontmatter.title') || node.fields.slug;
           const slug = get(node, 'frontmatter.path');
@@ -29,6 +50,8 @@ class BlogIndex extends React.Component {
                   {title}
                 </Link>
               </h3>
+
+              {this.renderCount(slug)}
               <small>{node.frontmatter.date}</small>
             </div>
           );

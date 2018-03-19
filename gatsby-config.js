@@ -6,6 +6,7 @@ module.exports = {
     siteUrl: 'http://blog.tomyail.com/'
   },
   plugins: [
+    'gatsby-plugin-react-next',
     {
       resolve: `gatsby-source-filesystem`,
       options: {

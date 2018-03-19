@@ -6,8 +6,15 @@ import get from 'lodash/get';
 import Bio from '../components/Bio';
 import { rhythm, scale } from '../utils/typography';
 import Disqus from 'disqus-react';
+import LeancloudCounter from '../components/LeancloudCounter';
 
 class BlogPostTemplate extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      leancloud: null
+    };
+  }
   render() {
     const post = this.props.data.markdownRemark;
     const siteTitle = get(this.props, 'data.site.siteMetadata.title');
@@ -23,6 +30,14 @@ class BlogPostTemplate extends React.Component {
       <div>
         <Helmet title={`${post.frontmatter.title} | ${siteTitle}`} />
         <h1>{post.frontmatter.title}</h1>
+        <div>{this.state.leancloud && this.state.leancloud.time}</div>
+        <LeancloudCounter
+          needIncrease={true}
+          urls={[post.frontmatter.path]}
+          onLeancloud={data => {
+            this.setState({ leancloud: data[0] });
+          }}
+        />
         <p
           style={{
             ...scale(-1 / 5),
