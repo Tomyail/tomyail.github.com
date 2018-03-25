@@ -1973,6 +1973,10 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
+classnames@2.x, classnames@^2.2.5:
+  version "2.2.5"
+  resolved "http://registry.npm.taobao.org/classnames/download/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
+
 cli-boxes@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/cli-boxes/download/cli-boxes-1.0.0.tgz#4fa917c3e59c94a004cd61f8ee509da651687143"
@@ -4506,6 +4510,10 @@ gh-pages@^1.1.0:
     graceful-fs "4.1.11"
     rimraf "^2.6.2"
 
+gitbook-plugin-github@^2.0.0:
+  version "2.0.0"
+  resolved "http://registry.npm.taobao.org/gitbook-plugin-github/download/gitbook-plugin-github-2.0.0.tgz#5166e763cfcc402d432880b7a6c85c1c54b56a8d"
+
 github-from-package@0.0.0:
   version "0.0.0"
   resolved "http://registry.npm.taobao.org/github-from-package/download/github-from-package-0.0.0.tgz#97fb5d96bfde8973313f20e8288ef9a167fa64ce"
@@ -5085,7 +5093,7 @@ hoek@4.x.x:
   version "4.2.1"
   resolved "http://registry.npm.taobao.org/hoek/download/hoek-4.2.1.tgz#9634502aa12c445dd5a7c5734b572bb8738aacbb"
 
-hoist-non-react-statics@^2.3.0:
+hoist-non-react-statics@^2.3.0, hoist-non-react-statics@^2.5.0:
   version "2.5.0"
   resolved "http://registry.npm.taobao.org/hoist-non-react-statics/download/hoist-non-react-statics-2.5.0.tgz#d2ca2dfc19c5a91c5a6615ce8e564ef0347e2a40"
 
@@ -5306,6 +5314,12 @@ interpret@^0.6.4:
 interpret@^1.0.0:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/interpret/download/interpret-1.1.0.tgz#7ed1b1410c6a0e0f78cf95d3b8440c63f78b8614"
+
+invariant@^2.0.0:
+  version "2.2.4"
+  resolved "http://registry.npm.taobao.org/invariant/download/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
+  dependencies:
+    loose-envify "^1.0.0"
 
 invariant@^2.2.0, invariant@^2.2.1, invariant@^2.2.2:
   version "2.2.3"
@@ -6189,7 +6203,7 @@ locate-path@^2.0.0:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
 
-lodash-es@^4.2.1:
+lodash-es@^4.17.4, lodash-es@^4.17.5, lodash-es@^4.2.1:
   version "4.17.7"
   resolved "http://registry.npm.taobao.org/lodash-es/download/lodash-es-4.17.7.tgz#db240a3252c3dd8360201ac9feef91ac977ea856"
 
@@ -8328,7 +8342,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.8, prop-types@^15.6.0:
+prop-types@15.x, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.8, prop-types@^15.6.0:
   version "15.6.1"
   resolved "http://registry.npm.taobao.org/prop-types/download/prop-types-15.6.1.tgz#36644453564255ddda391191fb3a125cbdf654ca"
   dependencies:
@@ -8564,9 +8578,26 @@ react-dom@^16.0.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
+react-draggable@3.x, "react-draggable@^2.2.6 || ^3.0.3":
+  version "3.0.5"
+  resolved "http://registry.npm.taobao.org/react-draggable/download/react-draggable-3.0.5.tgz#c031e0ed4313531f9409d6cd84c8ebcec0ddfe2d"
+  dependencies:
+    classnames "^2.2.5"
+    prop-types "^15.6.0"
+
 react-error-overlay@^3.0.0:
   version "3.0.0"
   resolved "http://registry.npm.taobao.org/react-error-overlay/download/react-error-overlay-3.0.0.tgz#c2bc8f4d91f1375b3dad6d75265d51cd5eeaf655"
+
+react-grid-layout@^0.16.6:
+  version "0.16.6"
+  resolved "http://registry.npm.taobao.org/react-grid-layout/download/react-grid-layout-0.16.6.tgz#9b2407a2b946c2260ebaf66f13b556e1da4efeb2"
+  dependencies:
+    classnames "2.x"
+    lodash.isequal "^4.0.0"
+    prop-types "15.x"
+    react-draggable "3.x"
+    react-resizable "1.x"
 
 react-helmet@^5.2.0:
   version "5.2.0"
@@ -8599,6 +8630,24 @@ react-proxy@^3.0.0-alpha.0:
   dependencies:
     lodash "^4.6.1"
 
+react-redux@^5.0.7:
+  version "5.0.7"
+  resolved "http://registry.npm.taobao.org/react-redux/download/react-redux-5.0.7.tgz#0dc1076d9afb4670f993ffaef44b8f8c1155a4c8"
+  dependencies:
+    hoist-non-react-statics "^2.5.0"
+    invariant "^2.0.0"
+    lodash "^4.17.5"
+    lodash-es "^4.17.5"
+    loose-envify "^1.1.0"
+    prop-types "^15.6.0"
+
+react-resizable@1.x:
+  version "1.7.5"
+  resolved "http://registry.npm.taobao.org/react-resizable/download/react-resizable-1.7.5.tgz#83eb75bb3684da6989bbbf4f826e1470f0af902e"
+  dependencies:
+    prop-types "15.x"
+    react-draggable "^2.2.6 || ^3.0.3"
+
 react-responsive-grid@^0.3.4:
   version "0.3.4"
   resolved "http://registry.npm.taobao.org/react-responsive-grid/download/react-responsive-grid-0.3.4.tgz#c94fda1469f36a41e3fc23f63bb6e50f5e866523"
@@ -8607,7 +8656,7 @@ react-responsive-grid@^0.3.4:
     react-component-width-mixin "^2.0.0"
     react-page-width "^1.0.1"
 
-react-router-dom@^4.1.1:
+react-router-dom@^4.1.1, react-router-dom@^4.2.2:
   version "4.2.2"
   resolved "http://registry.npm.taobao.org/react-router-dom/download/react-router-dom-4.2.2.tgz#c8a81df3adc58bba8a76782e946cbd4eae649b8d"
   dependencies:
@@ -8651,7 +8700,7 @@ react@^15.6.0, react@^15.6.1:
     object-assign "^4.1.0"
     prop-types "^15.5.10"
 
-react@^16.0.0:
+react@^16.0.0, react@^16.2.0:
   version "16.2.0"
   resolved "http://registry.npm.taobao.org/react/download/react-16.2.0.tgz#a31bd2dab89bff65d42134fa187f24d054c273ba"
   dependencies:
@@ -8802,12 +8851,31 @@ reduce-function-call@^1.0.1:
   dependencies:
     balanced-match "^0.4.2"
 
+reduce-reducers@^0.1.0:
+  version "0.1.2"
+  resolved "http://registry.npm.taobao.org/reduce-reducers/download/reduce-reducers-0.1.2.tgz#fa1b4718bc5292a71ddd1e5d839c9bea9770f14b"
+
+redux-actions@^2.3.0:
+  version "2.3.0"
+  resolved "http://registry.npm.taobao.org/redux-actions/download/redux-actions-2.3.0.tgz#4e9967d86594b8c235bab6e08960b5c185f296d3"
+  dependencies:
+    invariant "^2.2.1"
+    lodash "^4.13.1"
+    lodash-es "^4.17.4"
+    reduce-reducers "^0.1.0"
+
 redux-devtools-instrument@^1.3.3:
   version "1.8.3"
   resolved "http://registry.npm.taobao.org/redux-devtools-instrument/download/redux-devtools-instrument-1.8.3.tgz#c510d67ab4e5e4525acd6e410c25ab46b85aca7c"
   dependencies:
     lodash "^4.2.0"
     symbol-observable "^1.0.2"
+
+redux-observable@^0.18.0:
+  version "0.18.0"
+  resolved "http://registry.npm.taobao.org/redux-observable/download/redux-observable-0.18.0.tgz#48de1f35554b7ba23a88b18379ca1c93f5124197"
+  dependencies:
+    gitbook-plugin-github "^2.0.0"
 
 redux@^3.6.0:
   version "3.7.2"
@@ -9350,6 +9418,12 @@ rx-lite-aggregates@^4.0.8:
 rx-lite@*, rx-lite@^4.0.8:
   version "4.0.8"
   resolved "http://registry.npm.taobao.org/rx-lite/download/rx-lite-4.0.8.tgz#0b1e11af8bc44836f04a6407e92da42467b79444"
+
+rxjs@^5.5.7:
+  version "5.5.7"
+  resolved "http://registry.npm.taobao.org/rxjs/download/rxjs-5.5.7.tgz#afb3d1642b069b2fbf203903d6501d1acb4cda27"
+  dependencies:
+    symbol-observable "1.0.1"
 
 safe-buffer@5.1.1, safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.1"
@@ -10278,6 +10352,10 @@ sw-toolbox@^3.4.0:
   dependencies:
     path-to-regexp "^1.0.1"
     serviceworker-cache-polyfill "^4.0.0"
+
+symbol-observable@1.0.1:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/symbol-observable/download/symbol-observable-1.0.1.tgz#8340fc4702c3122df5d22288f88283f513d3fdd4"
 
 symbol-observable@^1.0.2, symbol-observable@^1.0.3:
   version "1.2.0"

@@ -1,10 +1,11 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import { Container } from 'react-responsive-grid';
 
 import { rhythm, scale } from '../utils/typography';
 import './prism.css';
 import get from 'lodash/get';
+import '../../node_modules/react-grid-layout/css/styles.css';
+import '../../node_modules/react-resizable/css/styles.css';
 
 class Template extends React.Component {
   render() {
@@ -60,15 +61,15 @@ class Template extends React.Component {
       );
     }
     return (
-      <Container
+      <div
         style={{
-          maxWidth: rhythm(24),
+          maxWidth: rhythm(28),
           padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`
         }}
       >
         {header}
         {children()}
-      </Container>
+      </div>
     );
   }
 }

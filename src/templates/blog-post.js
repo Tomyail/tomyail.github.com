@@ -6,14 +6,16 @@ import get from 'lodash/get';
 import Bio from '../components/Bio';
 import { rhythm, scale } from '../utils/typography';
 import Disqus from 'disqus-react';
-import LeancloudCounter from '../components/LeancloudCounter';
+import _ from 'lodash';
 
 class BlogPostTemplate extends React.Component {
   constructor() {
     super();
-    this.state = {
-      leancloud: null
-    };
+  }
+
+  componentDidMount() {
+    const path = get(this, 'props.data.markdownRemark.frontmatter.path');
+    this.props.actions.getPostView([path], true);
   }
   render() {
     const post = this.props.data.markdownRemark;
@@ -30,24 +32,26 @@ class BlogPostTemplate extends React.Component {
       <div>
         <Helmet title={`${post.frontmatter.title} | ${siteTitle}`} />
         <h1>{post.frontmatter.title}</h1>
-        <div>{this.state.leancloud && this.state.leancloud.time}</div>
-        <LeancloudCounter
-          needIncrease={true}
-          urls={[post.frontmatter.path]}
-          onLeancloud={data => {
-            this.setState({ leancloud: data[0] });
-          }}
-        />
-        <p
+        <div
           style={{
             ...scale(-1 / 5),
             display: 'block',
             marginBottom: rhythm(1),
-            marginTop: rhythm(-1)
+            marginTop: rhythm(-0.5),
+            display: 'flex',
+            justifyContent: 'space-between'
           }}
         >
-          {post.frontmatter.date}
-        </p>
+          <span>{post.frontmatter.date}</span>
+          <span>
+            {_.get(
+              this,
+              `props.postView[${
+                this.props.data.markdownRemark.frontmatter.path
+              }].time`
+            )}
+          </span>
+        </div>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
           style={{
@@ -55,7 +59,6 @@ class BlogPostTemplate extends React.Component {
           }}
         />
         <Bio />
-
         <ul
           style={{
             display: 'flex',
@@ -90,7 +93,18 @@ class BlogPostTemplate extends React.Component {
   }
 }
 
-export default BlogPostTemplate;
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actions from '../redux/actions';
+
+export default connect(
+  state => ({
+    postView: state.postView
+  }),
+  dispatch => ({
+    actions: bindActionCreators(actions, dispatch)
+  })
+)(BlogPostTemplate);
 
 export const pageQuery = graphql`
   query BlogPostBySlug($path: String!) {
@@ -106,7 +120,7 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
+        date(formatString: "YYYY-MM-DD")
         path
       }
     }

@@ -5,37 +5,31 @@ import Helmet from 'react-helmet';
 
 import Bio from '../components/Bio';
 import { rhythm } from '../utils/typography';
-import Lean from '../components/LeancloudCounter';
+
+import ReactGridLayout from 'react-grid-layout/build/ReactGridLayout';
+// import './index.css';
 
 class BlogIndex extends React.Component {
   constructor() {
     super();
-    this.state = { leancloud: [] };
+  }
+  componentDidMount() {
+    const posts = get(this, 'props.data.allMarkdownRemark.edges');
+    const paths = posts.map(({ node }) => {
+      return get(node, 'frontmatter.path');
+    });
+    this.props.actions.getPostView(paths, false);
   }
   renderCount(slug) {
-    const item = _.find(
-      this.state.leancloud,
-      lean => lean.url.indexOf(slug) >= 0
-    );
-    if (item) {
-      return <div>{item.time}</div>;
-    }
+    return _.get(this, `props.postView[${slug}].time`);
   }
   render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title');
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
-
-    const urls = posts.map(({ node }) => get(node, 'frontmatter.path'));
+    const siteTitle = get(this, 'props.data.site.siteMetadata.title');
     return (
       <div>
         <Helmet title={siteTitle} />
         <Bio />
-        <Lean
-          urls={urls}
-          onLeancloud={data => {
-            this.setState({ leancloud: data });
-          }}
-        />
         {posts.map(({ node }) => {
           const title = get(node, 'frontmatter.title') || node.fields.slug;
           const slug = get(node, 'frontmatter.path');
@@ -50,9 +44,12 @@ class BlogIndex extends React.Component {
                   {title}
                 </Link>
               </h3>
-
-              {this.renderCount(slug)}
-              <small>{node.frontmatter.date}</small>
+              <span>
+                <span>{node.frontmatter.date}</span>
+                <span className="timeToRead">*</span>
+                <span> {node.timeToRead} min read</span>
+                <span>{this.renderCount(slug)}</span>
+              </span>
             </div>
           );
         })}
@@ -61,7 +58,18 @@ class BlogIndex extends React.Component {
   }
 }
 
-export default BlogIndex;
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actions from '../redux/actions';
+
+export default connect(
+  state => ({
+    postView: state.postView
+  }),
+  dispatch => ({
+    actions: bindActionCreators(actions, dispatch)
+  })
+)(BlogIndex);
 
 export const pageQuery = graphql`
   query IndexQuery {
@@ -73,9 +81,9 @@ export const pageQuery = graphql`
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
-          excerpt
+          timeToRead
           frontmatter {
-            date(formatString: "DD MMMM, YYYY")
+            date(formatString: "YYYY-MM-DD")
             title
             path
           }

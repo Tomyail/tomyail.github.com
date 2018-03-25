@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: `/tomyail.github.com`,
   siteMetadata: {
     title: 'Tomyail 的记忆现场',
     author: 'Xuexin Li',
@@ -6,7 +7,6 @@ module.exports = {
     siteUrl: 'http://blog.tomyail.com/'
   },
   plugins: [
-    'gatsby-plugin-react-next',
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -44,7 +44,58 @@ module.exports = {
         trackingId: `UA-16492044-5`
       }
     },
-    `gatsby-plugin-feed`,
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.edges.map(edge => {
+                return Object.assign({}, edge.node.frontmatter, {
+                  description: edge.node.excerpt,
+                  url: site.siteMetadata.siteUrl + edge.node.frontmatter.path,
+                  guid: site.siteMetadata.siteUrl + edge.node.frontmatter.path,
+                  custom_elements: [{ 'content:encoded': edge.node.html }]
+                });
+              });
+            },
+            query: `
+              {
+                allMarkdownRemark(
+                  limit: 1000,
+                  sort: { order: DESC, fields: [frontmatter___date] },
+                ) {
+                  edges {
+                    node {
+                      excerpt
+                      html
+                      frontmatter {
+                        title
+                        date
+                        path
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            output: '/rss.xml'
+          }
+        ]
+      }
+    },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     {
