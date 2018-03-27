@@ -4,6 +4,9 @@ import { Provider } from 'react-redux';
 
 import createStore from './src/redux/store/createStore';
 
+exports.onClientEntry = () => {
+  require('babel-polyfill');
+};
 exports.replaceRouterComponent = ({ history }) => {
   const store = createStore();
 

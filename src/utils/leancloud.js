@@ -27,11 +27,13 @@ const increase = item => R.pipeP(AV.Object.saveAll, AV.Object.fetchAll)(item);
 export default async function(urls, needIncrease) {
   const query = makeQuery(urls);
   if (query.length) {
+    //can not use async
+    //https://github.com/gatsbyjs/gatsby/issues/3931#issuecomment-364414141
+    //https://github.com/ember-cli/ember-cli-uglify/issues/5
     const queryResult = await find(query);
     const result = wrapLeanData(queryResult);
     if (needIncrease && process.env.NODE_ENV === 'production') {
       const needIncraseItem = increaseItem(result);
-      debugger;
       const increasedItem = await R.composeP(
         AV.Object.fetchAll,
         AV.Object.saveAll

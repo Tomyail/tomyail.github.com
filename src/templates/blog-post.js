@@ -68,20 +68,24 @@ class BlogPostTemplate extends React.Component {
             padding: 0
           }}
         >
-          {previous && (
+          {previous ? (
             <li>
               <Link to={previous.frontmatter.path} rel="prev">
                 ← {previous.frontmatter.title}
               </Link>
             </li>
+          ) : (
+            <li />
           )}
 
-          {next && (
+          {next ? (
             <li>
               <Link to={next.frontmatter.path} rel="next">
                 {next.frontmatter.title} →
               </Link>
             </li>
+          ) : (
+            <li />
           )}
         </ul>
         <Disqus.DiscussionEmbed

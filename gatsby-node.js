@@ -12,7 +12,19 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
       'global.GENTLY': false
     }
   ]);
+  if (stage === 'build-javascript') {
+    config._config.entry.app = ['babel-polyfill', config._config.entry.app];
+  }
+  return config;
 };
+
+exports.modifyBabelrc = ({ babelrc }) => ({
+  ...babelrc,
+  plugins: babelrc.plugins.concat([
+    'transform-decorators-legacy',
+    'transform-regenerator'
+  ])
+});
 exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators;
 
@@ -47,9 +59,9 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         const posts = result.data.allMarkdownRemark.edges;
 
         _.each(posts, (post, index) => {
-          const previous =
+          const next =
             index === posts.length - 1 ? false : posts[index + 1].node;
-          const next = index === 0 ? false : posts[index - 1].node;
+          const previous = index === 0 ? false : posts[index - 1].node;
 
           createPage({
             path: post.node.frontmatter.path,

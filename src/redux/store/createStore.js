@@ -10,7 +10,10 @@ import { rootEpic } from '../epics';
 
 const epicMiddleware = createEpicMiddleware(rootEpic);
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers =
+  typeof window !== `undefined`
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+    : compose;
 
 const createStore = () =>
   reduxCreateStore(reducer, composeEnhancers(applyMiddleware(epicMiddleware)));

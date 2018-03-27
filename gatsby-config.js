@@ -91,7 +91,7 @@ module.exports = {
                 }
               }
             `,
-            output: '/rss.xml'
+            output: '/atom.xml'
           }
         ]
       }
