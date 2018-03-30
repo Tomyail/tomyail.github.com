@@ -18,7 +18,7 @@ class BlogIndex extends React.Component {
     const paths = posts.map(({ node }) => {
       return get(node, 'frontmatter.path');
     });
-    this.props.actions.getPostView(paths, false);
+    this.props.actions.getPostView({ paths: paths, needIncrease: false });
   }
   renderCount(slug) {
     return _.get(this, `props.postView[${slug}].time`);

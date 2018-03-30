@@ -15,7 +15,7 @@ class BlogPostTemplate extends React.Component {
 
   componentDidMount() {
     const path = get(this, 'props.data.markdownRemark.frontmatter.path');
-    this.props.actions.getPostView([path], true);
+    this.props.actions.getPostView({ paths: [path], needIncrease: true });
   }
   render() {
     const post = this.props.data.markdownRemark;

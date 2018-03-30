@@ -32,7 +32,8 @@ export default async function(urls, needIncrease) {
     //https://github.com/ember-cli/ember-cli-uglify/issues/5
     const queryResult = await find(query);
     const result = wrapLeanData(queryResult);
-    if (needIncrease && process.env.NODE_ENV === 'production') {
+    //todo not increase when in dev mode .process.env.NODE_ENV === 'production'
+    if (needIncrease) {
       const needIncraseItem = increaseItem(result);
       const increasedItem = await R.composeP(
         AV.Object.fetchAll,
