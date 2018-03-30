@@ -1,0 +1,8 @@
+{
+"plugins": 
+    [
+    "transform-decorators-legacy",
+    "transform-runtime",
+    "transform-regenerator"
+    ]
+}

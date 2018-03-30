@@ -12,19 +12,9 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
       'global.GENTLY': false
     }
   ]);
-  if (stage === 'build-javascript') {
-    config._config.entry.app = ['babel-polyfill', config._config.entry.app];
-  }
   return config;
 };
 
-exports.modifyBabelrc = ({ babelrc }) => ({
-  ...babelrc,
-  plugins: babelrc.plugins.concat([
-    'transform-decorators-legacy',
-    'transform-regenerator'
-  ])
-});
 exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators;
 

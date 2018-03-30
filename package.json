@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "author": "xuexin.li <tomyail1989@gmail.com>",
   "dependencies": {
+    "babel-plugin-transform-runtime": "^6.23.0",
     "disqus-react": "^1.0.5",
     "gatsby": "^1.9.237",
     "gatsby-link": "^1.6.39",
@@ -54,7 +55,6 @@
   "license": "MIT",
   "main": "n/a",
   "scripts": {
-    "dev": "rm -rf .cache/* && gatsby develop",
     "lint": "./node_modules/.bin/eslint --ext .js,.jsx --ignore-pattern public .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js' 'src/**/*.md'",
