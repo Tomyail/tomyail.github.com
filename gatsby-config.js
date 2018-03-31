@@ -7,6 +7,7 @@ module.exports = {
     siteUrl: 'http://blog.tomyail.com/'
   },
   plugins: [
+    'gatsby-plugin-size-analyzer',
     {
       resolve: `gatsby-source-filesystem`,
       options: {
