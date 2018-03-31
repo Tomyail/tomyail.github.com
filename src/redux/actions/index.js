@@ -1,7 +1,8 @@
 import { createAction } from 'redux-actions';
 import * as ActionType from '../reducers';
 import { ofType } from 'redux-observable';
-import { mapTo, mergeMap } from 'rxjs/operators';
+import { mapTo } from 'rxjs/operator/mapTo';
+import { mergeMap } from 'rxjs/operator/mergeMap';
 import leancloud from '../../utils/leancloud';
 
 export const getPostView = createAction('FETCH_POST_VIEW');
