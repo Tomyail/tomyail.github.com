@@ -9,6 +9,7 @@ categories:
   - 技术
 date: 2010-07-20T09:49:55.000Z
 path: /some-thoughts-on-the-tlf-and-fte
+visible: false
 ---
 
 原文链接:<http://www.gskinner.com/blog/archives/2010/07/some_thoughts_o_1.html>

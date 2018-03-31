@@ -8,6 +8,7 @@ categories:
   - 随笔
 date: 2010-09-13T10:01:38.000Z
 path: /miscellaneous
+visible: false
 ---
 
 夜里,走在人影稀疏的小道上,总能使我感触万千,那时的思绪总是最清澈的.

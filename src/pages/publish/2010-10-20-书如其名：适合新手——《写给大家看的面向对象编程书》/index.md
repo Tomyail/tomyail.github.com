@@ -20,41 +20,43 @@ path: /the-object-oriented-thought-process
 
 使用多态可以减少条件判断语句的使用,因为类有自知之明,还是那个很经典的例子
 
-    package
-    {
+```actionscript
+package
+{
 
-    	/**
-    	 * ...
-    	 * @author
-    	 */
-    	public class  Test
-    	{
-    		var shape:Shape;
-    		shape = new Rectangle();
-    		shape.draw();
-    	}
+	/**
+		* ...
+		* @author
+		*/
+	public class  Test
+	{
+		var shape:Shape;
+		shape = new Rectangle();
+		shape.draw();
+	}
 
-    }
+}
 
-    class Shape {
-    	public function draw():void;
-    }
+class Shape {
+	public function draw():void;
+}
 
-    class Clrcle extends Shape {
-    	override public function draw():void
-    	{
-    		super.draw();
-    		trace("a Circle")
-    	}
-    }
+class Clrcle extends Shape {
+	override public function draw():void
+	{
+		super.draw();
+		trace("a Circle")
+	}
+}
 
-    class Rectangle extends Shape {
-    	override public function draw():void
-    	{
-    		super.draw();
-    		trace("a Rect")
-    	}
-    }
+class Rectangle extends Shape {
+	override public function draw():void
+	{
+		super.draw();
+		trace("a Rect")
+	}
+}
+```
 
 这里新建的 shape 虽然声明是一个 shape,但在实例化是我们定义了他的具体类型(Rectangle),所以最后它调用 的将是自己的类方法。
 

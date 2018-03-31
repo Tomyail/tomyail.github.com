@@ -7,6 +7,7 @@ categories:
 date: 2011-06-16T10:27:32.000Z
 tags: null
 path: /i-program-i-happy
+visible: false
 ---
 
 <div>优点：</div>

@@ -7,6 +7,7 @@ categories:
 date: 2011-07-15T16:32:18.000Z
 tags: null
 path: /rework
+visible: false
 ---
 
 37signals 公司的价值观：扩张，会议，预算，董事会，广告，销售人员，PR 都是次要的 。开放，节俭，专注才是关键

@@ -8,6 +8,7 @@ categories:
   - 技术
 date: 2011-04-27T23:04:48.000Z
 path: /godaddy-using-the-experience-of-space
+visible: false
 ---
 
 从购买域名空间到现在正式使用也快一周了，今天过来写下使用感受。

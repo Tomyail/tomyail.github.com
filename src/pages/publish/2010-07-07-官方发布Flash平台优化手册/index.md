@@ -8,6 +8,7 @@ categories:
   - 技术
 date: 2010-07-07T08:53:07.000Z
 path: /flash-performance-doc
+visible: false
 ---
 
 嘿嘿,是简体中文版的.

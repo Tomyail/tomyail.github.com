@@ -8,6 +8,7 @@ categories:
   - 随笔
 date: 2010-07-05T20:28:25.000Z
 path: /our-team-launched-the-promotional-video-microblogging
+visible: false
 ---
 
 <object width="480" height="400"><param name="src" value="http://www.tudou.com/programs/view/Aj2VX5ffBus/" /><embed type="application/x-shockwave-flash" width="480" height="400" src="http://www.tudou.com/programs/view/Aj2VX5ffBus/"></embed></object>

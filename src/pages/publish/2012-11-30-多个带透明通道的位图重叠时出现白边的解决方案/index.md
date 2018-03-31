@@ -7,6 +7,7 @@ categories:
   - 技术
 date: 2012-11-29T19:14:17.000Z
 path: /alpha-error
+visible: false
 ---
 
 最近利用[ginger](http://cheezeworld.com/bitmap-animation-api-released-ginger/)这个位图动画引擎做功能,这个引擎利用[spritesheet](http://www.8bitrocket.com/2008/7/2/Tutorial-AS3-The-basics-of-tile-sheet-animation-or-blitting/)拷贝位图数据然后存在数组里循环切换位图数据来实现动画效果的.里面的 AnimationPlayer 包含一张 Bitmap 负责模拟 Movieclip 的功能.

@@ -7,6 +7,7 @@ categories:
 date: 2010-05-19T04:23:39.000Z
 tags: null
 path: /thinking
+visible: false
 ---
 
 感觉最近活得比较挣扎,所以来此牢骚下,都说牢骚太多不好,不过偶尔来几下还是有益身心的.

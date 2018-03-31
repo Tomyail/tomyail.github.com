@@ -24,6 +24,7 @@ class BlogPostTemplate extends React.Component {
     const siteTitle = get(this.props, 'data.site.siteMetadata.title');
     const siteUrl = get(this.props, 'data.site.siteMetadata.siteUrl');
     const { previous, next } = this.props.pathContext;
+    debugger;
 
     const disqusShortname = 'tomyail';
     const disqusConfig = {

@@ -7,6 +7,7 @@ categories:
 date: 2011-05-14T17:12:01.000Z
 tags: null
 path: /pragmatic-thinking-learning
+visible: false
 ---
 
 ### 第二章：从新手到专家的历程

@@ -7,6 +7,7 @@ categories:
 date: 2010-06-05T14:00:26.000Z
 tags: null
 path: /make-time-to-your-friend
+visible: false
 ---
 
 最近感觉自己一直很忙,但每天晚上躺在床上思量着自己为什么忙的原因的时候,却总是一头雾水.也许这就叫做碌碌无为.

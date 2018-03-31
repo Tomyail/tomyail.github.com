@@ -8,6 +8,7 @@ categories:
   - 技术
 date: 2010-07-14T11:38:18.000Z
 path: /how-to-addeventlistener-to-multi-httpservice-event
+visible: false
 ---
 
 加载一张图片是我们经常需要利用同一个函数判断不同的事件类型来做相应的事情,比如可以这样.

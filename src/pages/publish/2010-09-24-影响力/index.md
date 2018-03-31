@@ -8,6 +8,7 @@ categories:
   - 读摘
 date: 2010-09-23T19:29:53.000Z
 path: /influence
+visible: false
 ---
 
 第一章 影响力的武器
