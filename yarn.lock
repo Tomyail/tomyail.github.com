@@ -674,6 +674,12 @@ babel-plugin-lodash@^3.2.11:
     lodash "^4.17.4"
     require-package-name "^2.0.1"
 
+babel-plugin-ramda@^1.5.0:
+  version "1.5.0"
+  resolved "http://registry.npm.taobao.org/babel-plugin-ramda/download/babel-plugin-ramda-1.5.0.tgz#9ef604267acca531549a020d4c19fa543dd30a4b"
+  dependencies:
+    ramda "0.x"
+
 babel-plugin-syntax-async-functions@^6.8.0:
   version "6.13.0"
   resolved "http://registry.npm.taobao.org/babel-plugin-syntax-async-functions/download/babel-plugin-syntax-async-functions-6.13.0.tgz#cad9cad1191b5ad634bf30ae0872391e0647be95"
@@ -8542,7 +8548,7 @@ raf@^2.0.4:
   dependencies:
     performance-now "~0.1.3"
 
-ramda@^0.25.0:
+ramda@0.x, ramda@^0.25.0:
   version "0.25.0"
   resolved "http://registry.npm.taobao.org/ramda/download/ramda-0.25.0.tgz#8fdf68231cffa90bc2f9460390a0cb74a29b29a9"
 
