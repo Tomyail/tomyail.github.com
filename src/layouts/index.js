@@ -6,8 +6,9 @@ import './prism.css';
 import get from 'lodash/get';
 import '../../node_modules/react-grid-layout/css/styles.css';
 import '../../node_modules/react-resizable/css/styles.css';
+import './index.css';
 
-class Template extends React.Component {
+class Layout extends React.Component {
   render() {
     const { location, children } = this.props;
     let header;
@@ -86,4 +87,4 @@ export const pageQuery = graphql`
   }
 `;
 
-export default Template;
+export default Layout;
