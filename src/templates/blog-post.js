@@ -2,6 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import Link from 'gatsby-link';
 import get from 'lodash/get';
+import truncate from 'lodash/truncate';
 
 import Bio from '../components/Bio';
 import { rhythm, scale } from '../utils/typography';
@@ -59,8 +60,7 @@ class BlogPostTemplate extends React.Component {
             marginBottom: rhythm(1)
           }}
         />
-        <Bio />
-        <ul
+        <div
           style={{
             display: 'flex',
             flexWrap: 'wrap',
@@ -72,23 +72,22 @@ class BlogPostTemplate extends React.Component {
           {previous ? (
             <li>
               <Link to={previous.frontmatter.path} rel="prev">
-                ← {previous.frontmatter.title}
+                ← {truncate(previous.frontmatter.title)}
               </Link>
             </li>
           ) : (
             <li />
           )}
-
           {next ? (
             <li>
               <Link to={next.frontmatter.path} rel="next">
-                {next.frontmatter.title} →
+                {truncate(next.frontmatter.title)} →
               </Link>
             </li>
           ) : (
             <li />
           )}
-        </ul>
+        </div>
         <Disqus.DiscussionEmbed
           shortname={disqusShortname}
           config={disqusConfig}

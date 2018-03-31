@@ -9,6 +9,9 @@ import { rhythm } from '../utils/typography';
 import ReactGridLayout from 'react-grid-layout/build/ReactGridLayout';
 // import './index.css';
 
+const SubTitleItem = ({ children }) => {
+  return <span style={{ margin: '0 2px' }}>{children}</span>;
+};
 class BlogIndex extends React.Component {
   constructor() {
     super();
@@ -23,6 +26,7 @@ class BlogIndex extends React.Component {
     }
   }
   renderCount(slug) {
+    return;
     return get(this, `props.postView[${slug}].time`);
   }
   render() {
@@ -46,11 +50,11 @@ class BlogIndex extends React.Component {
                   {title}
                 </Link>
               </h3>
-              <span>
-                <span>{node.frontmatter.date}</span>
-                <span className="timeToRead">*</span>
-                <span> {node.timeToRead} min read</span>
-                <span>{this.renderCount(slug)}</span>
+              <span style={{ fontSize: 'small', color: '#444' }}>
+                <SubTitleItem>{node.frontmatter.date}</SubTitleItem>
+                <SubTitleItem>.</SubTitleItem>
+                <SubTitleItem>{`${node.timeToRead} min read`}</SubTitleItem>
+                <SubTitleItem>{this.renderCount(slug)}</SubTitleItem>
               </span>
             </div>
           );
@@ -85,7 +89,7 @@ export const pageQuery = graphql`
         node {
           timeToRead
           frontmatter {
-            date(formatString: "YYYY-MM-DD")
+            date(formatString: "MMM DD, YYYY")
             title
             path
           }

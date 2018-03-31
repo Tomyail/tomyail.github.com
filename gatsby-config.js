@@ -1,7 +1,7 @@
 module.exports = {
   pathPrefix: `/tomyail.github.com`,
   siteMetadata: {
-    title: 'Tomyail 的记忆现场',
+    title: 'Tomyail Li',
     author: 'Xuexin Li',
     description: ' 一个程序员的自娱自乐',
     siteUrl: 'http://blog.tomyail.com/'

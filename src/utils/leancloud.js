@@ -33,7 +33,7 @@ export default async function(urls, needIncrease) {
     const queryResult = await find(query);
     const result = wrapLeanData(queryResult);
     //todo not increase when in dev mode .process.env.NODE_ENV === 'production'
-    if (needIncrease) {
+    if (needIncrease && process.env.NODE_ENV === 'production') {
       const needIncraseItem = increaseItem(result);
       const increasedItem = await R.composeP(
         AV.Object.fetchAll,
