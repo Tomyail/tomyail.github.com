@@ -15,10 +15,12 @@ class BlogIndex extends React.Component {
   }
   componentDidMount() {
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
-    const paths = posts.map(({ node }) => {
-      return get(node, 'frontmatter.path');
-    });
-    this.props.actions.getPostView({ paths: paths, needIncrease: false });
+    if (posts && posts.length) {
+      const paths = posts.map(({ node }) => {
+        return get(node, 'frontmatter.path');
+      });
+      this.props.actions.getPostView({ paths: paths, needIncrease: false });
+    }
   }
   renderCount(slug) {
     return get(this, `props.postView[${slug}].time`);

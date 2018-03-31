@@ -25,7 +25,7 @@ module.exports = {
           'memoizing',
           'coercions',
           'flattening',
-          'paths',
+          // 'paths',
           'placeholders'
         ]
       }
@@ -120,7 +120,7 @@ module.exports = {
         ]
       }
     },
-    `gatsby-plugin-offline`,
+    // `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: 'gatsby-plugin-typography',
