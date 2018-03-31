@@ -21,7 +21,7 @@ class BlogIndex extends React.Component {
     this.props.actions.getPostView({ paths: paths, needIncrease: false });
   }
   renderCount(slug) {
-    return _.get(this, `props.postView[${slug}].time`);
+    return get(this, `props.postView[${slug}].time`);
   }
   render() {
     const posts = get(this, 'props.data.allMarkdownRemark.edges');

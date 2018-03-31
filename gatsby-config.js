@@ -7,6 +7,29 @@ module.exports = {
     siteUrl: 'http://blog.tomyail.com/'
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-lodash`,
+      options: {
+        disabledFeatures: [
+          `shorthands`,
+          `cloning`,
+          'currying',
+          'caching',
+          'collections',
+          'exotics',
+          'guards',
+          'metadata',
+          'deburring',
+          'unicode',
+          'chaining',
+          'memoizing',
+          'coercions',
+          'flattening',
+          'paths',
+          'placeholders'
+        ]
+      }
+    },
     'gatsby-plugin-size-analyzer',
     {
       resolve: `gatsby-source-filesystem`,

@@ -6,7 +6,6 @@ import get from 'lodash/get';
 import Bio from '../components/Bio';
 import { rhythm, scale } from '../utils/typography';
 import Disqus from 'disqus-react';
-import _ from 'lodash';
 
 class BlogPostTemplate extends React.Component {
   constructor() {
@@ -44,7 +43,7 @@ class BlogPostTemplate extends React.Component {
         >
           <span>{post.frontmatter.date}</span>
           <span>
-            {_.get(
+            {get(
               this,
               `props.postView[${
                 this.props.data.markdownRemark.frontmatter.path
