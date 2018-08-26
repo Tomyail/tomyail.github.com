@@ -3,16 +3,16 @@ import Helmet from 'react-helmet';
 import Link from 'gatsby-link';
 import get from 'lodash/get';
 import truncate from 'lodash/truncate';
+import { graphql } from 'gatsby';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actions from '../redux/actions';
 
-import Bio from '../components/Bio';
+// import Bio from '../components/Bio';
 import { rhythm, scale } from '../utils/typography';
 import Disqus from 'disqus-react';
 
 class BlogPostTemplate extends React.Component {
-  constructor() {
-    super();
-  }
-
   componentDidMount() {
     const path = get(this, 'props.data.markdownRemark.frontmatter.path');
     if (path) {
@@ -23,9 +23,7 @@ class BlogPostTemplate extends React.Component {
     const post = this.props.data.markdownRemark;
     const siteTitle = get(this.props, 'data.site.siteMetadata.title');
     const siteUrl = get(this.props, 'data.site.siteMetadata.siteUrl');
-    const { previous, next } = this.props.pathContext;
-    debugger;
-
+    const { previous, next } = this.props.pageContext;
     const disqusShortname = 'tomyail';
     const disqusConfig = {
       url: `${siteUrl}${post.frontmatter.path.replace('/', '')}`,
@@ -38,7 +36,6 @@ class BlogPostTemplate extends React.Component {
         <div
           style={{
             ...scale(-1 / 5),
-            display: 'block',
             marginBottom: rhythm(1),
             marginTop: rhythm(-0.5),
             display: 'flex',
@@ -97,10 +94,6 @@ class BlogPostTemplate extends React.Component {
     );
   }
 }
-
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as actions from '../redux/actions';
 
 export default connect(
   state => ({

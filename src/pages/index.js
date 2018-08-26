@@ -2,7 +2,10 @@ import React from 'react';
 import Link from 'gatsby-link';
 import get from 'lodash/get';
 import Helmet from 'react-helmet';
-
+import { graphql } from 'gatsby';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actions from '../redux/actions';
 import Bio from '../components/Bio';
 import { rhythm } from '../utils/typography';
 
@@ -63,10 +66,6 @@ class BlogIndex extends React.Component {
     );
   }
 }
-
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as actions from '../redux/actions';
 
 export default connect(
   state => ({

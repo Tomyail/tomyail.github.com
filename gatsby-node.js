@@ -1,22 +1,11 @@
+const _ = require('lodash');
 const Promise = require('bluebird');
 const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 const R = require('ramda');
 
-// https://github.com/gatsbyjs/gatsby/issues/2615
-//https://github.com/lewie9021/webpack-configurator
-exports.modifyWebpackConfig = ({ config, stage }) => {
-  const Webpack = require('webpack');
-  config.plugin('webpack-define', Webpack.DefinePlugin, [
-    {
-      'global.GENTLY': false
-    }
-  ]);
-  return config;
-};
-
-exports.createPages = ({ graphql, boundActionCreators }) => {
-  const { createPage } = boundActionCreators;
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions;
 
   return new Promise((resolve, reject) => {
     const blogPost = path.resolve('./src/templates/blog-post.js');
@@ -24,10 +13,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       graphql(
         `
           {
-            allMarkdownRemark(
-              sort: { fields: [frontmatter___date], order: DESC }
-              limit: 1000
-            ) {
+            allMarkdownRemark(limit: 1000) {
               edges {
                 node {
                   frontmatter {
@@ -42,7 +28,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         `
       ).then(result => {
         if (result.errors) {
-          console.log(result.errors);
           reject(result.errors);
         }
 
@@ -88,3 +73,16 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     );
   });
 };
+
+// exports.onCreateNode = ({ node, actions, getNode }) => {
+//   const { createNodeField } = actions;
+
+//   if (node.internal.type === `MarkdownRemark`) {
+//     const value = createFilePath({ node, getNode });
+//     createNodeField({
+//       name: `slug`,
+//       node,
+//       value
+//     });
+//   }
+// };

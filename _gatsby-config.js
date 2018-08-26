@@ -30,13 +30,14 @@ module.exports = {
         ]
       }
     },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/src/pages/publish`,
-        name: 'pages'
-      }
-    },
+    // 'gatsby-plugin-size-analyzer',
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     path: `${__dirname}/src/pages/publish`,
+    //     name: 'publish'
+    //   }
+    // },
     {
       resolve: `gatsby-transformer-remark`,
       options: {
@@ -67,19 +68,6 @@ module.exports = {
         trackingId: `UA-16492044-5`
       }
     },
-    // `gatsby-plugin-feed`,
-    // {
-    //   resolve: `gatsby-plugin-manifest`,
-    //   options: {
-    //     name: `Gatsby Starter Blog`,
-    //     short_name: `GatsbyJS`,
-    //     start_url: `/`,
-    //     background_color: `#ffffff`,
-    //     theme_color: `#663399`,
-    //     display: `minimal-ui`,
-    //     icon: `src/assets/gatsby-icon.png`
-    //   }
-    // },
     {
       resolve: `gatsby-plugin-feed`,
       options: {

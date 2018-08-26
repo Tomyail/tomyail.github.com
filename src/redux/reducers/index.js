@@ -1,6 +1,6 @@
-import { han, handleAction } from 'redux-actions';
+import { handleAction } from 'redux-actions';
 
-import * as R from 'ramda';
+// import * as R from 'ramda';
 import { combineReducers } from 'redux';
 import _ from 'lodash';
 
