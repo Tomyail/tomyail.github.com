@@ -1,5 +1,5 @@
 module.exports = {
-  pathPrefix: `/tomyail.github.com`,
+  pathPrefix: `/~xuexin`,
   siteMetadata: {
     title: 'Tomyail Li',
     author: 'Xuexin Li',

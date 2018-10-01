@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../redux/actions';
 import Bio from '../components/Bio';
 import { rhythm } from '../utils/typography';
+import About from './about';
 
 import ReactGridLayout from 'react-grid-layout/build/ReactGridLayout';
 // import './index.css';
@@ -38,6 +39,7 @@ class BlogIndex extends React.Component {
     return (
       <div>
         <Helmet title={siteTitle} />
+        <About />
         <Bio />
         {posts.map(({ node }) => {
           const title = get(node, 'frontmatter.title') || node.fields.slug;

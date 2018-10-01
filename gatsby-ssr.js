@@ -1,18 +1,45 @@
-// import React from 'react'
-// import { Provider } from 'react-redux'
-// import { renderToString } from 'react-dom/server'
+// import wrapWithProvider from './wrap-with-provider';
 
-// import createStore from './src/redux/store/createStore'
+// import React from 'react';
+// import { renderToString } from 'react-dom/server';
+// import JssProvider from 'react-jss/lib/JssProvider';
+// import getPageContext from './src/getPageContext';
 
-// export const constreplaceRenderer = ({
+// // export const wrapRootElement = wrapWithProvider;
+// export const replaceRenderer = ({
 //   bodyComponent,
 //   replaceBodyHTMLString,
+//   setHeadComponents
 // }) => {
-//   const store = createStore()
+//   // Get the context of the page to collected side effects.
+//   const muiPageContext = getPageContext();
 
-//   const ConnectedBody = () => <Provider store={store}>{bodyComponent}</Provider>
-//   replaceBodyHTMLString(renderToString(<ConnectedBody />))
-// }
+//   console.log('!!!!!!!!!!replaceRenderer');
+//   debugger;
+//   const bodyHTML = renderToString(
+//     <JssProvider registry={muiPageContext.sheetsRegistry}>
+//       {bodyComponent}
+//     </JssProvider>
+//   );
 
-import wrapWithProvider from './wrap-with-provider'
-export const wrapRootElement = wrapWithProvider
+//   replaceBodyHTMLString(bodyHTML);
+//   setHeadComponents([
+//     <style
+//       type="text/css"
+//       id="jss-server-side"
+//       key="jss-server-side"
+//       dangerouslySetInnerHTML={{
+//         __html: muiPageContext.sheetsRegistry.toString()
+//       }}
+//     />
+//   ]);
+// };
+
+// It's not ready yet: https://github.com/gatsbyjs/gatsby/issues/8237.
+//
+// const withRoot = require('./src/withRoot').default;
+// const WithRoot = withRoot(props => props.children);
+
+// exports.wrapRootElement = ({ element }) => {
+//   return <WithRoot>{element}</WithRoot>;
+// };

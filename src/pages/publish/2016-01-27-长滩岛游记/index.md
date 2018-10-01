@@ -5,6 +5,7 @@ categories:
 date: 2016-01-27T00:08:34.000Z
 tags: null
 path: /boracay-travel-note
+visible: false
 ---
 
 公司组织的一年一度旅游活动，今年的目标是菲律宾的长滩岛，去了一趟，不虚此行。
