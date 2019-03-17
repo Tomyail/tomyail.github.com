@@ -7,6 +7,7 @@ module.exports = {
     siteUrl: 'http://blog.tomyail.com/'
   },
   plugins: [
+    'gatsby-plugin-typescript',
     {
       resolve: `gatsby-plugin-lodash`,
       options: {
@@ -41,6 +42,7 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          'gatsby-remark-autolink-headers',
           {
             resolve: `gatsby-remark-images`,
             options: {
@@ -133,12 +135,12 @@ module.exports = {
       }
     },
     // `gatsby-plugin-offline`,
-    `gatsby-plugin-react-helmet`,
-    {
-      resolve: 'gatsby-plugin-typography',
-      options: {
-        pathToConfigModule: 'src/utils/typography'
-      }
-    }
+    `gatsby-plugin-react-helmet`
+    // {
+    //   resolve: 'gatsby-plugin-typography',
+    //   options: {
+    //     pathToConfigModule: 'src/utils/typography'
+    //   }
+    // }
   ]
 };

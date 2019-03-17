@@ -67,22 +67,28 @@ exports.createPages = ({ graphql, actions }) => {
 
         const visiblePosts = R.filter(isVisible)(posts);
         renderVisiblePost(visiblePosts);
-        const invisiblePosts = R.filter(R.compose(R.not, isVisible))(posts);
+        const invisiblePosts = R.filter(
+          R.compose(
+            R.not,
+            isVisible
+          )
+        )(posts);
         renderInvisiblePosts(invisiblePosts);
       })
     );
   });
 };
 
-// exports.onCreateNode = ({ node, actions, getNode }) => {
-//   const { createNodeField } = actions;
+exports.onCreateNode = ({ node, actions, getNode }) => {
+  const { createNodeField } = actions;
 
-//   if (node.internal.type === `MarkdownRemark`) {
-//     const value = createFilePath({ node, getNode });
-//     createNodeField({
-//       name: `slug`,
-//       node,
-//       value
-//     });
-//   }
-// };
+  if (node.internal.type === `MarkdownRemark`) {
+    const value = node.frontmatter.path + '/'; //createFilePath({ node, getNode });
+    //gatsby-remark-toc 插件需要使用 slug 作为路径,所以开启 onCreateNode 函数
+    createNodeField({
+      name: `slug`,
+      node,
+      value
+    });
+  }
+};

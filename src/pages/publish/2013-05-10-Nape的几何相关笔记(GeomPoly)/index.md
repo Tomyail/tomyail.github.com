@@ -53,7 +53,7 @@ Polygon 的构造函数和接收 GeomPoly.
 * 任何两个顶点间的线段位于多边形的内部或边界上.
   **Y 单调多边形(\*\***Y-Monotone)\*\* 任意水平线和这个多边形的交点至多只有两点的多边形
 
-![M-polygon[1]](./M-polygon[1].jpg "M-polygon[1]")
+![M-polygon](./M-polygon.jpg "M-polygon")
 
 (图片来源:[Monotone polygon](http://en.wikipedia.org/wiki/Monotone_polygon))
 
@@ -79,7 +79,7 @@ Polygon 的构造函数和接收 GeomPoly.
 
 (图片来自[nape_manual](http://napephys.com/help/manual.html))
 
-![polyTypes[1]](./polyTypes[1].png "polyTypes[1]")
+![polyTypes](./polyTypes.png "polyTypes")
 
 ### 多边形的分解
 
@@ -93,13 +93,13 @@ Polygon 只接受凸多边形(?).
 
 **monotoneDecomposition**, **convexDecomposition** 和 **triangularDecomposition** 将**弱简单多边形**转换成指定类型的多边形.(图片来自[nape_manual](http://napephys.com/help/manual.html))
 
-![decomp[1]](./decomp[1].png "decomp[1]")
+![decomp](./decomp.png "decomp")
 
 ### 多边形的简单化 (Simplification)
 
 如果有几个点的距离很进,那一通过这个方法将这几个点合并成两个点,这就是简单化的基本思想.(图片来自[nape_manual](http://napephys.com/help/manual.html))
 
-![simpling[1]](./simpling[1].png "simpling[1]")
+![simpling](./simpling.png "simpling")
 简单化相关讨论:
 
 [Re: Milestone 6 - Help](http://deltaluca.me.uk/forum/index.php/mv/msg/233/1471/2bacca04559c71983a14f387cb05287f/#msg_1471)
@@ -116,7 +116,7 @@ Polygon 只接受凸多边形(?).
 
 下面通过一个简单实例说明下其实现原理,这个实例用了一个简单的三角形做例子,对于复杂不规则多边形,思路是一样的.下图灰色的就是这个三角形,宽 400px,高 300px.
 
-![Image[1]](./Image[1].png "Image[1]")
+![Image](./Image.png "Image")
 
 1.首先 MarchingSquares 需要将这个形状映射到一个网格上去,网格单元越小,精度越高,为了绘制方便我们假设网格尺寸是 100px(对于实际应用中,像素在 4-10 都是可以接受的),那么这个形状映射到网格就是这样的(黄线就是网格):
 
@@ -124,16 +124,16 @@ Polygon 只接受凸多边形(?).
 
 2:遍历所有网格顶点,并应用一个规则(isoFun)为所有顶点赋值.这里的 isoFun 按照特定应用需求可能不一样,最基本的类似于这样:如果顶点和这个形状接触返回-1,否则返回 1.
 
-遍历之后如下图(图中红色表示不接触[1],绿色表示接触[-1])
+遍历之后如下图(图中红色表示不接触,绿色表示接触[-1])
 
-![MatchSequence_2[1]](./MatchSequence_2[1].png "MatchSequence_2[1]")
+![MatchSequence_2](./MatchSequence_2.png "MatchSequence_2")
 
 3:按照这样表(右下角)将每个小网格分割
 
 ![Marchingsquaresalgorithm](./Marchingsquaresalgorithm.png "Marchingsquaresalgorithm")
 得到图形:
 
-![MarchingSequence_3[1]](./MarchingSequence_3[1].png "MarchingSequence_3[1]")
+![MarchingSequence_3](./MarchingSequence_3.png "MarchingSequence_3")
 
 维基中最后一步还利用了一个叫"线性插值"的运算规则提高精度,但是在 Nape 中并没有找到这种方法.也就是说 Nape 在走到这里应该就停止并返回途中红色区域的所有点阵.
 
@@ -147,7 +147,7 @@ Polygon 只接受凸多边形(?).
 
 5:判断这些子网格顶点同样应用 isoFun 为次级顶点赋值得到的结果如下图(次级顶点小一点,从 trace 中能看出 nape 对遍历子网格做了优化并没有遍历全部而是只遍历红区域周围的):
 
-![MatchSequence_5[1]](./MatchSequence_5[1].png "MatchSequence_5[1]")
+![MatchSequence_5](./MatchSequence_5.png "MatchSequence_5")
 
 5.1:步骤 3 的连线规则是根据维基提供的一张表格来定义的,但是针对 5 这种情况没有一张现成的表可以参考,通过观察 Nape 得到的结果可以发现 3 中对应的那张表格其实可以更加一般化.我从 3 中拿两个出来进行说明:
 
@@ -161,15 +161,15 @@ Polygon 只接受凸多边形(?).
 
 同理将这个法则推广到更多点上来就比较容易了,拿 5 步骤配图中的第一块区域得到的结果就是:
 
-![MarchingSequence_5.2[1]](./MarchingSequence_5.2[1].png "MarchingSequence_5.2[1]")
+![MarchingSequence_5.2](./MarchingSequence_5.2.png "MarchingSequence_5.2")
 
 6:应用上述规则后最终得到的结果如下图:
 
-![MarchingSequence_5.3[1]](./MarchingSequence_5.3[1].png "MarchingSequence_5.3[1]")
+![MarchingSequence_5.3](./MarchingSequence_5.3.png "MarchingSequence_5.3")
 
 当这个 quality 很高时,结果是这样的:
 
-![MarchingSequence_6[1]](./MarchingSequence_6[1].png "MarchingSequence_6[1]")
+![MarchingSequence_6](./MarchingSequence_6.png "MarchingSequence_6")
 
 写到这里 Nape 里面的 MarchingSquares 算法实现就差不多了,在理解了算法之后看看 API 就很清楚了.
 

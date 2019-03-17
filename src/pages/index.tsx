@@ -9,8 +9,10 @@ import * as actions from '../redux/actions';
 import Bio from '../components/Bio';
 import { rhythm } from '../utils/typography';
 import About from './about';
+import PostPreview from '../components/PostPreview';
+import { List } from '@material-ui/core';
 
-import ReactGridLayout from 'react-grid-layout/build/ReactGridLayout';
+// import ReactGridLayout from 'react-grid-layout/build/ReactGridL  ayout';
 // import './index.css';
 
 const SubTitleItem = ({ children }) => {
@@ -29,41 +31,19 @@ class BlogIndex extends React.Component {
       this.props.actions.getPostView({ paths: paths, needIncrease: false });
     }
   }
-  renderCount(slug) {
-    return;
-    return get(this, `props.postView[${slug}].time`);
-  }
+
   render() {
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
     const siteTitle = get(this, 'props.data.site.siteMetadata.title');
     return (
       <div>
         <Helmet title={siteTitle} />
-        <About />
         <Bio />
-        {posts.map(({ node }) => {
-          const title = get(node, 'frontmatter.title') || node.fields.slug;
-          const slug = get(node, 'frontmatter.path');
-          return (
-            <div key={slug}>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4)
-                }}
-              >
-                <Link style={{ boxShadow: 'none' }} to={slug}>
-                  {title}
-                </Link>
-              </h3>
-              <span style={{ fontSize: 'small', color: '#444' }}>
-                <SubTitleItem>{node.frontmatter.date}</SubTitleItem>
-                <SubTitleItem>.</SubTitleItem>
-                <SubTitleItem>{`${node.timeToRead} min read`}</SubTitleItem>
-                <SubTitleItem>{this.renderCount(slug)}</SubTitleItem>
-              </span>
-            </div>
-          );
-        })}
+        <List>
+          {posts.map(({ node }) => (
+            <PostPreview node={node}  />
+          ))}
+        </List>
       </div>
     );
   }
@@ -92,6 +72,7 @@ export const pageQuery = graphql`
       edges {
         node {
           timeToRead
+          excerpt
           frontmatter {
             date(formatString: "MMM DD, YYYY")
             title

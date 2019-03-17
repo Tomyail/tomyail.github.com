@@ -1,9 +1,10 @@
 import React from 'react';
-import { MuiThemeProvider } from '@material-ui/core/styles';
+import { MuiThemeProvider, jssPreset } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import JssProvider from 'react-jss/lib/JssProvider';
 import getPageContext from './getPageContext';
 
+// const jss = create(jssPreset());
 function withRoot(Component) {
   class WithRoot extends React.Component {
     constructor(props) {
@@ -21,7 +22,9 @@ function withRoot(Component) {
 
     render() {
       return (
-        <JssProvider generateClassName={this.muiPageContext.generateClassName}>
+        <JssProvider
+          generateClassName={this.muiPageContext.generateClassName}
+        >
           {/* MuiThemeProvider makes the theme available down the React
               tree thanks to React context. */}
           <MuiThemeProvider

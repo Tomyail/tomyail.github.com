@@ -8,7 +8,7 @@ import reducer from '../reducers';
 import { createEpicMiddleware } from 'redux-observable';
 import { rootEpic } from '../epics';
 
-const epicMiddleware = createEpicMiddleware(rootEpic);
+const epicMiddleware = createEpicMiddleware();
 
 const composeEnhancers =
   typeof window !== `undefined`
@@ -17,4 +17,5 @@ const composeEnhancers =
 
 const createStore = () =>
   reduxCreateStore(reducer, composeEnhancers(applyMiddleware(epicMiddleware)));
+epicMiddleware.run(rootEpic);
 export default createStore;
