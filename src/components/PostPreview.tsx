@@ -11,7 +11,8 @@ import {
   ListItem,
   Chip,
   CardActions,
-  Button
+  Button,
+  Grid
 } from '@material-ui/core';
 // import { Link } from 'reach';
 import Link from 'gatsby-link';
@@ -42,7 +43,14 @@ const PostPreview = ({ node, classes }) => {
   const title = get(node, 'frontmatter.title') || node.fields.slug;
   const slug = get(node, 'frontmatter.path');
   return (
-    <ListItem key={slug} className={classes.listItem}>
+    <Grid
+      item
+      container
+      xs={10}
+      direction="column"
+      justify="center"
+      alignItems="stretch"
+    >
       <Card className={classes.card}>
         <CardActionArea href={slug}>
           {/* <CardMedia
@@ -67,7 +75,7 @@ const PostPreview = ({ node, classes }) => {
           <Button variant="outlined">Reaad More</Button>
         </CardActions>
       </Card>
-    </ListItem>
+    </Grid>
   );
 };
 
