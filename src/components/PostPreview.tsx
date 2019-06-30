@@ -43,14 +43,7 @@ const PostPreview = ({ node, classes }) => {
   const title = get(node, 'frontmatter.title') || node.fields.slug;
   const slug = get(node, 'frontmatter.path');
   return (
-    <Grid
-      item
-      container
-      xs={10}
-      direction="column"
-      justify="center"
-      alignItems="stretch"
-    >
+   
       <Card className={classes.card}>
         <CardActionArea href={slug}>
           {/* <CardMedia
@@ -70,12 +63,7 @@ const PostPreview = ({ node, classes }) => {
             <Typography variant="caption" gutterBottom />
           </CardContent>
         </CardActionArea>
-
-        <CardActions>
-          <Button variant="outlined">Reaad More</Button>
-        </CardActions>
       </Card>
-    </Grid>
   );
 };
 

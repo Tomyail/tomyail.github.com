@@ -2,7 +2,6 @@ import { withStyles } from '@material-ui/core';
 import * as React from 'react';
 
 const style = theme => {
-  debugger;
   return {
     root: {
       color: theme.palette.text.secondary,

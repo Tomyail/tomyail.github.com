@@ -14,7 +14,7 @@ var url =
   process.env.NPM_CONFIG_ELECTRON_MIRROR ||
   process.env.ELECTRON_MIRROR ||
   opts.mirror ||
-  "https://github.com/atom/electron/releases/download/v";
+  'https://github.com/atom/electron/releases/download/v';
 ```
 
 所以可以通过临时或者永久的方式传入镜像路径。

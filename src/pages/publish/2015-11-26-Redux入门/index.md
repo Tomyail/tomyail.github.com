@@ -19,12 +19,12 @@ path: /introduction-of-redux
 Redux 框架本身非常小，代码量也很少，所以在介绍 Redux 之前把 Redux 的基本代码先展示一下应该是个好主意。
 
 ```js
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers } from 'redux';
 
 //action 1
 function addItem(name, itemType) {
   return {
-    type: "ADD_ITEM",
+    type: 'ADD_ITEM',
     item: name,
     itemType: itemType
   };
@@ -33,7 +33,7 @@ function addItem(name, itemType) {
 //action 2
 function changeUserName(name) {
   return {
-    type: "CHANGE_USER",
+    type: 'CHANGE_USER',
     name: name
   };
 }
@@ -41,7 +41,7 @@ function changeUserName(name) {
 //reducer
 var itemReducer = function(state = { items: [] }, action) {
   switch (action.type) {
-    case "ADD_ITEM":
+    case 'ADD_ITEM':
       return {
         items: [
           ...state.items,
@@ -54,9 +54,9 @@ var itemReducer = function(state = { items: [] }, action) {
 };
 
 //reducer
-var userReducer = function(state = { user: { name: "default user" } }, action) {
+var userReducer = function(state = { user: { name: 'default user' } }, action) {
   switch (action.type) {
-    case "CHANGE_USER":
+    case 'CHANGE_USER':
       return { ...state, user: { name: action.name } };
     default:
       return state;
@@ -74,14 +74,14 @@ var store = createStore(combinedReducer);
 
 //subscribe
 store.subscribe(function() {
-  console.log("current state", store.getState());
+  console.log('current state', store.getState());
 });
 
 //dispatch action
-store.dispatch(addItem("item1", 1));
-store.dispatch(addItem("item2", 2));
-store.dispatch(addItem("item3", 3));
-store.dispatch(changeUserName("newName"));
+store.dispatch(addItem('item1', 1));
+store.dispatch(addItem('item2', 2));
+store.dispatch(addItem('item3', 3));
+store.dispatch(changeUserName('newName'));
 ```
 
 输出结果
@@ -107,9 +107,9 @@ store.dispatch(changeUserName("newName"));
 
 上述代码中`addItem`和`changeUserName`函数的**返回值**是 Action，这两个函数**本身**被成为 Action 创建函数。
 
-* 约定上，Action 对象至少需要一个`type`字段用来作为此 Action 的唯一标志。
-* Action 创建函数的作用是为 Action 指定动态数据。
-* 通过 Middleware 能让 Action 创建函数有能力处理具体的业务逻辑，这个等下细说。
+- 约定上，Action 对象至少需要一个`type`字段用来作为此 Action 的唯一标志。
+- Action 创建函数的作用是为 Action 指定动态数据。
+- 通过 Middleware 能让 Action 创建函数有能力处理具体的业务逻辑，这个等下细说。
 
 ## Reducer
 
@@ -157,11 +157,11 @@ Object.assign({}, state, {
 三： [immutable](https://facebook.github.io/immutable-js/)
 
 ```js
-var Immutable = require("immutable");
+var Immutable = require('immutable');
 var map1 = Immutable.Map({ a: 1, b: 2, c: 3 });
-var map2 = map1.set("b", 50);
-map1.get("b"); // 2
-map2.get("b"); // 50
+var map2 = map1.set('b', 50);
+map1.get('b'); // 2
+map2.get('b'); // 50
 ```
 
 ### 如何合并多个 Reducer
@@ -259,7 +259,7 @@ Middleware 函数将 dispatch 收到的参数先做一次“过滤”（通常�
 ```js
 export default function thunkMiddleware({ dispatch, getState }) {
   return next => action =>
-    typeof action === "function" ? action(dispatch, getState) : next(action);
+    typeof action === 'function' ? action(dispatch, getState) : next(action);
 }
 ```
 
@@ -272,8 +272,8 @@ function getUserName() {
   return (dispatch, getState) => {
     dispatch(startGetUser());
     setTimeout(() => {
-      dispatch(endGetUser("fromRemote"));
-      dispatch(changeUserName("fromServer"));
+      dispatch(endGetUser('fromRemote'));
+      dispatch(changeUserName('fromServer'));
     }, 3000);
   };
 }
@@ -281,13 +281,13 @@ function getUserName() {
 //状态,配合UI
 function startGetUser() {
   return {
-    type: "START_GET_USER"
+    type: 'START_GET_USER'
   };
 }
 
 function endGetUser(name) {
   return {
-    type: "END_GET_USER"
+    type: 'END_GET_USER'
   };
 }
 ```
@@ -310,10 +310,10 @@ function getUserName2() {
       dispatch(startGetUser());
       setTimeout(() => {
         dispatch(endGetUser());
-        dispatch(changeUserName("fromServer"));
+        dispatch(changeUserName('fromServer'));
       }, 3000);
     },
-    type: "GET_USER"
+    type: 'GET_USER'
   };
 }
 ```
@@ -324,7 +324,7 @@ function getUserName2() {
 var getUserMiddleware = function({ dispatch, getState }) {
   return function(next) {
     return function(action) {
-      if (action.type != "GET_USER") {
+      if (action.type != 'GET_USER') {
         return next(action);
       }
       return action.cb(dispatch, getState);
@@ -337,21 +337,21 @@ var getUserMiddleware = function({ dispatch, getState }) {
 
 ## 总结
 
-* 注意每个 reducer 只负责管理全局 state 中它负责的一部分。每个 reducer 的 state 参数都不同，分别对应它管理的那部分 state 数据。换句话说不能从 Reducer 里面获取全局 State,建议将这些逻辑提到 Action
-* Reducer 每次都执行,但传入的 state 是它关心的那一部分
-* Middleware 是中间件,每次 dispatch 他都参与执行
-* Middleware 可以是抽象的,也可以是具体的
-* Action 的返回值可以是任意类型,只要有合适的 Middleware 处理
-* redux-thunk 定义了一个抽象的,通用的,Action 模板,让 Action 有自身的逻辑处理传入的数据,此时 Action 就有点 Command+Controller 的味道
-* 使用箭头函数简写
-* （埋坑）现在还在接触 react，等入门了总结下怎么和 redux 结合。
-* 说了这么多，其实学习 redux 最好的方法就是看源码，代码量不大，就是有点绕。
+- 注意每个 reducer 只负责管理全局 state 中它负责的一部分。每个 reducer 的 state 参数都不同，分别对应它管理的那部分 state 数据。换句话说不能从 Reducer 里面获取全局 State,建议将这些逻辑提到 Action
+- Reducer 每次都执行,但传入的 state 是它关心的那一部分
+- Middleware 是中间件,每次 dispatch 他都参与执行
+- Middleware 可以是抽象的,也可以是具体的
+- Action 的返回值可以是任意类型,只要有合适的 Middleware 处理
+- redux-thunk 定义了一个抽象的,通用的,Action 模板,让 Action 有自身的逻辑处理传入的数据,此时 Action 就有点 Command+Controller 的味道
+- 使用箭头函数简写
+- （埋坑）现在还在接触 react，等入门了总结下怎么和 redux 结合。
+- 说了这么多，其实学习 redux 最好的方法就是看源码，代码量不大，就是有点绕。
 
 ## 参考链接
 
-1.  [Redux 中文文档](https://camsong.github.io/redux-in-chinese/)
-2.  [Learn how to use redux step by step](https://github.com/happypoulp/redux-tutorial)
-3.  [Awesome list of Redux examples and middlewares](https://github.com/xgrommx/awesome-redux)
-4.  [深入到源码：解读 redux 的设计思路与用法](http://div.io/topic/1309)
-5.  [A Comprehensive Guide to Test-First Development with Redux, React, and Immutable](http://teropa.info/blog/2015/09/10/full-stack-redux-tutorial.html)
-6.  [A Soundcloud client built with React / Redux](https://github.com/andrewngu/sound-redux/)
+1. [Redux 中文文档](https://camsong.github.io/redux-in-chinese/)
+2. [Learn how to use redux step by step](https://github.com/happypoulp/redux-tutorial)
+3. [Awesome list of Redux examples and middlewares](https://github.com/xgrommx/awesome-redux)
+4. [深入到源码：解读 redux 的设计思路与用法](http://div.io/topic/1309)
+5. [A Comprehensive Guide to Test-First Development with Redux, React, and Immutable](http://teropa.info/blog/2015/09/10/full-stack-redux-tutorial.html)
+6. [A Soundcloud client built with React / Redux](https://github.com/andrewngu/sound-redux/)

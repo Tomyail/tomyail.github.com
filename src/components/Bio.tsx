@@ -3,17 +3,14 @@ import React from 'react';
 // Import typefaces
 import 'typeface-montserrat';
 import 'typeface-merriweather';
-
-import profilePic from './profile-pic.jpg';
+import profilePic from '../assets/profile-pic.jpg';
 
 class Bio extends React.Component {
   render() {
-    return <div />;
     return (
       <div
         style={{
           display: 'flex',
-          marginBottom: rhythm(2.5)
         }}
       >
         <img

@@ -1,12 +1,10 @@
 /* eslint-disable no-underscore-dangle */
 
 import { SheetsRegistry } from 'jss';
-import {
-  createGenerateClassName
-} from '@material-ui/styles';
+import { createGenerateClassName } from '@material-ui/styles';
 import blue from '@material-ui/core/colors/blue';
 import pink from '@material-ui/core/colors/pink';
-import './layouts/prism.css';
+import './assets/prism.css';
 import { createMuiTheme } from '@material-ui/core/styles';
 // import typography from './utils/typography';
 

@@ -5,7 +5,8 @@ import {
   withTheme,
   Box,
   Divider,
-  Button
+  Button,
+  Container
 } from '../../node_modules/@material-ui/core';
 import * as React from 'react';
 import Link from 'gatsby-link';
@@ -20,9 +21,12 @@ import 'typeface-roboto';
 const style = (theme: Theme) => {
   return {
     content: {
-      '& h1': theme.typography.h1,
-      '& h2': theme.typography.h2,
-      '& h3': theme.typography.h3,
+      '& h1': theme.typography.h3,
+      '& h2': theme.typography.h4,
+      '& h3': theme.typography.h5,
+      '& h4': theme.typography.h6,
+      '& h5': theme.typography.h6,
+      '& h6': theme.typography.h6,
       '& a': {
         color: theme.palette.secondary.main,
         textDecoration: 'inherit'
@@ -32,12 +36,14 @@ const style = (theme: Theme) => {
       }
     },
     root: {
+      justifyContent:'center',
       display: 'flex',
       fontFamily: theme.typography.fontFamily
     },
     page: {
       flex: '0 0 50%',
-      margin: '0 auto'
+      margin: '0 auto',
+      padding:'2px',
     }
   };
 };
@@ -48,22 +54,14 @@ const PostBody = ({ post, previous, next, siteUrl, classes }) => {
     title: post.frontmatter.title
   };
   return (
-    <div className={classes.root}>
-      <div className={classes.page}>
+    <Container className={classes.root}>
+      <Box className={classes.page}>
         <Typography variant="h2">{post.frontmatter.title}</Typography>
         <Box display="flex" justifyContent="space-between" >
           <Box component='span' >{post.frontmatter.date}</Box>
-          {/* <span>
-            {get(
-              this,
-              `props.postView[${
-                this.props.data.markdownRemark.frontmatter.path
-              }].time`
-            )}
-          </span> */}
         </Box>
 
-        <div className={classes.content}
+        <Box className={classes.content}
           dangerouslySetInnerHTML={{
             __html: post.html
           }}
@@ -90,11 +88,9 @@ const PostBody = ({ post, previous, next, siteUrl, classes }) => {
           shortname={disqusShortname}
           config={disqusConfig}
         />
-      </div>
-      <Hidden smDown>
-        <TableOfContents content={post.tableOfContents} />
-      </Hidden>
-    </div>
+      </Box>
+      
+    </Container>
   );
 };
 

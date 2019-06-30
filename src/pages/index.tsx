@@ -7,13 +7,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import * as actions from '../redux/actions';
 import Bio from '../components/Bio';
-import { rhythm } from '../utils/typography';
 import About from './about';
 import PostPreview from '../components/PostPreview';
-import { List, Grid, withStyles } from '@material-ui/core';
+import { List, Grid, withStyles, Box } from '@material-ui/core';
 
-// import ReactGridLayout from 'react-grid-layout/build/ReactGridL  ayout';
-// import './index.css';
 
 const styles = theme => ({
   root: {
@@ -34,9 +31,6 @@ const SubTitleItem = ({ children }) => {
   return <span style={{ margin: '0 2px' }}>{children}</span>;
 };
 class BlogIndex extends React.Component {
-  constructor() {
-    super();
-  }
   componentDidMount() {
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
     if (posts && posts.length) {
@@ -52,22 +46,14 @@ class BlogIndex extends React.Component {
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
     const siteTitle = get(this, 'props.data.site.siteMetadata.title');
     return (
-      <div>
+      <Box>
         <Helmet title={siteTitle} />
         <Bio />
-        <Grid
-          container
-          direction="column"
-          justify="center"
-          alignItems="center"
-          spacing={16}
-          xs = {11}
-        >
+       
           {posts.map(({ node }) => (
             <PostPreview node={node} />
           ))}
-        </Grid>
-      </div>
+      </Box>
     );
   }
 }
