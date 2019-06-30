@@ -2,13 +2,12 @@
 
 import { SheetsRegistry } from 'jss';
 import {
-  Theme,
-  createMuiTheme,
   createGenerateClassName
-} from '@material-ui/core/styles';
+} from '@material-ui/styles';
 import blue from '@material-ui/core/colors/blue';
 import pink from '@material-ui/core/colors/pink';
 import './layouts/prism.css';
+import { createMuiTheme } from '@material-ui/core/styles';
 // import typography from './utils/typography';
 
 // console.log(typography.toString());

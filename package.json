@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "author": "xuexin.li <tomyail1989@gmail.com>",
   "dependencies": {
-    "@material-ui/core": "^3.1.2",
+    "@material-ui/core": "^4.1.3",
+    "@material-ui/styles": "^4.1.2",
     "@reach/router": "^1.2.1",
     "@types/lodash": "^4.14.116",
     "disqus-react": "^1.0.5",

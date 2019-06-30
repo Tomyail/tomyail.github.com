@@ -2,7 +2,10 @@ import {
   Typography,
   Paper,
   withStyles,
-  withTheme
+  withTheme,
+  Box,
+  Divider,
+  Button
 } from '../../node_modules/@material-ui/core';
 import * as React from 'react';
 import Link from 'gatsby-link';
@@ -15,12 +18,11 @@ import { Theme } from '@material-ui/core/styles';
 import 'typeface-roboto';
 
 const style = (theme: Theme) => {
-  debugger;
   return {
     content: {
-      '& h1': theme.typography.display3,
-      '& h2': theme.typography.display2,
-      '& h3': theme.typography.display1,
+      '& h1': theme.typography.h1,
+      '& h2': theme.typography.h2,
+      '& h3': theme.typography.h3,
       '& a': {
         color: theme.palette.secondary.main,
         textDecoration: 'inherit'
@@ -48,14 +50,9 @@ const PostBody = ({ post, previous, next, siteUrl, classes }) => {
   return (
     <div className={classes.root}>
       <div className={classes.page}>
-        <Typography variant="display4">{post.frontmatter.title}</Typography>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between'
-          }}
-        >
-          <span>{post.frontmatter.date}</span>
+        <Typography variant="h2">{post.frontmatter.title}</Typography>
+        <Box display="flex" justifyContent="space-between" >
+          <Box component='span' >{post.frontmatter.date}</Box>
           {/* <span>
             {get(
               this,
@@ -64,42 +61,31 @@ const PostBody = ({ post, previous, next, siteUrl, classes }) => {
               }].time`
             )}
           </span> */}
-        </div>
+        </Box>
 
-        <div className = {classes.content}
+        <div className={classes.content}
           dangerouslySetInnerHTML={{
             __html: post.html
           }}
         />
-        <hr />
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-between',
-            listStyle: 'none',
-            padding: 0
-          }}
+        <Divider />
+
+        <Box display="flex" flexWrap="wrap" justifyContent="space-between"
+          padding={0}
+        
         >
           {previous ? (
-            <li>
-              <Link to={previous.frontmatter.path} rel="prev">
-                ← {truncate(previous.frontmatter.title)}
-              </Link>
-            </li>
-          ) : (
-            <li />
-          )}
+             <Button href={previous.frontmatter.path}>{truncate(previous.frontmatter.title)}</Button>
+          ): (
+              <li />
+            )}
           {next ? (
-            <li>
-              <Link to={next.frontmatter.path} rel="next">
-                {truncate(next.frontmatter.title)} →
-              </Link>
-            </li>
+            <Button href={next.frontmatter.path}>{truncate(next.frontmatter.title)}</Button>
           ) : (
-            <li />
-          )}
-        </div>
+              <li />
+            )}
+        </Box>
+
         <Disqus.DiscussionEmbed
           shortname={disqusShortname}
           config={disqusConfig}
@@ -112,4 +98,4 @@ const PostBody = ({ post, previous, next, siteUrl, classes }) => {
   );
 };
 
-export default withTheme()(withStyles(style)(PostBody));
+export default withTheme((withStyles(style)(PostBody)))
