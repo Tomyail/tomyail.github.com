@@ -1,5 +1,4 @@
 module.exports = {
-  pathPrefix: `/~xuexin`,
   siteMetadata: {
     title: 'Tomyail Li',
     author: 'Xuexin Li',

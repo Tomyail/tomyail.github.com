@@ -1,6 +1,5 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import Link from 'gatsby-link';
 import get from 'lodash/get';
 import { graphql } from 'gatsby';
 import { connect } from 'react-redux';
@@ -8,7 +7,7 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../redux/actions';
 
 // import Bio from '../components/Bio';
-import { withStyles } from '../../node_modules/@material-ui/core';
+import { withStyles, Container } from '../../node_modules/@material-ui/core';
 
 import Footer from '../components/Footer';
 import PostBody from '../components/PostBody';
@@ -28,7 +27,7 @@ class BlogPostTemplate extends React.Component {
     const siteUrl = get(this.props, 'data.site.siteMetadata.siteUrl');
     const { previous, next } = this.props.pageContext;
     return (
-      <div>
+      <Container>
         <Helmet title={`${post.frontmatter.title} | ${siteTitle}`} />
         <PostBody
           post={post}
@@ -37,7 +36,7 @@ class BlogPostTemplate extends React.Component {
           siteUrl={siteUrl}
         />
         <Footer />
-      </div>
+      </Container>
     );
   }
 }

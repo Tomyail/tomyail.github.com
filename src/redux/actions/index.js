@@ -10,7 +10,7 @@ export const epicGetPost = action$ => {
   return action$.pipe(
     ofType(getPostView),
     mergeMap(async action => {
-      const { paths, needIncrease } = action.payload;
+      // const { paths, needIncrease } = action.payload;
       // const data = await leancloud(paths, needIncrease)
       // return setPostView(data)
     })

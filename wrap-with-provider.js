@@ -9,7 +9,6 @@ const store = createStore();
 const WithRoot = withRoot(props => props.children);
 // eslint-disable-next-line react/display-name,react/prop-types
 export default ({ element }) => {
-  console.log('!!!!!!!!!!Root');
 
   return (
     <Provider store={store}>

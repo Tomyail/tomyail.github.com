@@ -35,16 +35,7 @@ const style = (theme: Theme) => {
         textDecoration: 'underline'
       }
     },
-    root: {
-      justifyContent:'center',
-      display: 'flex',
-      fontFamily: theme.typography.fontFamily
-    },
-    page: {
-      flex: '0 0 50%',
-      margin: '0 auto',
-      padding:'2px',
-    }
+  
   };
 };
 const PostBody = ({ post, previous, next, siteUrl, classes }) => {
@@ -54,8 +45,8 @@ const PostBody = ({ post, previous, next, siteUrl, classes }) => {
     title: post.frontmatter.title
   };
   return (
-    <Container className={classes.root}>
-      <Box className={classes.page}>
+    <Container >
+      <Box >
         <Typography variant="h2">{post.frontmatter.title}</Typography>
         <Box display="flex" justifyContent="space-between" >
           <Box component='span' >{post.frontmatter.date}</Box>
