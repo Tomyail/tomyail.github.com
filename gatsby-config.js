@@ -6,6 +6,22 @@ module.exports = {
     siteUrl: 'http://blog.tomyail.com/'
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-react-redux`,
+      options: {
+        // [required] - path to your createStore module
+        pathToCreateStoreModule: './src/redux/store/createStore',
+        // [optional] - options passed to `serialize-javascript`
+        // info: https://github.com/yahoo/serialize-javascript#options
+        // will be merged with these defaults:
+        serialize: {
+          space: 0,
+          isJSON: true,
+          unsafe: false,
+        },
+      },
+    },
+    `gatsby-plugin-material-ui`,
     'gatsby-plugin-typescript',
     {
       resolve: `gatsby-plugin-lodash`,

@@ -15,7 +15,7 @@ const composeEnhancers =
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     : compose;
 
-const createStore = () =>
-  reduxCreateStore(reducer, composeEnhancers(applyMiddleware(epicMiddleware)));
+const createStore = (preloadedState) => 
+  reduxCreateStore(reducer,preloadedState, composeEnhancers(applyMiddleware(epicMiddleware)));
 epicMiddleware.run(rootEpic);
 export default createStore;
