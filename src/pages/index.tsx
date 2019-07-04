@@ -10,6 +10,7 @@ import Bio from '../components/Bio';
 import About from './about';
 import PostPreview from '../components/PostPreview';
 import { List, Grid, withStyles, Box } from '@material-ui/core';
+import '../assets/prism.css';
 
 
 const styles = theme => ({
