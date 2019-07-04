@@ -1,5 +1,5 @@
 ---
-title: 如何有效阅读啊啊啊啊大撒旦我去饿啊我的
+title: 如何有效阅读
 tags:
   - 其他
 categories:
@@ -39,15 +39,6 @@ path: /how-to-read-book
 [image-1]: http://7xqh45.com1.z0.glb.clouddn.com/how-to-read-book.png "如何阅读思维图"
 [image-2]: http://7xqh45.com1.z0.glb.clouddn.com/how-to-export-kindle-highlight.jpg "how to export kindle highlight"
 
-安装 electron 的时候会下载`electron-prebuilt`,`electron-prebuilt`是一个 zip 包，默认被托管在 github 上，在某些网络下下载会非常慢。通过查看[electron-download](https://github.com/electron-userland/electron-download/blob/master/index.js)的源码和 readme 知道，其实是可以换下载地址的
-
-```js
-var url =
-  process.env.NPM_CONFIG_ELECTRON_MIRROR ||
-  process.env.ELECTRON_MIRROR ||
-  opts.mirror ||
-  'https://github.com/atom/electron/releases/download/v';
-```
 
 
 

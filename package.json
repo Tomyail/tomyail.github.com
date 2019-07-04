@@ -70,6 +70,7 @@
   "license": "MIT",
   "main": "n/a",
   "scripts": {
+    "now-build": "npm run build",
     "lint": "./node_modules/.bin/eslint --ext .js,.jsx --ignore-pattern public .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js' 'src/**/*.md'",
