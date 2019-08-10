@@ -36,5 +36,5 @@ webpack 支持这种模式的 sourcemap，只要把`devtool`的值改成`hidden-
 
 [1]: http://www.ruanyifeng.com/blog/2013/01/javascript_source_map.html "JavaScript Source Map 详解"
 [2]: https://webpack.github.io/docs/configuration.html#devtool "devtool"
-[minified-js]: http://7xqh45.com1.z0.glb.clouddn.com/2016-08-29-minified-js.jpg "minified js without sourcemap"
-[chrome-add-source-map-menu]: http://7xqh45.com1.z0.glb.clouddn.com/2016-08-29-chrome-add-source-map-menu.jpg "chrome add source map menu"
+[minified-js]: ./2016-08-29-minified-js.jpg "minified js without sourcemap"
+[chrome-add-source-map-menu]: ./2016-08-29-chrome-add-source-map-menu.jpg "chrome add source map menu"

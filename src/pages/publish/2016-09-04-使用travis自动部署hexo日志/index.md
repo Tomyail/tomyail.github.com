@@ -208,6 +208,6 @@ oauth 的方式需要使用`github-token`，上面文章有提到，你需要先
 [12]: http://www.unixwiz.net/techtips/ssh-agent-forwarding.html
 [13]: https://wiki.archlinux.org/index.php/SSH_keys_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
 [14]: https://gist.github.com/gubatron/d96594d982c5043be6d4 "multiple-deploy-keys-multiple-private-repos-github-ssh-config.md"
-[img1]: http://7xqh45.com1.z0.glb.clouddn.com/2016-09-04-travis-setting1.jpg
-[img2]: http://7xqh45.com1.z0.glb.clouddn.com/2016-09-04-travis-setting2.jpg
-[img3]: http://7xqh45.com1.z0.glb.clouddn.com/2016-09-10-add-custom-env-var.jpg
+[img1]: ./2016-09-04-travis-setting1.jpg
+[img2]: ./2016-09-04-travis-setting2.jpg
+[img3]: ./2016-09-10-add-custom-env-var.jpg

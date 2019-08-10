@@ -77,5 +77,5 @@ ps2：葡萄酒有个好牌子就做巴黎之花
 [12]: https://zh.wikipedia.org/wiki/%E5%AD%9F%E4%BB%80%E7%BB%B4%E5%85%8B
 [13]: https://zh.wikipedia.org/zh-cn/%E7%84%A1%E9%99%90%E5%88%B6%E6%BD%9B%E8%89%87%E6%88%B0 "无限制潜艇战"
 [14]: https://zh.wikipedia.org/wiki/%E5%A5%B3%E6%80%A7%E5%8F%83%E6%94%BF%E6%AC%8A "女性参政权"
-[img1]: http://7xqh45.com1.z0.glb.clouddn.com/2016-09-03-fog-people-relations.png "《巨人的陨落》 人物关系"
-[img2]: http://7xqh45.com1.z0.glb.clouddn.com/2016-09-03-fog-history.png "《巨人的陨落》 时间表"
+[img1]: ./2016-09-03-fog-people-relations.png "《巨人的陨落》 人物关系"
+[img2]: ./2016-09-03-fog-history.png "《巨人的陨落》 时间表"

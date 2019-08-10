@@ -36,8 +36,8 @@ path: /how-to-read-book
 [1]: https://twitter.com/xiaolai/status/768629096163123200
 [2]: http://pne.people.si.umich.edu/PDF/howtoread.pdf "how to read"
 [4]: http://share.jike.ruguoapp.com/topics/551d1653e4b0cd5b623b4155
-[image-1]: http://7xqh45.com1.z0.glb.clouddn.com/how-to-read-book.png "如何阅读思维图"
-[image-2]: http://7xqh45.com1.z0.glb.clouddn.com/how-to-export-kindle-highlight.jpg "how to export kindle highlight"
+[image-1]: ./how-to-read-book.png "如何阅读思维图"
+[image-2]: ./how-to-export-kindle-highlight.jpg "how to export kindle highlight"
 
 
 
