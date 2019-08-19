@@ -49,7 +49,7 @@ class BlogIndex extends React.Component {
     return (
       <Box>
         <Helmet title={siteTitle} />
-        <Bio />
+        {/* <Bio /> */}
        
           {posts.map(({ node }) => (
             <PostPreview node={node} />
