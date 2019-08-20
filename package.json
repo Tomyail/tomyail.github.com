@@ -1,5 +1,5 @@
 {
-  "name": "homepage",
+  "name": "blog.tomyail.com",
   "description": "tomyail's homepage",
   "version": "1.0.0",
   "author": "xuexin.li <tomyail1989@gmail.com>",
@@ -22,7 +22,6 @@
     "gatsby-plugin-react-redux": "^1.0.10",
     "gatsby-plugin-sharp": "^2.0.29",
     "gatsby-plugin-typescript": "^2.0.11",
-    "gatsby-plugin-typography": "^2.2.10",
     "gatsby-remark-autolink-headers": "^2.0.16",
     "gatsby-remark-copy-linked-files": "^2.0.11",
     "gatsby-remark-images": "^3.0.10",
@@ -32,34 +31,26 @@
     "gatsby-source-filesystem": "^2.0.27",
     "gatsby-transformer-remark": "^2.3.4",
     "gatsby-transformer-sharp": "^2.1.17",
-    "jss": "^9.8.7",
-    "leancloud-storage": "^3.12.0",
     "prismjs": "^1.15.0",
     "ramda": "^0.26.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-grid-layout": "^0.16.6",
     "react-helmet": "^5.2.0",
-    "react-jss": "^8.6.1",
     "react-redux": "^7.0.0",
-    "react-responsive-grid": "^0.3.4",
     "react-router-dom": "^5.0.0",
-    "react-typography": "^0.16.19",
     "redux-actions": "^2.6.5",
     "redux-observable": "^1.0.0",
     "rsync": "^0.6.1",
-    "rsyncwrapper": "^3.0.1",
     "rxjs": "^6.4.0",
     "typeface-merriweather": "0.0.72",
     "typeface-montserrat": "0.0.75",
-    "typeface-roboto": "^0.0.75",
-    "typography": "^0.16.19",
-    "typography-theme-github": "^0.16.19",
-    "typography-theme-wordpress-2016": "^0.16.19"
+    "typeface-roboto": "^0.0.75"
   },
   "devDependencies": {
     "eslint": "6.2.0",
     "eslint-plugin-react": "7.14.3",
+    "gatsby-plugin-webpack-bundle-analyzer": "^1.0.5",
     "gh-pages": "2.1.1",
     "prettier": "1.18.2"
   },
@@ -74,10 +65,7 @@
     "lint": "./node_modules/.bin/eslint --ext .js,.jsx --ignore-pattern public .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js' 'src/**/*.md'",
-    "develop": "gatsby develop",
-    "build": "gatsby build",
-    "local-deploy": "gatsby build --prefix-paths && node scrpit/deploy.js",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public",
-    "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js"
+    "start": "gatsby develop",
+    "build": "gatsby build"
   }
 }

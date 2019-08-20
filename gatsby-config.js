@@ -1,12 +1,18 @@
 module.exports = {
   siteMetadata: {
-    title: 'Tomyail Li',
-    author: 'Xuexin Li',
+    title: 'Tomyail 的记忆现场',
+    author: ' Tomyail',
     description: ' 一个程序员的自娱自乐',
     siteUrl: 'http://blog.tomyail.com/'
   },
   plugins: [
-    
+    {
+      resolve: 'gatsby-plugin-webpack-bundle-analyzer',
+      options: {
+          analyzerPort: 3000,
+          production: true,
+      },
+  },
     'gatsby-plugin-typescript',
     {
       resolve: `gatsby-plugin-lodash`,
@@ -69,19 +75,6 @@ module.exports = {
         trackingId: `UA-16492044-5`
       }
     },
-    // `gatsby-plugin-feed`,
-    // {
-    //   resolve: `gatsby-plugin-manifest`,
-    //   options: {
-    //     name: `Gatsby Starter Blog`,
-    //     short_name: `GatsbyJS`,
-    //     start_url: `/`,
-    //     background_color: `#ffffff`,
-    //     theme_color: `#663399`,
-    //     display: `minimal-ui`,
-    //     icon: `src/assets/gatsby-icon.png`
-    //   }
-    // },
     {
       resolve: `gatsby-plugin-feed`,
       options: {
@@ -150,7 +143,18 @@ module.exports = {
       },
     },
     `gatsby-plugin-material-ui`,
-    // `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Tomyail's Blog`,
+        short_name: `Tomyail's Blog`,
+        start_url: `/`,
+        background_color: `#f7f0eb`,
+        theme_color: `#a2466c`,
+        display: `standalone`,
+      },
+    },
+    `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`
     // {
     //   resolve: 'gatsby-plugin-typography',
