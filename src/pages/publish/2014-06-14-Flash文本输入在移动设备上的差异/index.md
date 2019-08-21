@@ -6,7 +6,7 @@ id: 1245
 categories:
   - 技术
 date: 2014-06-13T16:46:53.000Z
-path: /flash-text-mobile-difference
+path: /flash-text-mobile-difference/
 ---
 
 最近在用 Flash 做一个文本编辑器,能让用户在指定位置输入几个单词,并且整段文本会有很多不一样的格式,所以用到了大量`TextField`的方法.总体思路是记住最后一次光标输入的位置,然后监听键盘事件,在键盘输入字符时改变光标位置的字符,这个`Textfield`本身不是输入(`Input`)文本,而是一个动态(`Dynamic`)文本.

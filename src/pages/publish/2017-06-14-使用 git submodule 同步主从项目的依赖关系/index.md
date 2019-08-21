@@ -5,7 +5,7 @@ tags:
 categories:
   - 技术
 date: 2017-06-13T22:48:28.000Z
-path: /using-git-submodule-lock-project
+path: /using-git-submodule-lock-project/
 ---
 
 ## 问题:

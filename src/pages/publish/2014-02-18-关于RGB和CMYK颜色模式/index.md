@@ -5,7 +5,7 @@ categories:
   - 技术
 date: 2014-02-17T23:19:13.000Z
 tags: null
-path: /cmyk-rgb
+path: /cmyk-rgb/
 ---
 
 ### 为什么印刷中不用三原色(RGB)而用 CMYK?

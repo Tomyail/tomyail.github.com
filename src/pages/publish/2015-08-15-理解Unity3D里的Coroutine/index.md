@@ -6,7 +6,7 @@ id: 1123
 categories:
   - 技术
 date: 2015-08-15T14:27:26.000Z
-path: /understanding-unity-coroutine
+path: /understanding-unity-coroutine/
 ---
 
 # 理解 Unity3D 里的 Coroutine

@@ -6,7 +6,7 @@ id: 1123
 categories:
   - 技术
 date: 2013-03-14T14:27:26.000Z
-path: /understanding-nape-interaction
+path: /understanding-nape-interaction/
 ---
 
 有的时候我们想控制两个刚体是否发生碰撞,比如手机游戏 Doodle Jump 里面的小人在上升过程中不会和障碍物发生碰撞但在降落过程中会发生碰撞,这个时候就需要知道如何利用 Nape 来控制这个碰撞了.这里的碰撞在 Nape 看来是一种交互方式.Nape 定义了三种交互方式:

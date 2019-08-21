@@ -8,7 +8,7 @@ comment: false
 categories:
   - 技术
 date: 2012-02-25T01:14:40.000Z
-path: /stage3d-basic-concept
+path: /stage3d-basic-concept/
 ---
 
 ## 层的概念

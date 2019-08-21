@@ -5,7 +5,7 @@ tags:
 categories:
   - 技术
 date: 2017-06-23T00:09:24.000Z
-path: /how-to-lint-legacy-jscode-in-30min
+path: /how-to-lint-legacy-jscode-in-30min/
 ---
 
 本文主要总结如何使用 eslint , prettier, 以及 jscodeshift 快速统一一个大型的 js 项目的代码风格,并结合 lint-staged 和 husky 自动检查并且格式化未来新提交的新代码.

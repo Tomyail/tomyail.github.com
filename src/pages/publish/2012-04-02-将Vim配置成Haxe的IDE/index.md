@@ -8,7 +8,7 @@ comment: true
 categories:
   - 技术
 date: 2012-04-02T12:11:32.000Z
-path: /vim-hexe-ide
+path: /vim-hexe-ide/
 ---
 
 将 Vim 作为 Haxe IDE 的过程基本完成，留此文备忘。

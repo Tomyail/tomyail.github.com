@@ -4,7 +4,7 @@ categories:
   - 随笔
 date: 2016-01-27T00:08:34.000Z
 tags: null
-path: /boracay-travel-note
+path: /boracay-travel-note/
 visible: false
 ---
 

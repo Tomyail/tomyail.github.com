@@ -6,7 +6,7 @@ tags:
   - js
   - react
 date: 2016-03-10T22:15:59.000Z
-path: /react-animation
+path: /react-animation/
 ---
 
 在搞 Ember 开发时，简单的做过一些 CSS 动画，主要参考了这篇文章。[CSS 简介](http://www.ruanyifeng.com/blog/2014/02/css_transition_and_animation.html)。当时动画切换的基本思路定义几个`animation`，每个`animation`和一个`css`的`class`绑定，改变动画就是改变当前`div`的`class`。但是这个方法在 React 里面似乎不起作用，尝试在 Chrome 里面直接修改 React 渲染好的 dom 的 class，也没有效果，目前还不知道原因。

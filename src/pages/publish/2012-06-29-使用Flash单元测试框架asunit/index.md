@@ -7,7 +7,7 @@ comment: false
 categories:
   - 技术
 date: 2012-06-28T23:00:00.000Z
-path: /using-asunit
+path: /using-asunit/
 ---
 
 ### 一些废话

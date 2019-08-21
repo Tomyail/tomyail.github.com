@@ -6,7 +6,7 @@ id: 1259
 categories:
   - 技术
 date: 2015-01-30T10:42:58.000Z
-path: /unity-rect-transform
+path: /unity-rect-transform/
 ---
 
 ### 坐标

@@ -9,7 +9,7 @@ comment: false
 categories:
   - 技术
 date: 2012-02-27T22:29:16.000Z
-path: /using-box2d-in-starling
+path: /using-box2d-in-starling/
 ---
 
 前面的那篇入门文章介绍了[如何使用 Box2D](http://tomyail.com/blog/?p=954 "Box2D使用笔记"),并且掌握了内置的渲染方法。

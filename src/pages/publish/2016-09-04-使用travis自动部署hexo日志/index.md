@@ -5,7 +5,7 @@ tags:
 categories:
   - 技术
 date: 2016-09-04T15:44:21.000Z
-path: /writing-hexo-blog-with-travis-ci
+path: /writing-hexo-blog-with-travis-ci/
 ---
 
 ## 起因

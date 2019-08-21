@@ -3,7 +3,7 @@ title: 从Wordpress迁移到Hexo
 categories:
   - 技术
 date: 2015-11-04T14:20:29.000Z
-path: /hexo-migrate
+path: /hexo-migrate/
 ---
 
 # 起因

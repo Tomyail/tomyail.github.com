@@ -5,7 +5,7 @@ tags:
 categories:
   - 技术
 date: 2016-08-29T16:43:01.000Z
-path: /debug-js-without-sourcemap
+path: /debug-js-without-sourcemap/
 ---
 
 用 webpack 开发 js 项目，生产环境和开发环境一般会使用两套配置，其中一个明显的区别就是对调试的支持。

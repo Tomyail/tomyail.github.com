@@ -6,7 +6,7 @@ id: 1180
 categories:
   - 技术
 date: 2013-05-09T23:15:54.000Z
-path: /nape-geompoly
+path: /nape-geompoly/
 ---
 
 ### Polygon 和 GeomPoly 的关系

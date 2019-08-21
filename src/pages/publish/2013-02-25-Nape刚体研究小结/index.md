@@ -6,7 +6,7 @@ id: 1065
 categories:
   - 技术
 date: 2013-02-24T20:18:06.000Z
-path: /nape-rigid
+path: /nape-rigid/
 ---
 
 ### Body 的类型:

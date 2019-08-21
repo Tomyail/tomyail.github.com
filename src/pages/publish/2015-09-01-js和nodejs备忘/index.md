@@ -5,7 +5,7 @@ tags:
   - js
 categories:
   - 技术
-path: /js-foundation
+path: /js-foundation/
 ---
 
 ## js 和 nodejs 的区别

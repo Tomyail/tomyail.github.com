@@ -5,7 +5,7 @@ categories:
 tags:
   - js
 date: 2015-11-25T22:59:39.000Z
-path: /introduction-of-redux
+path: /introduction-of-redux/
 ---
 
 # 前言

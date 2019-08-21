@@ -6,7 +6,7 @@ id: 1197
 categories:
   - 技术
 date: 2014-01-18T17:38:02.000Z
-path: /usin-maven-to-manage-flash-project
+path: /usin-maven-to-manage-flash-project/
 ---
 
 * 问题:我平时很喜欢自己建一些小的 flash 工程,每当建立一个新工程的时候,总会需要一些第三方类库(swc).如何管理这些类库?

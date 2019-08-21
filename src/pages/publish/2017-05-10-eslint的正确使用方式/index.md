@@ -5,7 +5,7 @@ tags:
 categories:
   - 技术
 date: 2017-05-09T23:24:44.000Z
-path: /eslint-with-prettier
+path: /eslint-with-prettier/
 ---
 
 最近项目里面来了新人，他对项目的代码风格提出了质疑，于是乎之前被遗忘的 eslint 又被提上了议程。
