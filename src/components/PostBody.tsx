@@ -17,9 +17,17 @@ import TableOfContents from './TableOfContent';
 import Hidden from '@material-ui/core/Hidden';
 import { Theme } from '@material-ui/core/styles';
 import 'typeface-roboto';
+import ArrowBackIosOutlinedIcon from '@material-ui/icons/ArrowBackIosOutlined';
+import ArrowForwardIosOutlinedIcon from '@material-ui/icons/ArrowForwardIosOutlined';
 
 const style = (theme: Theme) => {
   return {
+    leftIcon: {
+      marginRight: theme.spacing(1)
+    },
+    rightIcon: {
+      marginLeft: theme.spacing(1)
+    },
     content: {
       '& h1': theme.typography.h3,
       '& h2': theme.typography.h4,
@@ -43,7 +51,6 @@ const PostBody = ({ post, previous, next, siteUrl, classes }) => {
     url: `${siteUrl}${post.frontmatter.path.replace('/', '')}`,
     title: post.frontmatter.title
   };
-  debugger;
   return (
     <Container>
       <Box>
@@ -62,7 +69,7 @@ const PostBody = ({ post, previous, next, siteUrl, classes }) => {
 
         <Box
           display="flex"
-          flexWrap="wrap"
+          flexWrap="nowrap"
           justifyContent="space-between"
           padding={0}
         >
@@ -71,24 +78,26 @@ const PostBody = ({ post, previous, next, siteUrl, classes }) => {
               to={previous.frontmatter.path}
               style={{ textDecoration: 'inherit' }}
             >
-              <Button href={previous.frontmatter.path}>
+              <Button >
+                <ArrowBackIosOutlinedIcon className={classes.leftIcon} />
                 {truncate(previous.frontmatter.title)}
               </Button>
             </Link>
           ) : (
-            <Button>没有更多文章</Button>
+            <Button disabled>没有更多文章</Button>
           )}
           {next ? (
             <Link
               to={next.frontmatter.path}
               style={{ textDecoration: 'inherit' }}
             >
-              <Button href={next.frontmatter.path}>
+              <Button >
                 {truncate(next.frontmatter.title)}
+                <ArrowForwardIosOutlinedIcon className={classes.rightIcon} />
               </Button>
             </Link>
           ) : (
-            <Button>没有更多文章</Button>
+            <Button disabled>没有更多文章</Button>
           )}
         </Box>
 

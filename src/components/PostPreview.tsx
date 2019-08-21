@@ -8,7 +8,6 @@ import {
   CardMedia,
   CardActionArea,
   CardHeader,
-  ListItem,
   Chip,
   CardActions,
   Button,
@@ -25,21 +24,8 @@ const SubTitleItem = ({ children }) => {
 const styles = {
   card: {},
   action: {},
-  listItem: {
-    maxWidth: '800px',
-    margin: '0 autp'
-  }
 };
 
-{
-  /* <Link style={{ boxShadow: 'none' }} to={slug}>
-{title}
-</Link> */
-}
-const renderCount = slug => {
-  return;
-  //   return get(this, `props.postView[${slug}].time`);
-};
 const PostPreview = ({ node, classes, theme }: { theme: Theme }) => {
   const title = get(node, 'frontmatter.title') || node.fields.slug;
   const slug = get(node, 'frontmatter.path');

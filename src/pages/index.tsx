@@ -24,7 +24,7 @@ const styles = theme => ({
     width: 100
   },
   control: {
-    padding: theme.spacing.unit * 2
+    padding: theme.spacing(2)
   }
 });
 
@@ -43,16 +43,13 @@ class BlogIndex extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
     const siteTitle = get(this, 'props.data.site.siteMetadata.title');
     return (
       <Box>
         <Helmet title={siteTitle} />
-        {/* <Bio /> */}
-       
           {posts.map(({ node }) => (
-            <PostPreview node={node} />
+            <PostPreview node={node} key = {node.frontmatter.path} />
           ))}
       </Box>
     );
