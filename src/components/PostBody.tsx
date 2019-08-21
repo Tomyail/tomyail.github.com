@@ -43,6 +43,7 @@ const PostBody = ({ post, previous, next, siteUrl, classes }) => {
     url: `${siteUrl}${post.frontmatter.path.replace('/', '')}`,
     title: post.frontmatter.title
   };
+  debugger;
   return (
     <Container>
       <Box>
@@ -66,22 +67,28 @@ const PostBody = ({ post, previous, next, siteUrl, classes }) => {
           padding={0}
         >
           {previous ? (
-            <Link to={previous.frontmatter.path} style= {{textDecoration: 'inherit'}}>
+            <Link
+              to={previous.frontmatter.path}
+              style={{ textDecoration: 'inherit' }}
+            >
               <Button href={previous.frontmatter.path}>
                 {truncate(previous.frontmatter.title)}
               </Button>
             </Link>
           ) : (
-            <li />
+            <Button>没有更多文章</Button>
           )}
           {next ? (
-            <Link to={next.frontmatter.path} style= {{textDecoration: 'inherit'}}>
+            <Link
+              to={next.frontmatter.path}
+              style={{ textDecoration: 'inherit' }}
+            >
               <Button href={next.frontmatter.path}>
                 {truncate(next.frontmatter.title)}
               </Button>
             </Link>
           ) : (
-            <li />
+            <Button>没有更多文章</Button>
           )}
         </Box>
 
