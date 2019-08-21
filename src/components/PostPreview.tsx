@@ -16,6 +16,7 @@ import {
 } from '@material-ui/core';
 // import { Link } from 'reach';
 import Link from 'gatsby-link';
+import { withTheme, Theme } from '@material-ui/core/styles';
 
 const SubTitleItem = ({ children }) => {
   return <span style={{ margin: '0 2px' }}>{children}</span>;
@@ -39,32 +40,28 @@ const renderCount = slug => {
   return;
   //   return get(this, `props.postView[${slug}].time`);
 };
-const PostPreview = ({ node, classes }) => {
+const PostPreview = ({ node, classes, theme }: { theme: Theme }) => {
   const title = get(node, 'frontmatter.title') || node.fields.slug;
   const slug = get(node, 'frontmatter.path');
   return (
-   
-      <Card className={classes.card}>
-        <CardActionArea href={slug}>
-          {/* <CardMedia
-          component="img"
-            image="https://material-ui.com/static/images/cards/contemplative-reptile.jpg"
-            title="Contemplative Reptile"
-          /> */}
-          <CardHeader
-            title={title}
-            subheader={`${node.frontmatter.date} | ${node.timeToRead} min read`}
-            // action={ <Chip variant="outlined" label="Awesome Chip Component"/>}
-          />
-          <CardContent>
-            <Typography paragraph variant="body1">
-              {node.excerpt}
-            </Typography>
-            <Typography variant="caption" gutterBottom />
-          </CardContent>
-        </CardActionArea>
-      </Card>
+    <Card className={classes.card}>
+      <CardHeader
+        title={
+          <Link to={slug} style= {{textDecoration: 'inherit',color:theme.palette.primary.main}}>
+          <div>{title}</div>
+           </Link>
+        }
+        subheader={`${node.frontmatter.date} | ${node.timeToRead} min read`}
+        // action={ <Chip variant="outlined" label="Awesome Chip Component"/>}
+      />
+      <CardContent>
+        <Typography paragraph variant="body1">
+          {node.excerpt}
+        </Typography>
+        <Typography variant="caption" gutterBottom />
+      </CardContent>
+    </Card>
   );
 };
 
-export default withStyles(styles)(PostPreview);
+export default withTheme(withStyles(styles)(PostPreview));

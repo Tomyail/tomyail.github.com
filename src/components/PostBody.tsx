@@ -34,8 +34,7 @@ const style = (theme: Theme) => {
       '& a:hover': {
         textDecoration: 'underline'
       }
-    },
-  
+    }
   };
 };
 const PostBody = ({ post, previous, next, siteUrl, classes }) => {
@@ -45,34 +44,45 @@ const PostBody = ({ post, previous, next, siteUrl, classes }) => {
     title: post.frontmatter.title
   };
   return (
-    <Container >
-      <Box >
+    <Container>
+      <Box>
         <Typography variant="h2">{post.frontmatter.title}</Typography>
-        <Box display="flex" justifyContent="space-between" >
-          <Box component='span' >{post.frontmatter.date}</Box>
+        <Box display="flex" justifyContent="space-between">
+          <Box component="span">{post.frontmatter.date}</Box>
         </Box>
 
-        <Box className={classes.content}
+        <Box
+          className={classes.content}
           dangerouslySetInnerHTML={{
             __html: post.html
           }}
         />
         <Divider />
 
-        <Box display="flex" flexWrap="wrap" justifyContent="space-between"
+        <Box
+          display="flex"
+          flexWrap="wrap"
+          justifyContent="space-between"
           padding={0}
-        
         >
           {previous ? (
-             <Button href={previous.frontmatter.path}>{truncate(previous.frontmatter.title)}</Button>
-          ): (
-              <li />
-            )}
-          {next ? (
-            <Button href={next.frontmatter.path}>{truncate(next.frontmatter.title)}</Button>
+            <Link to={previous.frontmatter.path} style= {{textDecoration: 'inherit'}}>
+              <Button href={previous.frontmatter.path}>
+                {truncate(previous.frontmatter.title)}
+              </Button>
+            </Link>
           ) : (
-              <li />
-            )}
+            <li />
+          )}
+          {next ? (
+            <Link to={next.frontmatter.path} style= {{textDecoration: 'inherit'}}>
+              <Button href={next.frontmatter.path}>
+                {truncate(next.frontmatter.title)}
+              </Button>
+            </Link>
+          ) : (
+            <li />
+          )}
         </Box>
 
         <Disqus.DiscussionEmbed
@@ -80,9 +90,8 @@ const PostBody = ({ post, previous, next, siteUrl, classes }) => {
           config={disqusConfig}
         />
       </Box>
-      
     </Container>
   );
 };
 
-export default withTheme((withStyles(style)(PostBody)))
+export default withTheme(withStyles(style)(PostBody));
