@@ -63,7 +63,7 @@ class BlogIndex extends React.Component {
               <Button>下一页</Button>
             </Link>
           )}
-        </div>
+        </Box>
       </Box>
     );
   }
