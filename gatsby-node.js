@@ -13,7 +13,10 @@ exports.createPages = ({ graphql, actions }) => {
       graphql(
         `
           {
-            allMarkdownRemark(limit: 1000,sort: { fields: [frontmatter___date], order: DESC }) {
+            allMarkdownRemark(
+              limit: 1000
+              sort: { fields: [frontmatter___date], order: DESC }
+            ) {
               edges {
                 node {
                   frontmatter {
@@ -39,6 +42,24 @@ exports.createPages = ({ graphql, actions }) => {
           return post.node.frontmatter.visible !== false;
         };
         const renderVisiblePost = posts => {
+          const postsPerPage = 6;
+          const numberPages = Math.ceil(posts.length / postsPerPage);
+
+          Array.from({ length: numberPages }).forEach((_, i) => {
+            createPage({
+              path: i === 0 ? `/` : `/pages/${i + 1}`,
+              component: path.resolve('./src/templates/blog-page.js'),
+              context: {
+                preLink: i > 0 ? (i === 1 ? '/' : `/pages/${i}`) : null,
+                nextLink: i < numberPages - 1 ? `/pages/${i + 1 + 1}` : null,
+                limit: postsPerPage,
+                skip: i * postsPerPage,
+                numberPages,
+                currentPage: i + 1
+              }
+            });
+          });
+
           posts.forEach((post, index) => {
             const next =
               index === posts.length - 1 ? false : posts[index + 1].node;
