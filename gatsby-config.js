@@ -122,6 +122,7 @@ module.exports = {
                 }
               }
             `,
+            title: "Tomyail 的记忆现场",
             output: '/atom.xml'
           }
         ]

@@ -7,24 +7,20 @@ import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import * as actions from '../redux/actions';
 import Bio from '../components/Bio';
-import About from './about';
 import PostPreview from '../components/PostPreview';
-import { List, Grid, withStyles, Box } from '@material-ui/core';
+import { List, Grid, withStyles, Box, Button } from '@material-ui/core';
 import '../assets/prism.css';
 
-
 const styles = theme => ({
-  root: {
-    flexGrow: 0.5,
+  pageNavi: {
     display: 'flex',
-    justifyContent: 'center'
-  },
-  paper: {
-    height: 140,
-    width: 100
-  },
-  control: {
-    padding: theme.spacing(2)
+    justifyContent: 'space-between',
+    '& a': {
+      textDecoration: 'inherit'
+    },
+    '& a:hover': {
+      textDecoration: 'inherit'
+    }
   }
 });
 
@@ -45,12 +41,26 @@ class BlogIndex extends React.Component {
   render() {
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
     const siteTitle = get(this, 'props.data.site.siteMetadata.title');
+    const preLink = get(this, 'props.pageContext.preLink');
+    const nextLink = get(this, 'props.pageContext.nextLink');
     return (
-      <Box>
+      <Box >
         <Helmet title={siteTitle} />
-          {posts.map(({ node }) => (
-            <PostPreview node={node} key = {node.frontmatter.path} />
-          ))}
+        {posts.map(({ node }) => (
+          <PostPreview node={node} key={node.frontmatter.path} />
+        ))}
+        <Box className={this.props.classes.pageNavi}>
+          {preLink ? (
+            <Link to={preLink}>
+              <Button>上一页</Button>
+            </Link>
+          ) : <Button disabled>没有更多文章</Button>}
+          {nextLink ? (
+            <Link to={nextLink}>
+              <Button>下一页</Button>
+            </Link>
+          ) : <Button disabled>没有更多文章</Button>}
+        </Box>
       </Box>
     );
   }
@@ -69,7 +79,7 @@ export default compose(
 )(BlogIndex);
 
 export const pageQuery = graphql`
-  query IndexQuery {
+  query IndexQuery($skip: Int!, $limit: Int!) {
     site {
       siteMetadata {
         title
@@ -78,6 +88,8 @@ export const pageQuery = graphql`
     allMarkdownRemark(
       filter: { frontmatter: { visible: { ne: false } } }
       sort: { fields: [frontmatter___date], order: DESC }
+      limit: $limit
+      skip: $skip
     ) {
       edges {
         node {
