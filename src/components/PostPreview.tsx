@@ -21,9 +21,13 @@ const SubTitleItem = ({ children }) => {
   return <span style={{ margin: '0 2px' }}>{children}</span>;
 };
 
-const styles = {
-  card: {},
-  action: {},
+const styles = theme => {
+  return {
+    card: {
+      margin: theme.spacing(1, 0)
+    },
+    action: {},
+  }
 };
 
 const PostPreview = ({ node, classes, theme }: { theme: Theme }) => {
@@ -33,12 +37,12 @@ const PostPreview = ({ node, classes, theme }: { theme: Theme }) => {
     <Card className={classes.card}>
       <CardHeader
         title={
-          <Link to={slug} style= {{textDecoration: 'inherit',color:theme.palette.primary.main}}>
-          <div>{title}</div>
-           </Link>
+          <Link to={slug} style={{ textDecoration: 'inherit', color: theme.palette.primary.main }}>
+            <div>{title}</div>
+          </Link>
         }
         subheader={`${node.frontmatter.date} | ${node.timeToRead} min read`}
-        // action={ <Chip variant="outlined" label="Awesome Chip Component"/>}
+      // action={ <Chip variant="outlined" label="Awesome Chip Component"/>}
       />
       <CardContent>
         <Typography paragraph variant="body1">

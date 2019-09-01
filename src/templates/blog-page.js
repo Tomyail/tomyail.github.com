@@ -7,8 +7,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import * as actions from '../redux/actions';
 import Bio from '../components/Bio';
+import Header from '../components/Header';
 import PostPreview from '../components/PostPreview';
-import { List, Grid, withStyles, Box, Button } from '@material-ui/core';
+import { List, Grid, withStyles, Box, Button, CssBaseline } from '@material-ui/core';
 import '../assets/prism.css';
 
 const styles = theme => ({
@@ -45,6 +46,8 @@ class BlogIndex extends React.Component {
     const nextLink = get(this, 'props.pageContext.nextLink');
     return (
       <Box >
+        <CssBaseline />
+        <Header />
         <Helmet title={siteTitle} />
         {posts.map(({ node }) => (
           <PostPreview node={node} key={node.frontmatter.path} />
