@@ -7,9 +7,10 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../redux/actions';
 
 // import Bio from '../components/Bio';
-import { withStyles, Container } from '../../node_modules/@material-ui/core';
+import { withStyles, Container, CssBaseline, Box } from '../../node_modules/@material-ui/core';
 
 import Footer from '../components/Footer';
+import Header from '../components/Header'
 import PostBody from '../components/PostBody';
 
 const styles = {};
@@ -27,7 +28,9 @@ class BlogPostTemplate extends React.Component {
     const siteUrl = get(this.props, 'data.site.siteMetadata.siteUrl');
     const { previous, next } = this.props.pageContext;
     return (
-      <Container>
+      <Box>
+        <CssBaseline />
+        <Header />
         <Helmet title={`${post.frontmatter.title} | ${siteTitle}`} />
         <PostBody
           post={post}
@@ -36,7 +39,7 @@ class BlogPostTemplate extends React.Component {
           siteUrl={siteUrl}
         />
         <Footer />
-      </Container>
+      </Box>
     );
   }
 }

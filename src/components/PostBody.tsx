@@ -22,6 +22,9 @@ import ArrowForwardIosOutlinedIcon from '@material-ui/icons/ArrowForwardIosOutli
 
 const style = (theme: Theme) => {
   return {
+    root:{
+      marginTop:theme.spacing(1)
+    },
     leftIcon: {
       marginRight: theme.spacing(1)
     },
@@ -52,7 +55,7 @@ const PostBody = ({ post, previous, next, siteUrl, classes }) => {
     title: post.frontmatter.title
   };
   return (
-    <Container>
+    <Container className = {classes.root}>
       <Box>
         <Typography variant="h2">{post.frontmatter.title}</Typography>
         <Box display="flex" justifyContent="space-between">

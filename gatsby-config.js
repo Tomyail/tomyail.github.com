@@ -3,7 +3,7 @@ module.exports = {
     title: 'Tomyail 的记忆现场',
     author: ' Tomyail',
     description: ' 一个程序员的自娱自乐',
-    siteUrl: 'http://blog.tomyail.com'
+    siteUrl: 'https://blog.tomyail.com'
   },
   plugins: [
     {
