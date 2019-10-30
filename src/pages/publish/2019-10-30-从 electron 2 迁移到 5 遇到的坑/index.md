@@ -5,6 +5,7 @@ categories:
 tags: 
   - electron
 path: /migration-from-electron-2-to-5/
+date: 2019-10-30T10:26:13.752Z
 ---
 
 
