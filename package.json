@@ -33,7 +33,7 @@
     "gatsby-transformer-remark": "^2.3.4",
     "gatsby-transformer-sharp": "^2.1.17",
     "prismjs": "^1.15.0",
-    "ramda": "^0.26.1",
+    "ramda": "^0.27.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-grid-layout": "^0.16.6",
