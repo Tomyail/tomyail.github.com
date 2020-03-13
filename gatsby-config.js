@@ -6,13 +6,6 @@ module.exports = {
     siteUrl: 'https://blog.tomyail.com'
   },
   plugins: [
-    {
-      resolve: 'gatsby-plugin-webpack-bundle-analyzer',
-      options: {
-          analyzerPort: 3000,
-          production: true,
-      },
-  },
     'gatsby-plugin-typescript',
     {
       resolve: `gatsby-plugin-lodash`,
