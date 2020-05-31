@@ -26,20 +26,19 @@ with observable **streams**. （利用 observable 流为异步编程设计的一
 ## 第二部分 概念和应用
 
 ### 概念 1： 流
+
 要理解异步或者同步，我们需要先明白非常重要的概念：**流**
 
 流可能是一个陌生的名词，但是平时编写异步代码其实你都在接触类似的概念。比如 promise，eventTarget，fetch，setInterval。这些前端常用的异步技术，在 rxjs 看来，都可以归并到流的范畴。所以流有什么特点？
 
-它有发送数据的能力
-它有接受数据的能力
-它能对数据进行转换
+1. 它有发送数据的能力
+2. 它有接受数据的能力
+3. 它能对数据进行转换
 
- 举个例子
+ 举个例子, 下图展示的 promise 和 dom 事件就是流的不同展示。
  
 ![promiseandevent](media/15896120921996/promiseandevent.png)
 
-
-流模型是异步编程的基本模型，push模型。
 
 流的概念具体在 rxjs 里面，就是 Observerable 和 Observer 的关系，
 
@@ -50,22 +49,26 @@ with observable **streams**. （利用 observable 流为异步编程设计的一
 1. 它有发送数据的能力（Observerable）
 2. 它有接受数据的能力 (Observer,Subscribe)
 3. 它能对数据进行转换 (Operator)
-4. Subject * 
 
-### 概念 2：理解 Observerable Observer， Subribe 
+### 概念 2：理解 Observable 和 Observer 
 
-作为 rxjs 里面流概念的载体，理解Observerable 非常重要
+作为 rxjs 里面流概念的载体，理解 Observable 非常重要。
 
-一个典型的 promise 的场景：
+由于 Observable 的创建方式和 Promise 有点像，因为用他们做对比学习可能效果更好。
+
+* 典型的 promise 的流程：
 
 ![](media/15896120921996/15902212430711.jpg)
 
+promise 是一次性的，在异步任务执行完毕后，promise 就被标记为 fullfilled 或者 rejected 状态。
 
-典型的 Observerable 和 Obserser 的关系
+
+* 典型的 Observable 
 ![](media/15896120921996/15902214700504.jpg)
+Observable  不是一次性的，在异步任务中可以通过 next 多次触发。只有收到 error 或者 complete，订阅才会结束。
 
 
-对比 Promise 和 Observable
+* 对比 Promise 和 Observable
 
 
 |  | Promise | Event | Observable |
@@ -75,7 +78,8 @@ with observable **streams**. （利用 observable 流为异步编程设计的一
 | 多值 | 不支持 | 支持 | 支持 |
 | 共享多次/订阅 | 不支持 | 支持 | 支持 |
 
-以下示例所有代码[在线预览](https://stackblitz.com/edit/jo3dq1?file=create.ts)
+**以下示例所有代码[在线预览](https://stackblitz.com/edit/jo3dq1)**
+
 #### 创建和订阅
 
 假如我们想创建一个 等待特定时间后触发回调的 promise，用observable 的创建过程会稍微啰嗦一点。
@@ -88,7 +92,7 @@ import { Observable } from "rxjs";
 const promise = time =>
   new Promise(resolve => setTimeout(() => resolve("ok"), time));
 
-//订阅promise
+//订阅promise（200 毫秒后输出 ok）
 promise(200).then(console.log);
 
 //创建 observable
@@ -277,7 +281,7 @@ console.log(output);
 ```
 管道式调用有什么特点？
 
-1. 高阶函数: 一个函数的返回值是另一个函数，降维打击（多参数，curry）
+1. 高阶函数: 一个函数的返回值是另一个函数（curry）
 2. 输入和输出的数据类型是一致的
 3. 惰性求值（ pionter free）
 4. 各种工具函数 （js 有个函数式编程库，封装了大量函数rambda.js）
@@ -353,25 +357,67 @@ of(1, 2, 3, 4, 5)
 
 推荐几个网站：
 
- https://rxjs-dev.firebaseapp.com/operator-decision-tree: 操作符决策树
-https://reactive.how/: 用动画展示一些容易混淆的操作符的区别。
-https://www.learnrxjs.io: 用例子解释了绝大多数数操作符的用法。
-https://rxmarbles.com/ :  可交互的弹珠图
+*  [操作符决策树](https://rxjs-dev.firebaseapp.com/operator-decision-tree)
+* [用动画展示一些容易混淆的操作符的区别](https://reactive.how/)
+* [用例子解释了绝大多数数操作符的用法](https://www.learnrxjs.io)
+* [可交互的弹珠图](https://rxmarbles.com/)
 
-    操作符的功能按照对数据的处理方式可以分成八大类，距离可以参考[这里获取所有列表](https://www.learnrxjs.io/learn-rxjs/operators)
+操作符的功能按照对数据的处理方式可以分成八大类，距离可以参考[这里获取所有列表](https://www.learnrxjs.io/learn-rxjs/operators)
 
 
 ##### 创建操作符
 
-使用 Observable 的起点（万恶之源），用来方便我们快速的创建流。
+使用 Observable 的起点，用来方便我们创建流。
 
 ![CA4EDA6B-B584-4C0E-9565-A61265CFAF96](media/15896120921996/CA4EDA6B-B584-4C0E-9565-A61265CFAF96.png)               
+###### from vs of
+###### timer vs interval
+```javascript
+import {
+  from,
+  of,
+  fromEvent,
+  bindNodeCallback,
+  defer,
+  timer,
+  interval
+} from "rxjs";
 
+
+//from 和 of 操作符很容易搞混, 基本上平时 from 的使用频率会比 of 高. from 可以转换其他流对象(promise,iterator)为 Observable
+of(1, 2, 3);
+
+from([1, 2, 3]);
+
+from(of(1, 2, 3));
+
+
+//这个方式等价于 document.getElementById("button").addEventListener('click',??); 不过回调函数可以分开订阅.
+fromEvent(document.getElementById("button"), "click");
+
+//把 node 回调转换为 Observable
+// const readFile$$ = bindNodeCallback(fs.readFile)
+// readFile$$('./path').subscribe()
+
+//通常和 iif,retry 等配合使用,用来在运行时惰性定义.
+
+defer(() => Promise.resolve());
+
+//相当于 setTimeout
+timer(2000);
+
+//相当于 setInterval
+interval(2000);
+
+```
 ##### 过滤操作符
 
 对数据的数量做处理，但保持数据格式不变，类似数组的 filter
 
 ![03DC90BB-2289-4622-896D-481C719C1E19](media/15896120921996/03DC90BB-2289-4622-896D-481C719C1E19.png)
+
+###### throttle vs debounce
+###### takeUnitl vs takeWhile
 
 ##### 合并操作符
 
@@ -379,16 +425,70 @@ https://rxmarbles.com/ :  可交互的弹珠图
 
 ![3B146D4A-E104-43B6-8D45-3CE5996012AD](media/15896120921996/3B146D4A-E104-43B6-8D45-3CE5996012AD.png)
 
-* concat vs merge
-* combineLatest vs zip
+###### merge vs concat 
+######  combineLatest vs zip
 
 ##### 转换操作符
 
 对数据的数量不作处理，但是改变数据的结构定义。类似数据的 map。
 
 ![776E0039-C256-41C7-90F5-476B532B3B4E](media/15896120921996/776E0039-C256-41C7-90F5-476B532B3B4E.png)
-##### 错误处理
 
+###### map vs mergeMap vs exhaustMap vs switchMap vs concatMap
+
+```javascript
+fromEvent(document.getElementById("button"), "click").pipe(
+  scan((acc, cur) => acc + 1, 0),
+  map(item=>item*1000)
+)
+```
+这段代码演示了 map 的用法，它监听鼠标点击，然后算到累计值上面，最后把当前的累计值乘以 1000 输出。
+
+订阅这个流后，当点击鼠标，你将会收到`1000,2000,3000`等值。 现在我们变更需求，希望在鼠标点击后，延迟 n 秒后再输出这个值。 比如点击一下后，1 秒后输出值，点击第二下后，2 秒后输出值。
+
+```javascript
+fromEvent(document.getElementById("button"), "click")
+  .pipe(
+    scan((acc, cur) => acc + 1, 0),
+    map(item => timer(item * 1000).pipe(mapTo(item)))
+  )
+```
+这段代码并不能很好的工作，当每次鼠标点击后，订阅流会**立刻**收到一个 Observable。所以这里需要说明另一个概念：高阶Observable。
+
+这段代码没有按照希望的执行的主要原因是 map 返回的值不是数字，而是**子Observable**。这个**子Observable**就是高阶 Observable，和上述函数式提到的高阶函数有点类似。我们需要订阅这个**子Observable**，然后在其有值后输出。rxs 有个操作符就是干这个的 `mergeMap`。在理解了 MergeMap 的定义之后，我们可以自己实现一遍：
+
+```
+const mergeMap = fn => observable => {
+  return new Observable(sucribe => {
+    const sub = observable.subscribe(item => {
+      //用 from 把 fn(item)转成 Observerable
+      from(fn(item)).subscribe(innerItem => {
+        sucribe.next(innerItem);
+      });
+    });
+
+    return () => {
+      sub.unsubscribe();
+    };
+  });
+};
+
+fromEvent(document.getElementById("button"), "click").pipe(
+  scan((acc, cur) => acc + 1, 0),
+  tap(console.log),
+  mergeMap(item => timer(item * 1000).pipe(mapTo(item)))
+).subscribe(console.log);
+```
+
+和 mergeMap 很像的还有另外三个操作符
+
+* mergeMap: 并发的执行子Observable
+* concatMap: 等上一个子Observable执行完毕后再执行当前，队列执行
+* switchMap:订阅当前的子Observable，停止执行之前的所有子Observable
+* exhaustMap:在当前的子Observable没有执行前，忽略所有其他新来的创建子Observable请求
+
+具体建议[自己运行](https://stackblitz.com/edit/jo3dq1?file=transform_operator.ts)感受下
+##### 错误处理
 
 ![FB2D98A2-9CF6-44BD-B275-613CEF06C45F](media/15896120921996/FB2D98A2-9CF6-44BD-B275-613CEF06C45F.png)
 
@@ -401,44 +501,12 @@ https://rxmarbles.com/ :  可交互的弹珠图
 
 
 
-温度
-
-
-subject 初学者非常喜欢用它，因为它和eventbus差不多，可以发送也可以监听。
-
-
-
-最后实现一个需求。   
-
-鼠标拖动点击 
-
-定期刷新
-
-请求 》并发两个请求（一个可以出错，另一个不行）
-    
-整个取消监听
-
-
-
-
-
-
-
 ## 第三部分 总结
 
 
+通过 RxJS，我们可以把原来冗长的异步代码全部用它的操作符管道全部包起来，可以大幅减少中间全局状态的维护。而且在 RxJS取消订阅时，会自动取消所有 Observable 的订阅。
 
-优点：
+RxJS 操作符学习这块建议先从上面列举的操作符中包含星号的开始，每个操作符和乐高积木差不多。将他们组合起来的威力是非常巨大的。
 
-* 代码骚气
-* 万能的操作符。
-* 自动管理监听和释放
-* 不用维护中间状态
-
-缺点?
-
-1. 错误堆栈非常长
-2. 代码交接困难。。。
-
-
+当然 RxJS也是有缺点的，除了学习门槛过高外，它的错误堆栈非常的深，有一个叫做[rxjs-spy](https://github.com/cartant/rxjs-spy)的库，可以尝试了解下。
 
