@@ -45,6 +45,7 @@ with observable **streams**. （利用 observable 流为异步编程设计的一
 如下图所示：
 
 ![](media/15896120921996/15896342175912.jpg)
+<center><a href='https://www.manning.com/books/rxjs-in-action'>图片来源</a></center>
 
 1. 它有发送数据的能力（Observerable）
 2. 它有接受数据的能力 (Observer,Subscribe)
@@ -59,12 +60,15 @@ with observable **streams**. （利用 observable 流为异步编程设计的一
 * 典型的 promise 的流程：
 
 ![](media/15896120921996/15902212430711.jpg)
+<center><a href='https://www.manning.com/books/rxjs-in-action'>图片来源</a></center>
 
 promise 是一次性的，在异步任务执行完毕后，promise 就被标记为 fullfilled 或者 rejected 状态。
 
 
 * 典型的 Observable 
 ![](media/15896120921996/15902214700504.jpg)
+<center><a href='https://www.manning.com/books/rxjs-in-action'>图片来源</a></center>
+
 Observable  不是一次性的，在异步任务中可以通过 next 多次触发。只有收到 error 或者 complete，订阅才会结束。
 
 
@@ -308,6 +312,7 @@ timer(2000).subscribe(console.log);
 ```
 
 ![](media/15896120921996/15903242545734.jpg)
+<center><a href='https://www.manning.com/books/rxjs-in-action'>图片来源</a></center>
 
 在 rxjs 里面，操作符被分成了两种，从 `rxjs` 路径导入的操作符被称为**创建操作符**，从`rxjs/operators` 路径导入的被称为**管道操作符**。
 
