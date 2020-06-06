@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'gatsby-link';
 import get from 'lodash/get';
-import Helmet from 'react-helmet';
+import {Helmet} from 'react-helmet';
 import { graphql } from 'gatsby';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
@@ -44,6 +44,7 @@ class BlogIndex extends React.Component {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title');
     const preLink = get(this, 'props.pageContext.preLink');
     const nextLink = get(this, 'props.pageContext.nextLink');
+    // return <div>test</div>
     return (
       <Box >
         <CssBaseline />
