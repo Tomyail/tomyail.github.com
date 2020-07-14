@@ -515,3 +515,7 @@ RxJS 操作符学习这块建议先从上面列举的操作符中包含星号的
 
 当然 RxJS也是有缺点的，除了学习门槛过高外，它的错误堆栈非常的深，有一个叫做[rxjs-spy](https://github.com/cartant/rxjs-spy)的库，可以尝试了解下。
 
+
+### 参考链接:
+
+[RxJS: Glossary And Semantics](https://github.com/ReactiveX/rxjs/blob/master/docs_app/content/guide/glossary-and-semantics.md): 关于 RxJS 各种术语的定义.
