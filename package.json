@@ -49,7 +49,7 @@
     "typeface-roboto": "^0.0.75"
   },
   "devDependencies": {
-    "eslint": "7.2.0",
+    "eslint": "7.11.0",
     "eslint-plugin-react": "7.20.0",
     "gatsby-plugin-webpack-bundle-analyzer": "1.0.5",
     "gh-pages": "3.0.0",
