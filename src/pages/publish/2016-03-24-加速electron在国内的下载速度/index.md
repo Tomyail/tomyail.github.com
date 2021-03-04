@@ -5,6 +5,7 @@ categories:
 tags: null
 date: 2016-03-23T19:02:30.000Z
 path: /install-electron-slow-in-china/
+visible: true
 ---
 
 安装 electron 的时候会下载`electron-prebuilt`,`electron-prebuilt`是一个 zip 包，默认被托管在 github 上，在某些网络下下载会非常慢。通过查看[electron-download](https://github.com/electron-userland/electron-download/blob/master/index.js)的源码和 readme 知道，其实是可以换下载地址的

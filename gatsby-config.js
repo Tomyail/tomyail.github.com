@@ -6,7 +6,6 @@ module.exports = {
 		siteUrl: 'https://blog.tomyail.com'
 	},
 	plugins: [
-
 		'gatsby-plugin-typescript',
 		{
 			resolve: `gatsby-plugin-lodash`,
