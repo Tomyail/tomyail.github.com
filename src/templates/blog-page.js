@@ -1,16 +1,9 @@
+import React from 'react'
 import { Box, Button, CssBaseline, withStyles } from '@material-ui/core';
 import { graphql } from 'gatsby';
 import Link from 'gatsby-link';
 import get from 'lodash/get';
-import {Helmet} from 'react-helmet';
-import { graphql } from 'gatsby';
-import { connect } from 'react-redux';
-import { bindActionCreators, compose } from 'redux';
-import * as actions from '../redux/actions';
-import Bio from '../components/Bio';
-import Header from '../components/Header';
-import PostPreview from '../components/PostPreview';
-import { List, Grid, withStyles, Box, Button, CssBaseline } from '@material-ui/core';
+import { Helmet } from 'react-helmet';
 import '../assets/prism.css';
 import Header from '../components/Header';
 import PostPreview from '../components/PostPreview';
