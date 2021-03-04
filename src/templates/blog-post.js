@@ -14,12 +14,6 @@ import PostBody from '../components/PostBody';
 const styles = {};
 
 class BlogPostTemplate extends React.Component {
-	componentDidMount() {
-		const path = get(this, 'props.data.markdownRemark.frontmatter.path');
-		if (path) {
-			this.props.actions.getPostView({ paths: [path], needIncrease: true });
-		}
-	}
 	render() {
 		const post = this.props.data.markdownRemark;
 		const siteTitle = get(this.props, 'data.site.siteMetadata.title');
