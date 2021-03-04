@@ -4,7 +4,7 @@ import { graphql } from 'gatsby';
 import Link from 'gatsby-link';
 import get from 'lodash/get';
 import { Helmet } from 'react-helmet';
-import '../assets/prism.css';
+import '../assets/dracula-prism.css'
 import Header from '../components/Header';
 import PostPreview from '../components/PostPreview';
 

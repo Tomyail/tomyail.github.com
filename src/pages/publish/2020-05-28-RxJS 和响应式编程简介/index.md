@@ -2,7 +2,7 @@
 title: RxJS 和响应式编程简介
 categories:
   - 技术
-tags: 
+tags:
   - rxjs
   - 响应式编程
 path: /introducing-reactive-programming-with-rxjs/
@@ -36,7 +36,7 @@ with observable **streams**. （利用 observable 流为异步编程设计的一
 3. 它能对数据进行转换
 
  举个例子, 下图展示的 promise 和 dom 事件就是流的不同展示。
- 
+
 ![promiseandevent](media/15896120921996/promiseandevent.png)
 
 
@@ -51,7 +51,7 @@ with observable **streams**. （利用 observable 流为异步编程设计的一
 2. 它有接受数据的能力 (Observer,Subscribe)
 3. 它能对数据进行转换 (Operator)
 
-### 概念 2：理解 Observable 和 Observer 
+### 概念 2：理解 Observable 和 Observer
 
 作为 rxjs 里面流概念的载体，理解 Observable 非常重要。
 
@@ -65,7 +65,7 @@ with observable **streams**. （利用 observable 流为异步编程设计的一
 promise 是一次性的，在异步任务执行完毕后，promise 就被标记为 fullfilled 或者 rejected 状态。
 
 
-* 典型的 Observable 
+* 典型的 Observable
 ![](media/15896120921996/15902214700504.jpg)
 <center><a href='https://www.manning.com/books/rxjs-in-action'>图片来源</a></center>
 
@@ -90,7 +90,7 @@ Observable  不是一次性的，在异步任务中可以通过 next 多次触�
 
 ```typescript
 //create.ts
-import { Observable } from "rxjs";
+import { Observable } from "rxjs";// highlight-line
 
 //创建 promise
 const promise = time =>
@@ -354,7 +354,7 @@ of(1, 2, 3, 4, 5)
   .subscribe(console.log);
 ```
 
-#### 操作符的主要分类   
+#### 操作符的主要分类
 
 在介绍操作符之前，先看一下官网推荐的学习操作符的方式：弹珠图。
 
@@ -374,7 +374,7 @@ of(1, 2, 3, 4, 5)
 
 使用 Observable 的起点，用来方便我们创建流。
 
-![CA4EDA6B-B584-4C0E-9565-A61265CFAF96](media/15896120921996/CA4EDA6B-B584-4C0E-9565-A61265CFAF96.png)               
+![CA4EDA6B-B584-4C0E-9565-A61265CFAF96](media/15896120921996/CA4EDA6B-B584-4C0E-9565-A61265CFAF96.png)
 ###### from vs of
 ###### timer vs interval
 ```javascript
@@ -430,7 +430,7 @@ interval(2000);
 
 ![3B146D4A-E104-43B6-8D45-3CE5996012AD](media/15896120921996/3B146D4A-E104-43B6-8D45-3CE5996012AD.png)
 
-###### merge vs concat 
+###### merge vs concat
 ######  combineLatest vs zip
 
 ##### 转换操作符
