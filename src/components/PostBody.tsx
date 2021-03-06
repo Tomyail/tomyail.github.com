@@ -7,13 +7,13 @@ import truncate from "lodash/truncate";
 import * as React from "react";
 import "typeface-roboto";
 import {
-	Box,
-
-	Button,
-	Container, Divider, Typography,
-
-	withStyles,
-	withTheme
+  Box,
+  Button,
+  Container,
+  Divider,
+  Typography,
+  withStyles,
+  withTheme,
 } from "../../node_modules/@material-ui/core";
 
 const style = (theme: Theme) => {
