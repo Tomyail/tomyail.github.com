@@ -1,8 +1,38 @@
-const _ = require('lodash');
-const Promise = require('bluebird');
-const path = require('path');
-const { createFilePath } = require('gatsby-source-filesystem');
-const R = require('ramda');
+import _ from 'lodash';
+import Promise from 'bluebird';
+import path from 'path';
+import { createFilePath } from 'gatsby-source-filesystem';
+import R from 'ramda';
+
+// 获取所有的文章概要信息
+const getAllPara = (graphql) =>
+  graphql(
+    `
+      {
+        allMarkdownRemark(
+          limit: 1000
+          sort: { fields: [frontmatter___date], order: DESC }
+        ) {
+          totalCount
+          edges {
+            node {
+              frontmatter {
+                title
+                path
+                tags
+              }
+            }
+          }
+        }
+      }
+    `
+  );
+
+//根据 tag 分组的信息
+const groupByTags = () => {};
+
+// 根据 Area 分组的信息 （暂时还没有）
+const groupByAreas = () => {};
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -17,19 +47,20 @@ exports.createPages = ({ graphql, actions }) => {
               limit: 1000
               sort: { fields: [frontmatter___date], order: DESC }
             ) {
+              totalCount
               edges {
                 node {
                   frontmatter {
                     title
                     path
-                    visible
+                    tags
                   }
                 }
               }
             }
           }
         `
-      ).then(result => {
+      ).then((result) => {
         if (result.errors) {
           reject(result.errors);
         }
@@ -38,10 +69,10 @@ exports.createPages = ({ graphql, actions }) => {
         const posts = result.data.allMarkdownRemark.edges;
 
         //我们把 fromtmatter 的 visible 是 false 的文章从文章列表中删掉,但是如果用户直接访问那个 url 还是能访问到的
-        const isVisible = post => {
+        const isVisible = (post) => {
           return post.node.frontmatter.visible !== false;
         };
-        const renderVisiblePost = posts => {
+        const renderVisiblePost = (posts) => {
           const postsPerPage = 6;
           const numberPages = Math.ceil(posts.length / postsPerPage);
 
@@ -55,8 +86,8 @@ exports.createPages = ({ graphql, actions }) => {
                 limit: postsPerPage,
                 skip: i * postsPerPage,
                 numberPages,
-                currentPage: i + 1
-              }
+                currentPage: i + 1,
+              },
             });
           });
 
@@ -71,29 +102,24 @@ exports.createPages = ({ graphql, actions }) => {
               context: {
                 index,
                 previous,
-                next
-              }
+                next,
+              },
             });
           });
         };
 
-        const renderInvisiblePosts = posts => {
+        const renderInvisiblePosts = (posts) => {
           posts.forEach((post, index) => {
             createPage({
               path: post.node.frontmatter.path,
-              component: blogPost
+              component: blogPost,
             });
           });
         };
 
         const visiblePosts = R.filter(isVisible)(posts);
         renderVisiblePost(visiblePosts);
-        const invisiblePosts = R.filter(
-          R.compose(
-            R.not,
-            isVisible
-          )
-        )(posts);
+        const invisiblePosts = R.filter(R.compose(R.not, isVisible))(posts);
         renderInvisiblePosts(invisiblePosts);
       })
     );
@@ -109,7 +135,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     createNodeField({
       name: `slug`,
       node,
-      value
+      value,
     });
   }
 };
