@@ -29,16 +29,16 @@ const getAllPara = (graphql) =>
   );
 
 //根据 tag 分组的信息
-const groupByTags = () => {};
+const groupByTags = () => { };
 
 // 根据 Area 分组的信息 （暂时还没有）
-const groupByAreas = () => {};
+const groupByAreas = () => { };
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
   return new Promise((resolve, reject) => {
-    const blogPost = path.resolve('./src/templates/blog-post.js');
+    const blogPost = path.resolve('./src/templates/blog-post.tsx');
     resolve(
       graphql(
         `
@@ -79,7 +79,7 @@ exports.createPages = ({ graphql, actions }) => {
           Array.from({ length: numberPages }).forEach((_, i) => {
             createPage({
               path: i === 0 ? `/` : `/pages/${i + 1}`,
-              component: path.resolve('./src/templates/blog-page.js'),
+              component: path.resolve('./src/templates/blog-page.tsx'),
               context: {
                 preLink: i > 0 ? (i === 1 ? '/' : `/pages/${i}`) : null,
                 nextLink: i < numberPages - 1 ? `/pages/${i + 1 + 1}` : null,

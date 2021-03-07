@@ -15,7 +15,6 @@ import {
   withStyles,
   withTheme,
 } from "../../node_modules/@material-ui/core";
-import gfm from "remark-gfm";
 
 //https://github.com/mui-org/material-ui/blob/62883f7369a2a7dcb8b77a77b2c65a62c1615926/docs/src/modules/components/MarkdownElement.js#L6
 const style = (theme: Theme) => {
@@ -38,7 +37,7 @@ const style = (theme: Theme) => {
         marginTop: -96, // Offset for the anchor.
         position: "absolute",
       },
-			// '& .gatsby-highlight pre[class*="language-"]:after': {
+      // '& .gatsby-highlight pre[class*="language-"]:after': {
       //   content: '"js"',
       //   background: "#f7df1e",
       //   color: "black",
@@ -52,41 +51,41 @@ const style = (theme: Theme) => {
       //   texttransform: "uppercase",
       //   top: 0,
       // },
-      // "& pre": {
-      //   position: "relative",
-      //   margin: theme.spacing(3, "auto"),
-      //   padding: theme.spacing(2),
-      //   backgroundColor: "#272c34",
-      //   direction: "ltr",
-      //   borderRadius: theme.shape.borderRadius,
-      //   overflow: "auto",
-      //   WebkitOverflowScrolling: "touch", // iOS momentum scrolling.
-      //   maxWidth: "calc(100vw - 32px)",
-      //   [theme.breakpoints.up("md")]: {
-      //     maxWidth: "calc(100vw - 32px - 16px)",
-      //   },
-      // },
+      "& pre": {
+        position: "relative",
+        margin: theme.spacing(3, "auto"),
+        padding: theme.spacing(2),
+        backgroundColor: "#272c34",
+        direction: "ltr",
+        borderRadius: theme.shape.borderRadius,
+        overflow: "auto",
+        WebkitOverflowScrolling: "touch", // iOS momentum scrolling.
+        maxWidth: "calc(100vw - 32px)",
+        [theme.breakpoints.up("md")]: {
+          maxWidth: "calc(100vw - 32px - 16px)",
+        },
+      },
 
       // '& code[class*="language-"]': {
       //   // Avoid layout jump after hydration (style injected by prism)
       //   lineHeight: 1.5,
       // },
       // // only  inline code
-      // '& :not(pre) > code[class*="language-"]': {
-      //   direction: "ltr",
-      //   lineHeight: 1.4,
-      //   display: "inline-block",
-      //   fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
-      //   WebkitFontSmoothing: "subpixel-antialiased",
-      //   padding: "0 3px",
-      //   color: theme.palette.text.primary,
-      //   background:
-      //     theme.palette.mode === "light"
-      //       ? "rgba(255, 229, 100, 0.2)"
-      //       : "rgba(255, 229, 100, 0.2)",
-      //   fontSize: ".85em",
-      //   borderRadius: 2,
-      // },
+      '& :not(pre) > code[class*="language-"]': {
+        direction: "ltr",
+        lineHeight: 1.4,
+        display: "inline-block",
+        fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
+        WebkitFontSmoothing: "subpixel-antialiased",
+        padding: "0 3px",
+        color: theme.palette.text.primary,
+        background:
+          theme.palette.mode === "light"
+            ? "rgba(255, 229, 100, 0.2)"
+            : "rgba(255, 229, 100, 0.2)",
+        fontSize: ".85em",
+        borderRadius: 2,
+      },
       // // code blocks
       // "& pre code": {
       //   background: "#272c34",
@@ -272,9 +271,9 @@ const style = (theme: Theme) => {
 
 const markdownRenderers = {
   code: (props: any): JSX.Element => (
-      <SyntaxHighlighter language={props.language} style = {darcula} showLineNumbers >
-        {props.value}
-      </SyntaxHighlighter>
+    <SyntaxHighlighter language={props.language} style={darcula} showLineNumbers >
+      {props.value}
+    </SyntaxHighlighter>
   ),
 };
 
