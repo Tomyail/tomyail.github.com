@@ -71,8 +71,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js' 'src/**/*.md'",
     "start": "gatsby develop",
-    "build": "gatsby build",
-    "prepare": "husky install"
+    "build": "gatsby build"
   },
   "husky": {
     "hooks": {
