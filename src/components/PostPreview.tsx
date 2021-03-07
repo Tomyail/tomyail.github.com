@@ -1,21 +1,17 @@
-import get from 'lodash/get';
-import React from 'react';
 import {
-  Card,
-  CardContent,
-  withStyles,
-  Typography,
-  CardMedia,
-  CardActionArea,
-  CardHeader,
-  Chip,
-  CardActions,
-  Button,
-  Grid
+	Box, CardHeader,
+
+
+
+
+
+	Container, Typography, withStyles
 } from '@material-ui/core';
+import { Theme, withTheme } from '@material-ui/core/styles';
 // import { Link } from 'reach';
 import Link from 'gatsby-link';
-import { withTheme, Theme } from '@material-ui/core/styles';
+import get from 'lodash/get';
+import React from 'react';
 
 const SubTitleItem = ({ children }) => {
   return <span style={{ margin: '0 2px' }}>{children}</span>;
@@ -34,7 +30,7 @@ const PostPreview = ({ node, classes, theme }: { theme: Theme }) => {
   const title = get(node, 'frontmatter.title') || node.fields.slug;
   const slug = get(node, 'frontmatter.path');
   return (
-    <Card className={classes.card}>
+    <Container className={classes.card} maxWidth='md' >
       <CardHeader
         title={
           <Link to={slug} style={{ textDecoration: 'inherit', color: theme.palette.primary.main }}>
@@ -44,13 +40,13 @@ const PostPreview = ({ node, classes, theme }: { theme: Theme }) => {
         subheader={`${node.frontmatter.date} | ${node.timeToRead} min read`}
       // action={ <Chip variant="outlined" label="Awesome Chip Component"/>}
       />
-      <CardContent>
+      <Box>
         <Typography paragraph variant="body1">
           {node.excerpt}
         </Typography>
         <Typography variant="caption" gutterBottom />
-      </CardContent>
-    </Card>
+      </Box>
+    </Container>
   );
 };
 

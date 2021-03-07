@@ -57,6 +57,7 @@ module.exports = {
           {
             resolve: "gatsby-remark-prismjs",
             options: {
+							inlineCodeMarker:'›'
               //   showLineNumbers: true,
             },
           },
@@ -127,7 +128,16 @@ module.exports = {
         ],
       },
     },
-    "gatsby-theme-material-ui",
+		{
+      resolve: `gatsby-plugin-material-ui`,
+      options: {
+        stylesProvider: {
+          injectFirst: true,
+        },
+      },
+    },
+		// !!
+    `custom-mui-theme`,
     "gatsby-plugin-emotion",
     {
       resolve: `gatsby-plugin-manifest`,

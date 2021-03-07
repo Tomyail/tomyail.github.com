@@ -1,36 +1,35 @@
-import React from "react";
-import { Box, Button, CssBaseline, withStyles } from "@material-ui/core";
-import { graphql } from "gatsby";
-import Link from "gatsby-link";
-import get from "lodash/get";
-import { Helmet } from "react-helmet";
-import "../assets/dracula-prism.css";
-import Header from "../components/Header";
-import PostPreview from "../components/PostPreview";
+import { Box, Button, withStyles } from '@material-ui/core';
+import { graphql } from 'gatsby';
+import Link from 'gatsby-link';
+import get from 'lodash/get';
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import '../assets/dracula-prism.css';
+import Header from '../components/Header';
+import PostPreview from '../components/PostPreview';
 
 const styles = (theme) => ({
   pageNavi: {
-    display: "flex",
-    justifyContent: "space-between",
-    "& a": {
-      textDecoration: "inherit",
+    display: 'flex',
+    justifyContent: 'space-between',
+    '& a': {
+      textDecoration: 'inherit',
     },
-    "& a:hover": {
-      textDecoration: "inherit",
+    '& a:hover': {
+      textDecoration: 'inherit',
     },
   },
 });
 
 class BlogIndex extends React.Component {
   render() {
-    const posts = get(this, "props.data.allMarkdownRemark.edges");
-    const siteTitle = get(this, "props.data.site.siteMetadata.title");
-    const preLink = get(this, "props.pageContext.preLink");
-    const nextLink = get(this, "props.pageContext.nextLink");
+    const posts = get(this, 'props.data.allMarkdownRemark.edges');
+    const siteTitle = get(this, 'props.data.site.siteMetadata.title');
+    const preLink = get(this, 'props.pageContext.preLink');
+    const nextLink = get(this, 'props.pageContext.nextLink');
     // return <div>test</div>
     return (
       <Box>
-        <CssBaseline />
         <Header />
         <Helmet title={siteTitle} />
         {posts.map(({ node }) => (

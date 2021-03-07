@@ -1,15 +1,19 @@
+import { createMuiTheme, IconButton } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
+import Fab from "@material-ui/core/Fab";
 import Slide from "@material-ui/core/Slide";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import Zoom from "@material-ui/core/Zoom";
-import { graphql, useStaticQuery } from "gatsby";
-import Link from "gatsby-link";
-import React from "react";
-import Fab from "@material-ui/core/Fab";
+import Brightness4Icon from "@material-ui/icons/Brightness4";
+import Brightness7RoundedIcon from "@material-ui/icons/Brightness7Rounded";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
+import { graphql, Link, useStaticQuery } from "gatsby";
+import React from "react";
+//@ts-ignore
+import { useTheme } from "../../plugins/custom-mui-theme";
 
 interface Props {
   children: React.ReactElement;
@@ -84,6 +88,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 const Header = () => {
   const classes = useStyles();
+  const { setTheme, theme } = useTheme();
   const data = useStaticQuery(graphql`
     query HeaderQuery {
       site {
@@ -97,11 +102,35 @@ const Header = () => {
   return (
     <React.Fragment>
       <HideOnScroll>
-        <AppBar>
+        <AppBar color={theme.palette.mode === "dark" ? "default" : "primary"}>
           <Toolbar>
             <Typography variant="h6" className={classes.title}>
               <Link to={"/"}>{data.site.siteMetadata.title}</Link>
             </Typography>
+            <IconButton
+              aria-label="switch theme"
+              sx={{ color: "white" }}
+              onClick={() => {
+                const newTheme = createMuiTheme({
+                  ...theme,
+                  ...{
+                    palette: {
+                      mode:
+                        (theme as Theme).palette.mode === "dark"
+                          ? "light"
+                          : "dark",
+                    },
+                  },
+                });
+                setTheme(newTheme);
+              }}
+            >
+              {(theme as Theme).palette.mode === "dark" ? (
+                <Brightness7RoundedIcon /> //light
+              ) : (
+                <Brightness4Icon /> //moon
+              )}
+            </IconButton>
           </Toolbar>
         </AppBar>
       </HideOnScroll>
