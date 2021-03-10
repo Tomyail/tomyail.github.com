@@ -1,4 +1,4 @@
-import { Pagination } from '@material-ui/core';
+import { Divider, Pagination } from '@material-ui/core';
 import { PaginationItem } from '@material-ui/core';
 import { Box, Button, Container, withStyles } from '@material-ui/core';
 import { graphql } from 'gatsby';
@@ -7,6 +7,7 @@ import get from 'lodash/get';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import '../assets/dracula-prism.css';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import PostPreview from '../components/PostPreview';
 
@@ -27,11 +28,8 @@ class BlogIndex extends React.Component {
   render() {
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
     const siteTitle = get(this, 'props.data.site.siteMetadata.title');
-    const preLink = get(this, 'props.pageContext.preLink');
-    const nextLink = get(this, 'props.pageContext.nextLink');
     const currentPage = get(this, 'props.pageContext.currentPage');
     const numberPages = get(this, 'props.pageContext.numberPages');
-    console.log('currentPage', currentPage, numberPages);
     return (
       <Box>
         <Header />
@@ -41,10 +39,9 @@ class BlogIndex extends React.Component {
             <PostPreview node={node} key={node.frontmatter.path} />
           ))}
           <Pagination
-            sx={{ width: '100%' }}
+            sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}
             count={numberPages}
             page={currentPage}
-            size={'small'}
             renderItem={(item) => (
               <PaginationItem
                 component={Link}
@@ -54,6 +51,8 @@ class BlogIndex extends React.Component {
             )}
           />
         </Container>
+        <Divider />
+        <Footer />
       </Box>
     );
   }

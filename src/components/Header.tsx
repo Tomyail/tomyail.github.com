@@ -1,19 +1,19 @@
-import { createMuiTheme, IconButton } from "@material-ui/core";
-import AppBar from "@material-ui/core/AppBar";
-import Fab from "@material-ui/core/Fab";
-import Slide from "@material-ui/core/Slide";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import useScrollTrigger from "@material-ui/core/useScrollTrigger";
-import Zoom from "@material-ui/core/Zoom";
-import Brightness4Icon from "@material-ui/icons/Brightness4";
-import Brightness7RoundedIcon from "@material-ui/icons/Brightness7Rounded";
-import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import { graphql, Link, useStaticQuery } from "gatsby";
-import React from "react";
+import { createMuiTheme, IconButton } from '@material-ui/core';
+import AppBar from '@material-ui/core/AppBar';
+import Fab from '@material-ui/core/Fab';
+import Slide from '@material-ui/core/Slide';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import Zoom from '@material-ui/core/Zoom';
+import Brightness4Icon from '@material-ui/icons/Brightness4';
+import Brightness7RoundedIcon from '@material-ui/icons/Brightness7Rounded';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import { graphql, Link, useStaticQuery } from 'gatsby';
+import React from 'react';
 //@ts-ignore
-import { useTheme } from "../../plugins/custom-mui-theme";
+import { useTheme } from '../../plugins/custom-mui-theme';
 
 interface Props {
   children: React.ReactElement;
@@ -35,8 +35,8 @@ const useStyles2 = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       zIndex: theme.zIndex.appBar,
-      position: "fixed",
-      bottom: theme.spacing(2),
+      position: 'fixed',
+      bottom: theme.spacing(4),
       right: theme.spacing(2),
     },
   })
@@ -51,10 +51,10 @@ function ScrollTop(props: Props) {
   });
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    const anchor = document.querySelector("#back-to-top-anchor");
+    const anchor = document.querySelector('#back-to-top-anchor');
 
     if (anchor) {
-      anchor.scrollIntoView({ behavior: "smooth", block: "center" });
+      anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   };
 
@@ -76,12 +76,12 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     title: {
       flexGrow: 1,
-      "& a": {
+      '& a': {
         color: theme.palette.primary.light,
-        textDecoration: "inherit",
+        textDecoration: 'inherit',
       },
-      "& a:hover": {
-        textDecoration: "inherit",
+      '& a:hover': {
+        textDecoration: 'inherit',
       },
     },
   })
@@ -102,30 +102,30 @@ const Header = () => {
   return (
     <React.Fragment>
       <HideOnScroll>
-        <AppBar color={theme.palette.mode === "dark" ? "default" : "primary"}>
+        <AppBar color={theme.palette.mode === 'dark' ? 'default' : 'primary'}>
           <Toolbar>
             <Typography variant="h6" className={classes.title}>
-              <Link to={"/"}>{data.site.siteMetadata.title}</Link>
+              <Link to={'/'}>{data.site.siteMetadata.title}</Link>
             </Typography>
             <IconButton
               aria-label="switch theme"
-              sx={{ color: "white" }}
+              sx={{ color: 'white' }}
               onClick={() => {
                 const newTheme = createMuiTheme({
                   ...theme,
                   ...{
                     palette: {
                       mode:
-                        (theme as Theme).palette.mode === "dark"
-                          ? "light"
-                          : "dark",
+                        (theme as Theme).palette.mode === 'dark'
+                          ? 'light'
+                          : 'dark',
                     },
                   },
                 });
                 setTheme(newTheme);
               }}
             >
-              {(theme as Theme).palette.mode === "dark" ? (
+              {(theme as Theme).palette.mode === 'dark' ? (
                 <Brightness7RoundedIcon /> //light
               ) : (
                 <Brightness4Icon /> //moon

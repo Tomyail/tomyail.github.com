@@ -3,7 +3,7 @@ import get from 'lodash/get';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 // import Bio from '../components/Bio';
-import { Box, withStyles } from '../../node_modules/@material-ui/core';
+import { Box, Divider, withStyles } from '../../node_modules/@material-ui/core';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import PostBody from '../components/PostBody';
@@ -26,6 +26,7 @@ class BlogPostTemplate extends React.Component {
           next={next}
           siteUrl={siteUrl}
         />
+        <Divider />
         <Footer />
       </Box>
     );
