@@ -1,3 +1,5 @@
+import { Pagination } from '@material-ui/core';
+import { PaginationItem } from '@material-ui/core';
 import { Box, Button, Container, withStyles } from '@material-ui/core';
 import { graphql } from 'gatsby';
 import Link from 'gatsby-link';
@@ -27,6 +29,9 @@ class BlogIndex extends React.Component {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title');
     const preLink = get(this, 'props.pageContext.preLink');
     const nextLink = get(this, 'props.pageContext.nextLink');
+    const currentPage = get(this, 'props.pageContext.currentPage');
+    const numberPages = get(this, 'props.pageContext.numberPages');
+    console.log('currentPage', currentPage, numberPages);
     return (
       <Box>
         <Header />
@@ -35,22 +40,19 @@ class BlogIndex extends React.Component {
           {posts.map(({ node }) => (
             <PostPreview node={node} key={node.frontmatter.path} />
           ))}
-          <Box className={this.props.classes.pageNavi}>
-            {preLink ? (
-              <Link to={preLink}>
-                <Button>上一页</Button>
-              </Link>
-            ) : (
-              <Button disabled>没有更多文章</Button>
+          <Pagination
+            sx={{ width: '100%' }}
+            count={numberPages}
+            page={currentPage}
+            size={'small'}
+            renderItem={(item) => (
+              <PaginationItem
+                component={Link}
+                to={`${item.page === 1 ? '/' : `/pages/${item.page}`}`}
+                {...item}
+              />
             )}
-            {nextLink ? (
-              <Link to={nextLink}>
-                <Button>下一页</Button>
-              </Link>
-            ) : (
-              <Button disabled>没有更多文章</Button>
-            )}
-          </Box>
+          />
         </Container>
       </Box>
     );
