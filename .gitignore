@@ -9,3 +9,4 @@ yarn-error.log
 size-analyzer.txt
 yarn.lock
 .env
+package-lock.json
