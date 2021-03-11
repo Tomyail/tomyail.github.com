@@ -2,9 +2,8 @@ import path from 'path';
 export default {
   siteMetadata: {
     title: 'Tomyail 的记忆现场',
-    author: ' Tomyail',
+    author: 'Tomyail',
     description: ' 一个程序员的自娱自乐',
-
     siteUrl: 'https://blog.tomyail.com',
   },
   plugins: [

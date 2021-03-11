@@ -34,7 +34,7 @@ class BlogIndex extends React.Component {
       <Box>
         <Header />
         <Helmet title={siteTitle} />
-        <Container maxWidth={'md'}>
+        <Container maxWidth={'md'} sx={{ position: 'relative' }}>
           {posts.map(({ node }) => (
             <PostPreview node={node} key={node.frontmatter.path} />
           ))}

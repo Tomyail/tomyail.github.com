@@ -14,6 +14,7 @@ import { graphql, Link, useStaticQuery } from 'gatsby';
 import React from 'react';
 //@ts-ignore
 import { useTheme } from '../../plugins/custom-mui-theme';
+import { ScrollTop } from './ScrollTop';
 
 interface Props {
   children: React.ReactElement;
@@ -31,41 +32,6 @@ function HideOnScroll(props: Props) {
   );
 }
 
-const useStyles2 = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      zIndex: theme.zIndex.appBar,
-      position: 'fixed',
-      bottom: theme.spacing(4),
-      right: theme.spacing(2),
-    },
-  })
-);
-
-function ScrollTop(props: Props) {
-  const { children } = props;
-  const classes = useStyles2();
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 100,
-  });
-
-  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    const anchor = document.querySelector('#back-to-top-anchor');
-
-    if (anchor) {
-      anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  };
-
-  return (
-    <Zoom in={trigger}>
-      <div onClick={handleClick} role="presentation" className={classes.root}>
-        {children}
-      </div>
-    </Zoom>
-  );
-}
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -135,11 +101,6 @@ const Header = () => {
         </AppBar>
       </HideOnScroll>
       <Toolbar id="back-to-top-anchor" />
-      <ScrollTop>
-        <Fab color="secondary" size="small" aria-label="scroll back to top">
-          <KeyboardArrowUpIcon />
-        </Fab>
-      </ScrollTop>
     </React.Fragment>
   );
 };

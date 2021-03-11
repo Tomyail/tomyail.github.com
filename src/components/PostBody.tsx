@@ -1,26 +1,30 @@
-import { Theme } from "@material-ui/core/styles";
-import ArrowBackIosOutlinedIcon from "@material-ui/icons/ArrowBackIosOutlined";
-import ArrowForwardIosOutlinedIcon from "@material-ui/icons/ArrowForwardIosOutlined";
-import Disqus from "disqus-react";
-import Link from "gatsby-link";
-import truncate from "lodash/truncate";
-import * as React from "react";
-import "typeface-roboto";
+import { Theme } from '@material-ui/core/styles';
+import ArrowBackIosOutlinedIcon from '@material-ui/icons/ArrowBackIosOutlined';
+import ArrowForwardIosOutlinedIcon from '@material-ui/icons/ArrowForwardIosOutlined';
+import Disqus from 'disqus-react';
+import Link from 'gatsby-link';
+import truncate from 'lodash/truncate';
+import * as React from 'react';
+import 'typeface-roboto';
 import {
   Box,
   Button,
   Container,
   Divider,
+  Fab,
   Typography,
   withStyles,
   withTheme,
-} from "../../node_modules/@material-ui/core";
+} from '../../node_modules/@material-ui/core';
+import { ScrollTop } from './ScrollTop';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
 //https://github.com/mui-org/material-ui/blob/62883f7369a2a7dcb8b77a77b2c65a62c1615926/docs/src/modules/components/MarkdownElement.js#L6
 const style = (theme: Theme) => {
   return {
     root: {
       marginTop: theme.spacing(1),
+      display: 'relative',
     },
     leftIcon: {
       marginRight: theme.spacing(1),
@@ -31,11 +35,11 @@ const style = (theme: Theme) => {
     content: {
       ...theme.typography.body1,
       color: theme.palette.text.primary,
-      wordBreak: "break-word",
+      wordBreak: 'break-word',
 
-      "& .anchor-link": {
+      '& .anchor-link': {
         marginTop: -96, // Offset for the anchor.
-        position: "absolute",
+        position: 'absolute',
       },
       // '& .gatsby-highlight pre[class*="language-"]:after': {
       //   content: '"js"',
@@ -51,18 +55,18 @@ const style = (theme: Theme) => {
       //   texttransform: "uppercase",
       //   top: 0,
       // },
-      "& pre": {
-        position: "relative",
-        margin: theme.spacing(3, "auto"),
+      '& pre': {
+        position: 'relative',
+        margin: theme.spacing(3, 'auto'),
         padding: theme.spacing(2),
-        backgroundColor: "#272c34",
-        direction: "ltr",
+        backgroundColor: '#272c34',
+        direction: 'ltr',
         borderRadius: theme.shape.borderRadius,
-        overflow: "auto",
-        WebkitOverflowScrolling: "touch", // iOS momentum scrolling.
-        maxWidth: "calc(100vw - 32px)",
-        [theme.breakpoints.up("md")]: {
-          maxWidth: "calc(100vw - 32px - 16px)",
+        overflow: 'auto',
+        WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
+        maxWidth: 'calc(100vw - 32px)',
+        [theme.breakpoints.up('md')]: {
+          maxWidth: 'calc(100vw - 32px - 16px)',
         },
       },
 
@@ -72,18 +76,18 @@ const style = (theme: Theme) => {
       // },
       // // only  inline code
       '& :not(pre) > code[class*="language-"]': {
-        direction: "ltr",
+        direction: 'ltr',
         lineHeight: 1.4,
-        display: "inline-block",
+        display: 'inline-block',
         fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
-        WebkitFontSmoothing: "subpixel-antialiased",
-        padding: "0 3px",
+        WebkitFontSmoothing: 'subpixel-antialiased',
+        padding: '0 3px',
         color: theme.palette.text.primary,
         background:
-          theme.palette.mode === "light"
-            ? "rgba(255, 229, 100, 0.2)"
-            : "rgba(255, 229, 100, 0.2)",
-        fontSize: ".85em",
+          theme.palette.mode === 'light'
+            ? 'rgba(255, 229, 100, 0.2)'
+            : 'rgba(255, 229, 100, 0.2)',
+        fontSize: '.85em',
         borderRadius: 2,
       },
       // // code blocks
@@ -91,164 +95,164 @@ const style = (theme: Theme) => {
       //   background: "#272c34",
       //   fontSize: ".9em",
       // },
-      "& .token.operator": {
-        background: "transparent",
+      '& .token.operator': {
+        background: 'transparent',
       },
-      "& h1": {
+      '& h1': {
         ...theme.typography.h3,
         fontSize: 40,
-        margin: "16px 0",
+        margin: '16px 0',
       },
-      "& .description": {
+      '& .description': {
         ...theme.typography.h5,
-        margin: "0 0 40px",
+        margin: '0 0 40px',
       },
-      "& h2": {
+      '& h2': {
         ...theme.typography.h4,
         fontSize: 30,
-        margin: "40px 0 16px",
+        margin: '40px 0 16px',
       },
-      "& h3": {
+      '& h3': {
         ...theme.typography.h5,
-        margin: "40px 0 16px",
+        margin: '40px 0 16px',
       },
-      "& h4": {
+      '& h4': {
         ...theme.typography.h6,
-        margin: "32px 0 16px",
+        margin: '32px 0 16px',
       },
-      "& h5": {
+      '& h5': {
         ...theme.typography.subtitle2,
-        margin: "32px 0 16px",
+        margin: '32px 0 16px',
       },
-      "& p, & ul, & ol": {
+      '& p, & ul, & ol': {
         marginTop: 0,
         marginBottom: 16,
       },
-      "& ul": {
+      '& ul': {
         paddingLeft: 30,
       },
-      "& h1, & h2, & h3, & h4": {
-        "& code": {
-          fontSize: "inherit",
-          lineHeight: "inherit",
+      '& h1, & h2, & h3, & h4': {
+        '& code': {
+          fontSize: 'inherit',
+          lineHeight: 'inherit',
           // Remove scroll on small screens.
-          wordBreak: "break-all",
+          wordBreak: 'break-all',
         },
-        "& .anchor-link-style": {
+        '& .anchor-link-style': {
           // To prevent the link to get the focus.
-          display: "none",
+          display: 'none',
         },
-        "& a:not(.anchor-link-style):hover": {
-          color: "currentColor",
-          borderBottom: "1px solid currentColor",
-          textDecoration: "none",
+        '& a:not(.anchor-link-style):hover': {
+          color: 'currentColor',
+          borderBottom: '1px solid currentColor',
+          textDecoration: 'none',
         },
-        "&:hover .anchor-link-style": {
-          display: "inline-block",
-          padding: "0 8px",
+        '&:hover .anchor-link-style': {
+          display: 'inline-block',
+          padding: '0 8px',
           color: theme.palette.text.secondary,
-          "&:hover": {
+          '&:hover': {
             color: theme.palette.text.primary,
           },
-          "& svg": {
-            width: "0.7em",
-            height: "0.7em",
-            fill: "currentColor",
+          '& svg': {
+            width: '0.7em',
+            height: '0.7em',
+            fill: 'currentColor',
           },
         },
       },
-      "& table": {
+      '& table': {
         // Trade display table for scroll overflow
-        display: "block",
-        wordBreak: "normal",
-        width: "100%",
-        overflowX: "auto",
-        WebkitOverflowScrolling: "touch", // iOS momentum scrolling.
-        borderCollapse: "collapse",
-        marginBottom: "16px",
+        display: 'block',
+        wordBreak: 'normal',
+        width: '100%',
+        overflowX: 'auto',
+        WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
+        borderCollapse: 'collapse',
+        marginBottom: '16px',
         borderSpacing: 0,
-        overflow: "hidden",
-        "& .prop-name": {
+        overflow: 'hidden',
+        '& .prop-name': {
           fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
         },
-        "& .required": {
-          color: theme.palette.mode === "light" ? "#006500" : "#a5ffa5",
+        '& .required': {
+          color: theme.palette.mode === 'light' ? '#006500' : '#a5ffa5',
         },
-        "& .prop-type": {
+        '& .prop-type': {
           fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
-          color: theme.palette.mode === "light" ? "#932981" : "#ffb6ec",
+          color: theme.palette.mode === 'light' ? '#932981' : '#ffb6ec',
         },
-        "& .prop-default": {
+        '& .prop-default': {
           fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
           borderBottom: `1px dotted ${theme.palette.divider}`,
         },
       },
-      "& td": {
+      '& td': {
         ...theme.typography.body2,
         borderBottom: `1px solid ${theme.palette.divider}`,
         padding: 16,
         color: theme.palette.text.primary,
       },
-      "& td code": {
+      '& td code': {
         lineHeight: 1.6,
       },
-      "& th": {
+      '& th': {
         lineHeight: theme.typography.pxToRem(24),
         fontWeight: theme.typography.fontWeightMedium,
         color: theme.palette.text.primary,
-        whiteSpace: "pre",
+        whiteSpace: 'pre',
         borderBottom: `1px solid ${theme.palette.divider}`,
         padding: 16,
       },
-      "& blockquote": {
-        borderLeft: "5px solid #ffe564",
-        backgroundColor: "rgba(255,229,100,0.2)",
-        padding: "4px 24px",
-        margin: "24px 0",
-        "& p": {
-          marginTop: "16px",
+      '& blockquote': {
+        borderLeft: '5px solid #ffe564',
+        backgroundColor: 'rgba(255,229,100,0.2)',
+        padding: '4px 24px',
+        margin: '24px 0',
+        '& p': {
+          marginTop: '16px',
         },
       },
-      "& a, & a code": {
+      '& a, & a code': {
         // Style taken from the Link component
         color: theme.palette.primary.main,
-        textDecoration: "none",
-        "&:hover": {
-          textDecoration: "underline",
+        textDecoration: 'none',
+        '&:hover': {
+          textDecoration: 'underline',
         },
       },
-      "& img, video": {
-        maxWidth: "100%",
+      '& img, video': {
+        maxWidth: '100%',
       },
-      "& img": {
+      '& img': {
         // Avoid layout jump
-        display: "inline-block",
+        display: 'inline-block',
       },
-      "& hr": {
+      '& hr': {
         height: 1,
         margin: theme.spacing(6, 0),
-        border: "none",
+        border: 'none',
         flexShrink: 0,
         backgroundColor: theme.palette.divider,
       },
-      "& kbd.key": {
+      '& kbd.key': {
         // Style taken from GitHub
-        padding: "4px 5px",
-        display: "inline-block",
-        whiteSpace: "nowrap",
-        margin: "0 1px",
-        font: "11px SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace",
-        lineHeight: "10px",
+        padding: '4px 5px',
+        display: 'inline-block',
+        whiteSpace: 'nowrap',
+        margin: '0 1px',
+        font: '11px SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace',
+        lineHeight: '10px',
         color: theme.palette.text.primary,
-        verticalAlign: "middle",
-        backgroundColor: "#fafbfc",
-        border: "1px solid #d1d5da",
+        verticalAlign: 'middle',
+        backgroundColor: '#fafbfc',
+        border: '1px solid #d1d5da',
         borderRadius: 6,
-        boxShadow: "inset 0 -1px 0 #d1d5da",
+        boxShadow: 'inset 0 -1px 0 #d1d5da',
       },
-      "& em": {
-        fontFamily: "Sriracha",
-        letterSpacing: "-0.25px",
+      '& em': {
+        fontFamily: 'Sriracha',
+        letterSpacing: '-0.25px',
         color: theme.palette.secondary.main,
         // fontStyle: ,
       },
@@ -269,22 +273,14 @@ const style = (theme: Theme) => {
   };
 };
 
-const markdownRenderers = {
-  code: (props: any): JSX.Element => (
-    <SyntaxHighlighter language={props.language} style={darcula} showLineNumbers >
-      {props.value}
-    </SyntaxHighlighter>
-  ),
-};
-
 const PostBody = ({ post, previous, next, siteUrl, classes }) => {
-  const disqusShortname = "tomyail";
+  const disqusShortname = 'tomyail';
   const disqusConfig = {
-    url: `${siteUrl}${post.frontmatter.path.replace("/", "")}`,
+    url: `${siteUrl}${post.frontmatter.path.replace('/', '')}`,
     title: post.frontmatter.title,
   };
   return (
-    <Container className={classes.root} maxWidth={"md"}>
+    <Container className={classes.root} maxWidth={'md'}>
       <Box component="main">
         <Typography variant="h3">{post.frontmatter.title}</Typography>
         <Box display="flex" justifyContent="space-between">
@@ -297,6 +293,7 @@ const PostBody = ({ post, previous, next, siteUrl, classes }) => {
           }}
           component="article"
         />
+
         <Divider />
         <Box
           display="flex"
@@ -307,7 +304,7 @@ const PostBody = ({ post, previous, next, siteUrl, classes }) => {
           {previous ? (
             <Link
               to={previous.frontmatter.path}
-              style={{ textDecoration: "inherit" }}
+              style={{ textDecoration: 'inherit' }}
             >
               <Button>
                 <ArrowBackIosOutlinedIcon className={classes.leftIcon} />
@@ -320,7 +317,7 @@ const PostBody = ({ post, previous, next, siteUrl, classes }) => {
           {next ? (
             <Link
               to={next.frontmatter.path}
-              style={{ textDecoration: "inherit" }}
+              style={{ textDecoration: 'inherit' }}
             >
               <Button>
                 {truncate(next.frontmatter.title)}
@@ -331,7 +328,11 @@ const PostBody = ({ post, previous, next, siteUrl, classes }) => {
             <Button disabled>没有更多文章</Button>
           )}
         </Box>
-
+        <ScrollTop>
+          <Fab color="secondary" size="small" aria-label="scroll back to top">
+            <KeyboardArrowUpIcon />
+          </Fab>
+        </ScrollTop>
         <Disqus.DiscussionEmbed
           shortname={disqusShortname}
           config={disqusConfig}
