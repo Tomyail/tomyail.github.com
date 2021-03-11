@@ -2,6 +2,10 @@ import * as React from 'react';
 import { Box, Container, Link } from '../../node_modules/@material-ui/core';
 import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
 const Footer = () => {
+  //inspect VERCEL_GIT_COMMIT_SHA env
+  const source = process.env.VERCEL_GIT_COMMIT_SHA
+    ? `https://github.com/Tomyail/blog/tree/${process.env.VERCEL_GIT_COMMIT_SHA}`
+    : 'https://github.com/Tomyail/blog';
   return (
     <div>
       {`© ${new Date().getFullYear()} tomyail.com`}
