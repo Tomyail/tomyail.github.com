@@ -1,4 +1,4 @@
-import { AppBar, Divider, Drawer, makeStyles, Pagination } from '@material-ui/core';
+import { AppBar, Divider, Drawer, makeStyles, Pagination, Toolbar } from '@material-ui/core';
 import { PaginationItem } from '@material-ui/core';
 import { Box, Button, Container, withStyles } from '@material-ui/core';
 import clsx from 'clsx';
@@ -16,7 +16,7 @@ import PostPreview from '../components/PostPreview';
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    zIndex:theme.zIndex.drawer +1,
+    zIndex:theme.zIndex.drawer + 1,
   },
   content: {
     flexGrow: 1,
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     //   easing: theme.transitions.easing.sharp,
     //   duration: theme.transitions.duration.leavingScreen,
     // }),
-    marginLeft: drawerWidth,
+    // marginLeft: drawerWidth,
   },
   // contentShift: {
   //   transition: theme.transitions.create('margin', {
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
+    // ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   },
   drawer: {
@@ -59,17 +59,11 @@ const BlogIndex = (props) => {
   const numberPages = get(props, 'pageContext.numberPages');
 
   const [open, setOpen] = useState(true);
-  useEffect(() => {
-    setInterval(() => {
-      // setOpen((o) => !o);
-    }, 5000);
-  }, []);
 
   return (
     <Box>
       <Header
-        appBarStyle={clsx(classes.appBar, {
-        })}
+        appBarStyle={clsx(classes.appBar )}
       />
       <Helmet title={siteTitle} />
       <Drawer
@@ -78,7 +72,7 @@ const BlogIndex = (props) => {
         classes={{ paper: classes.drawerPaper }}
         variant = "persistent"
       >
-        <AppBar/>
+				<Toolbar/>
         <div className={classes.drawerHeader}>
           <div>Hello</div>
           <div>Hello</div>

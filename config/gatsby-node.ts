@@ -34,7 +34,7 @@ const groupByTags = () => {};
 // 根据 Area 分组的信息 （暂时还没有）
 const groupByAreas = () => {};
 const renderVisiblePost = (posts, createPage) => {
-  const postsPerPage = 6;
+  const postsPerPage = 9;
   const numberPages = Math.ceil(posts.length / postsPerPage);
 
   const blogPost = path.resolve('./src/templates/blog-post.tsx');
