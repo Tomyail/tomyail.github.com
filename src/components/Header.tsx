@@ -52,7 +52,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
-const Header = () => {
+
+
+const Header = ({  appBarStyle}:{appBarStyle?:string}) => {
   const classes = useStyles();
   const { setTheme, theme } = useTheme();
   const data = useStaticQuery(graphql`
@@ -68,7 +70,7 @@ const Header = () => {
   return (
     <React.Fragment>
       <HideOnScroll>
-        <AppBar color={theme.palette.mode === 'dark' ? 'default' : 'primary'}>
+        <AppBar color={theme.palette.mode === 'dark' ? 'default' : 'primary'} className = {appBarStyle}>
           <Toolbar>
             <Typography variant="h6" className={classes.title}>
               <Link to={'/'}>{data.site.siteMetadata.title}</Link>
