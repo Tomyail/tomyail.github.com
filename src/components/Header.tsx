@@ -16,11 +16,7 @@ import React from 'react';
 import { useTheme } from '../../plugins/custom-mui-theme';
 import { ScrollTop } from './ScrollTop';
 
-interface Props {
-  children: React.ReactElement;
-}
-
-function HideOnScroll(props: Props) {
+function HideOnScroll(props: { children: React.ReactElement }) {
   const { children } = props;
 
   const trigger = useScrollTrigger();
@@ -52,9 +48,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
-
-
-const Header = ({  appBarStyle}:{appBarStyle?:string}) => {
+type Props = { appBarStyle?: string; hideBar?: boolean };
+const Header = ({ appBarStyle, hideBar = true }: Props) => {
   const classes = useStyles();
   const { setTheme, theme } = useTheme();
   const data = useStaticQuery(graphql`
@@ -67,41 +62,43 @@ const Header = ({  appBarStyle}:{appBarStyle?:string}) => {
       }
     }
   `);
+  const Bar = (
+    <AppBar
+      color={theme.palette.mode === 'dark' ? 'default' : 'primary'}
+      className={appBarStyle}
+    >
+      <Toolbar>
+        <Typography variant="h6" className={classes.title}>
+          <Link to={'/'}>{data.site.siteMetadata.title}</Link>
+        </Typography>
+        <IconButton
+          aria-label="switch theme"
+          sx={{ color: 'white' }}
+          onClick={() => {
+            const newTheme = createMuiTheme({
+              ...theme,
+              ...{
+                palette: {
+                  mode:
+                    (theme as Theme).palette.mode === 'dark' ? 'light' : 'dark',
+                },
+              },
+            });
+            setTheme(newTheme);
+          }}
+        >
+          {(theme as Theme).palette.mode === 'dark' ? (
+            <Brightness7RoundedIcon /> //light
+          ) : (
+            <Brightness4Icon /> //moon
+          )}
+        </IconButton>
+      </Toolbar>
+    </AppBar>
+  );
   return (
     <React.Fragment>
-      <HideOnScroll>
-        <AppBar color={theme.palette.mode === 'dark' ? 'default' : 'primary'} className = {appBarStyle}>
-          <Toolbar>
-            <Typography variant="h6" className={classes.title}>
-              <Link to={'/'}>{data.site.siteMetadata.title}</Link>
-            </Typography>
-            <IconButton
-              aria-label="switch theme"
-              sx={{ color: 'white' }}
-              onClick={() => {
-                const newTheme = createMuiTheme({
-                  ...theme,
-                  ...{
-                    palette: {
-                      mode:
-                        (theme as Theme).palette.mode === 'dark'
-                          ? 'light'
-                          : 'dark',
-                    },
-                  },
-                });
-                setTheme(newTheme);
-              }}
-            >
-              {(theme as Theme).palette.mode === 'dark' ? (
-                <Brightness7RoundedIcon /> //light
-              ) : (
-                <Brightness4Icon /> //moon
-              )}
-            </IconButton>
-          </Toolbar>
-        </AppBar>
-      </HideOnScroll>
+      {hideBar ? <HideOnScroll>{Bar}</HideOnScroll> : Bar}
       <Toolbar id="back-to-top-anchor" />
     </React.Fragment>
   );

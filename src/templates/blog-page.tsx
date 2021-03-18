@@ -1,22 +1,36 @@
-import { AppBar, Divider, Drawer, makeStyles, Pagination, Toolbar } from '@material-ui/core';
-import { PaginationItem } from '@material-ui/core';
-import { Box, Button, Container, withStyles } from '@material-ui/core';
+import {
+  AppBar,
+  Avatar,
+  Box,
+  Container,
+  Divider,
+  Drawer,
+  Hidden,
+  makeStyles,
+  Pagination,
+  PaginationItem,
+  Toolbar,
+} from '@material-ui/core';
 import clsx from 'clsx';
 import { graphql } from 'gatsby';
 import Link from 'gatsby-link';
 import get from 'lodash/get';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import '../assets/dracula-prism.css';
-import AppDrawer from '../components/AppDrawer';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import PostPreview from '../components/PostPreview';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
+  avatar: {
+    // width:'100%',
+    width: theme.spacing(10),
+    height: theme.spacing(10),
+  },
   appBar: {
-    zIndex:theme.zIndex.drawer + 1,
+    zIndex: theme.zIndex.drawer + 1,
   },
   content: {
     flexGrow: 1,
@@ -38,9 +52,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    // ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
   },
   drawer: {
     width: drawerWidth,
@@ -61,34 +72,33 @@ const BlogIndex = (props) => {
   const [open, setOpen] = useState(true);
 
   return (
-    <Box>
-      <Header
-        appBarStyle={clsx(classes.appBar )}
-      />
+    <Box sx={{ display: 'flex' }}>
       <Helmet title={siteTitle} />
-      <Drawer
-        open={open}
-        className={classes.drawer}
-        classes={{ paper: classes.drawerPaper }}
-        variant = "persistent"
-      >
-				<Toolbar/>
-        <div className={classes.drawerHeader}>
-          <div>Hello</div>
-          <div>Hello</div>
-          <div>Hello</div>
-          <div>Hello</div>
-          <div>Hello</div>
-          <div>Hello</div>
-          <div>Hello</div>
-        </div>
-      </Drawer>
-      <Container
-        maxWidth={'md'}
-        sx={{ position: 'relative' }}
-        className={clsx(classes.content, {
-        })}
-      >
+      <Header hideBar={false} appBarStyle={clsx(classes.appBar)} />
+      <Hidden mdDown>
+        <Drawer
+          open={open}
+          className={classes.drawer}
+          classes={{ paper: classes.drawerPaper }}
+          variant="permanent"
+          anchor="left"
+        >
+          <Toolbar />
+          <div className={classes.drawerHeader}>
+            <Avatar className={classes.avatar}>Hello</Avatar>
+            <div>Hello</div>
+            <div>Hello</div>
+            <div>Hello</div>
+            <div>Hello</div>
+            <div>Hello</div>
+            <div>Hello</div>
+            <div>Hello</div>
+          </div>
+        </Drawer>
+      </Hidden>
+
+      <Container maxWidth={'md'} className={clsx(classes.content, {})}>
+        <Toolbar />
         {posts.map(({ node }) => (
           <PostPreview node={node} key={node.frontmatter.path} />
         ))}
@@ -104,9 +114,9 @@ const BlogIndex = (props) => {
             />
           )}
         />
+        <Divider />
+        <Footer />
       </Container>
-      <Divider />
-      <Footer />
     </Box>
   );
 };
