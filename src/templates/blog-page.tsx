@@ -77,10 +77,39 @@ const BlogIndex = (props) => {
       <Header hideBar={false} appBarStyle={clsx(classes.appBar)} />
       <Hidden mdDown>
         <Drawer
-          open={open}
           className={classes.drawer}
           classes={{ paper: classes.drawerPaper }}
           variant="permanent"
+          anchor="left"
+        >
+          <Toolbar />
+          <div className={classes.drawerHeader}>
+            <Avatar className={classes.avatar}>Hello</Avatar>
+            <div>Hello</div>
+            <div>Hello</div>
+            <div>Hello</div>
+            <div>Hello</div>
+            <div>Hello</div>
+            <div>Hello</div>
+            <div>Hello</div>
+          </div>
+        </Drawer>
+      </Hidden>
+      <Hidden mdUp>
+        <Drawer
+          onClose={(event) => {
+            if (
+              event.type === 'keydown' &&
+              (event.key === 'Tab' || event.key === 'Shift')
+            ) {
+              return;
+            }
+            setOpen(false);
+          }}
+          open={open}
+          className={classes.drawer}
+          classes={{ paper: classes.drawerPaper }}
+          variant="temporary"
           anchor="left"
         >
           <Toolbar />

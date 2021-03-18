@@ -1,4 +1,4 @@
-import { createMuiTheme, IconButton } from '@material-ui/core';
+import { createMuiTheme, Hidden, IconButton } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Fab from '@material-ui/core/Fab';
 import Slide from '@material-ui/core/Slide';
@@ -15,7 +15,7 @@ import React from 'react';
 //@ts-ignore
 import { useTheme } from '../../plugins/custom-mui-theme';
 import { ScrollTop } from './ScrollTop';
-
+import DehazeIcon from '@material-ui/icons/Dehaze';
 function HideOnScroll(props: { children: React.ReactElement }) {
   const { children } = props;
 
@@ -68,6 +68,11 @@ const Header = ({ appBarStyle, hideBar = true }: Props) => {
       className={appBarStyle}
     >
       <Toolbar>
+        <Hidden mdUp>
+          <IconButton>
+            <DehazeIcon />
+          </IconButton>
+        </Hidden>
         <Typography variant="h6" className={classes.title}>
           <Link to={'/'}>{data.site.siteMetadata.title}</Link>
         </Typography>
