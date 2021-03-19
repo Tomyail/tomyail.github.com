@@ -1,17 +1,16 @@
 import {
-  AppBar,
   Avatar,
   Box,
   Container,
   Divider,
   Drawer,
+  experimentalStyled,
   Hidden,
-  makeStyles,
   Pagination,
   PaginationItem,
   Toolbar,
+  useTheme,
 } from '@material-ui/core';
-import clsx from 'clsx';
 import { graphql } from 'gatsby';
 import Link from 'gatsby-link';
 import get from 'lodash/get';
@@ -23,68 +22,50 @@ import Header from '../components/Header';
 import PostPreview from '../components/PostPreview';
 
 const drawerWidth = 240;
-const useStyles = makeStyles((theme) => ({
-  avatar: {
-    // width:'100%',
+
+const MAvatar = experimentalStyled(Avatar)(({ theme }) => {
+  return {
     width: theme.spacing(10),
     height: theme.spacing(10),
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    // transition: theme.transitions.create('margin', {
-    //   easing: theme.transitions.easing.sharp,
-    //   duration: theme.transitions.duration.leavingScreen,
-    // }),
-    // marginLeft: drawerWidth,
-  },
-  // contentShift: {
-  //   transition: theme.transitions.create('margin', {
-  //     easing: theme.transitions.easing.easeOut,
-  //     duration: theme.transitions.duration.enteringScreen,
-  //   }),
-  //   marginLeft: 0,
-  // },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-}));
-
+  };
+});
 const BlogIndex = (props) => {
-  const classes = useStyles();
   const posts = get(props, 'data.allMarkdownRemark.edges');
   const siteTitle = get(props, 'data.site.siteMetadata.title');
   const currentPage = get(props, 'pageContext.currentPage');
   const numberPages = get(props, 'pageContext.numberPages');
 
+  const theme = useTheme();
   const [open, setOpen] = useState(true);
-
   return (
     <Box sx={{ display: 'flex' }}>
       <Helmet title={siteTitle} />
-      <Header hideBar={false} appBarStyle={clsx(classes.appBar)} />
+      <Header
+        hideBar={false}
+        appBarStyle={{ zIndex: theme.zIndex.drawer + 1 }}
+      />
       <Hidden mdDown>
         <Drawer
-          className={classes.drawer}
-          classes={{ paper: classes.drawerPaper }}
+          // classes={{ paper: classes.drawerPaper }}
           variant="permanent"
           anchor="left"
+          sx={{
+            width: drawerWidth,
+            flexShrink: 0,
+            '& .MuiDrawer-paper': {
+              width: drawerWidth,
+            },
+          }}
         >
           <Toolbar />
-          <div className={classes.drawerHeader}>
-            <Avatar className={classes.avatar}>Hello</Avatar>
+          <div
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              padding: theme.spacing(0, 1),
+            }}
+          >
+            <MAvatar>Hello</MAvatar>
             <div>Hello</div>
             <div>Hello</div>
             <div>Hello</div>
@@ -107,14 +88,17 @@ const BlogIndex = (props) => {
             setOpen(false);
           }}
           open={open}
-          className={classes.drawer}
-          classes={{ paper: classes.drawerPaper }}
           variant="temporary"
           anchor="left"
         >
           <Toolbar />
-          <div className={classes.drawerHeader}>
-            <Avatar className={classes.avatar}>Hello</Avatar>
+          <div
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              padding: theme.spacing(0, 1),
+            }}
+          >
             <div>Hello</div>
             <div>Hello</div>
             <div>Hello</div>
@@ -126,7 +110,10 @@ const BlogIndex = (props) => {
         </Drawer>
       </Hidden>
 
-      <Container maxWidth={'md'} className={clsx(classes.content, {})}>
+      <Container
+        maxWidth={'md'}
+        sx={{ flexGrow: 1, padding: theme.spacing(3) }}
+      >
         <Toolbar />
         {posts.map(({ node }) => (
           <PostPreview node={node} key={node.frontmatter.path} />

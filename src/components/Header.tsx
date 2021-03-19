@@ -1,21 +1,16 @@
 import { createMuiTheme, Hidden, IconButton } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
-import Fab from '@material-ui/core/Fab';
 import Slide from '@material-ui/core/Slide';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { Theme } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-import Zoom from '@material-ui/core/Zoom';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import Brightness7RoundedIcon from '@material-ui/icons/Brightness7Rounded';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import DehazeIcon from '@material-ui/icons/Dehaze';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import React from 'react';
-//@ts-ignore
 import { useTheme } from '../../plugins/custom-mui-theme';
-import { ScrollTop } from './ScrollTop';
-import DehazeIcon from '@material-ui/icons/Dehaze';
 function HideOnScroll(props: { children: React.ReactElement }) {
   const { children } = props;
 
@@ -28,29 +23,8 @@ function HideOnScroll(props: { children: React.ReactElement }) {
   );
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    title: {
-      flexGrow: 1,
-      '& a': {
-        color: theme.palette.primary.light,
-        textDecoration: 'inherit',
-      },
-      '& a:hover': {
-        textDecoration: 'inherit',
-      },
-    },
-  })
-);
-type Props = { appBarStyle?: string; hideBar?: boolean };
+type Props = { appBarStyle?: any; hideBar?: boolean };
 const Header = ({ appBarStyle, hideBar = true }: Props) => {
-  const classes = useStyles();
   const { setTheme, theme } = useTheme();
   const data = useStaticQuery(graphql`
     query HeaderQuery {
@@ -65,7 +39,7 @@ const Header = ({ appBarStyle, hideBar = true }: Props) => {
   const Bar = (
     <AppBar
       color={theme.palette.mode === 'dark' ? 'default' : 'primary'}
-      className={appBarStyle}
+      sx={appBarStyle}
     >
       <Toolbar>
         <Hidden mdUp>
@@ -73,7 +47,19 @@ const Header = ({ appBarStyle, hideBar = true }: Props) => {
             <DehazeIcon />
           </IconButton>
         </Hidden>
-        <Typography variant="h6" className={classes.title}>
+        <Typography
+          variant="h6"
+          sx={{
+            flexGrow: 1,
+            '& a': {
+              color: theme.palette.primary.light,
+              textDecoration: 'inherit',
+            },
+            '& a:hover': {
+              textDecoration: 'inherit',
+            },
+          }}
+        >
           <Link to={'/'}>{data.site.siteMetadata.title}</Link>
         </Typography>
         <IconButton
