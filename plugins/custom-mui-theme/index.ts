@@ -22,7 +22,6 @@ const useThemeHook = () => {
   );
 
   const [theme, setTheme] = useState(originTheme);
-  console.log(theme.palette);
 
   useEffect(() => {
     setTheme(originTheme);
