@@ -1,11 +1,4 @@
-import {
-  Box,
-  CardHeader,
-  Container,
-  Typography,
-  withStyles,
-} from '@material-ui/core';
-import { Theme, withTheme } from '@material-ui/core/styles';
+import { Box, CardHeader, Typography, useTheme } from '@material-ui/core';
 // import { Link } from 'reach';
 import Link from 'gatsby-link';
 import get from 'lodash/get';
@@ -15,18 +8,10 @@ const SubTitleItem = ({ children }) => {
   return <span style={{ margin: '0 2px' }}>{children}</span>;
 };
 
-const styles = (theme) => {
-  return {
-    card: {
-      margin: theme.spacing(1, 0),
-    },
-    action: {},
-  };
-};
-
-const PostPreview = ({ node, classes, theme }: { theme: Theme }) => {
+const PostPreview = ({ node }) => {
   const title = get(node, 'frontmatter.title') || node.fields.slug;
   const slug = get(node, 'frontmatter.path');
+  const theme = useTheme();
   return (
     <Box>
       <CardHeader
@@ -53,4 +38,4 @@ const PostPreview = ({ node, classes, theme }: { theme: Theme }) => {
   );
 };
 
-export default withTheme(withStyles(styles)(PostPreview));
+export default PostPreview;

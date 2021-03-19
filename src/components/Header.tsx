@@ -52,7 +52,7 @@ const Header = ({ appBarStyle, hideBar = true }: Props) => {
           sx={{
             flexGrow: 1,
             '& a': {
-              color: theme.palette.primary.light,
+              color: 'white',
               textDecoration: 'inherit',
             },
             '& a:hover': {
@@ -67,12 +67,15 @@ const Header = ({ appBarStyle, hideBar = true }: Props) => {
           sx={{ color: 'white' }}
           onClick={() => {
             const newTheme = createMuiTheme({
-              ...theme,
-              ...{
-                palette: {
-                  mode:
-                    (theme as Theme).palette.mode === 'dark' ? 'light' : 'dark',
+              palette: {
+                primary: {
+                  main: theme.palette.primary.main,
                 },
+                secondary: {
+                  main: theme.palette.secondary.main,
+                },
+                mode:
+                  (theme as Theme).palette.mode === 'dark' ? 'light' : 'dark',
               },
             });
             setTheme(newTheme);
