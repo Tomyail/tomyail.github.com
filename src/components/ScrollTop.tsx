@@ -1,4 +1,4 @@
-import { useScrollTrigger, useTheme, Zoom } from '@material-ui/core';
+import { Box, useScrollTrigger, useTheme, Zoom } from '@material-ui/core';
 import React from 'react';
 
 export function ScrollTop(props: Props) {
@@ -19,20 +19,18 @@ export function ScrollTop(props: Props) {
 
   return (
     <Zoom in={trigger}>
-      <div
+      <Box
         onClick={handleClick}
         role="presentation"
         sx={{
-          root: {
-            zIndex: theme.zIndex.appBar,
-            position: 'fixed',
-            bottom: theme.spacing(4),
-            right: theme.spacing(2),
-          },
+          zIndex: theme.zIndex.appBar,
+          position: 'fixed',
+          bottom: theme.spacing(4),
+          right: theme.spacing(4),
         }}
       >
         {children}
-      </div>
+      </Box>
     </Zoom>
   );
 }

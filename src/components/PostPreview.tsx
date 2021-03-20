@@ -4,10 +4,6 @@ import Link from 'gatsby-link';
 import get from 'lodash/get';
 import React from 'react';
 
-const SubTitleItem = ({ children }) => {
-  return <span style={{ margin: '0 2px' }}>{children}</span>;
-};
-
 const PostPreview = ({ node }) => {
   const title = get(node, 'frontmatter.title') || node.fields.slug;
   const slug = get(node, 'frontmatter.path');
@@ -15,6 +11,7 @@ const PostPreview = ({ node }) => {
   return (
     <Box>
       <CardHeader
+        sx={{ paddingLeft: 0 }}
         title={
           <Link
             to={slug}

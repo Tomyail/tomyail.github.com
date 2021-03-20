@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { Box, Container, Link } from '../../node_modules/@material-ui/core';
+import { Box, Link, useMediaQuery, useTheme } from '@material-ui/core';
 import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
 import { graphql, useStaticQuery } from 'gatsby';
+import * as React from 'react';
 const Footer = () => {
   //inspect VERCEL_GIT_COMMIT_SHA env
   const source = process.env.VERCEL_GIT_COMMIT_SHA
@@ -17,18 +17,24 @@ const Footer = () => {
       }
     }
   `);
+
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('md'));
   return (
     <Box
       display="flex"
       justifyContent="center"
-      flexDirection="column"
+      flexDirection={matches ? 'row' : 'column'}
       alignItems="center"
       my={1}
+      fontSize="smaller"
     >
       <Box>
         {`© ${new Date().getFullYear()} ${data.site.siteMetadata.title}`}
       </Box>
-      <FavoriteOutlinedIcon color="secondary" fontSize="small" />
+      <Box mx={1}>
+        <FavoriteOutlinedIcon color="secondary" fontSize="medium" />
+      </Box>
       <Box>
         <Link href={source}> Build</Link> with
         <Link href="https://www.gatsbyjs.com/"> Gatsby</Link> and

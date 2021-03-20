@@ -1,4 +1,4 @@
-import { Theme } from '@material-ui/core/styles';
+import { Theme, useTheme } from '@material-ui/core/styles';
 import ArrowBackIosOutlinedIcon from '@material-ui/icons/ArrowBackIosOutlined';
 import ArrowForwardIosOutlinedIcon from '@material-ui/icons/ArrowForwardIosOutlined';
 import Disqus from 'disqus-react';
@@ -12,6 +12,7 @@ import {
   Container,
   Divider,
   Fab,
+  Toolbar,
   Typography,
   withStyles,
   withTheme,
@@ -279,10 +280,13 @@ const PostBody = ({ post, previous, next, siteUrl, classes }) => {
     url: `${siteUrl}${post.frontmatter.path.replace('/', '')}`,
     title: post.frontmatter.title,
   };
+  const theme = useTheme();
   return (
     <Container className={classes.root} maxWidth={'md'}>
       <Box component="main">
-        <Typography variant="h3">{post.frontmatter.title}</Typography>
+        <Typography variant="h3" color={theme.palette.primary.main}>
+          {post.frontmatter.title}
+        </Typography>
         <Box display="flex" justifyContent="space-between">
           <Box component="span">{post.frontmatter.date}</Box>
         </Box>
