@@ -5,6 +5,11 @@ import get from 'lodash/get';
 import React from 'react';
 
 const PostPreview = ({ node }) => {
+  const {
+    frontmatter: { categories = [], tags = [] },
+  } = node;
+  if (!tags) {
+  }
   const title = get(node, 'frontmatter.title') || node.fields.slug;
   const slug = get(node, 'frontmatter.path');
   const theme = useTheme();
@@ -25,6 +30,7 @@ const PostPreview = ({ node }) => {
         }
         subheader={`${node.frontmatter.date} | ${node.timeToRead} min read`}
       />
+      <Box>{categories.join(',') + tags.join(',')}</Box>
       <Box>
         <Typography paragraph variant="body1">
           {node.excerpt}

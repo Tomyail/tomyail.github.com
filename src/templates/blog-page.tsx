@@ -2,7 +2,6 @@ import {
   Avatar,
   Box,
   Container,
-  Divider,
   Drawer,
   experimentalStyled,
   Hidden,
@@ -11,6 +10,7 @@ import {
   SwipeableDrawer,
   Toolbar,
   useTheme,
+  Link as MLink,
 } from '@material-ui/core';
 import { graphql } from 'gatsby';
 import Link from 'gatsby-link';
@@ -21,8 +21,7 @@ import '../assets/dracula-prism.css';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import PostPreview from '../components/PostPreview';
-
-const drawerWidth = 240;
+import Divider from '../components/Divider';
 
 const MAvatar = experimentalStyled(Avatar)(({ theme }) => {
   return {
@@ -35,19 +34,33 @@ const Profile = () => {
   return (
     <Box display="flex" alignItems="center" flexDirection="column" p={1}>
       <MAvatar>Super</MAvatar>
-      <Box>这个人很懒</Box>
+      <Box>来个签名？？</Box>
       <Box>
-        <Box>Twitter</Box>
-        <Box>Github</Box>
-        <Box>Rss</Box>
+        <Box>
+          <MLink
+            href="https://twitter.com/tomyail"
+            target="_blank"
+            rel="noopener"
+          >
+            Twitter
+          </MLink>
+        </Box>
+        <Box>
+          <MLink
+            href="https://github.com/Tomyail"
+            target="_blank"
+            rel="noopener"
+          >
+            Github
+          </MLink>
+        </Box>
+        <Box>
+          <MLink href="/atom.xml" target="_blank">
+            Rss
+          </MLink>
+        </Box>
+        <Box> 关于我</Box>
       </Box>
-      <div>Hh111ello</div>
-      <div>Hello</div>
-      <div>Hello</div>
-      <div>Hello</div>
-      <div>Hello</div>
-      <div>Hello</div>
-      <div>Hello</div>
     </Box>
   );
 };
@@ -56,7 +69,6 @@ const Main = (props) => {
   const posts = get(props, 'data.allMarkdownRemark.edges');
   const currentPage = get(props, 'pageContext.currentPage');
   const numberPages = get(props, 'pageContext.numberPages');
-
   return (
     <Container maxWidth={'lg'} sx={{ flexGrow: 1 }}>
       {posts.map(({ node }) => (
@@ -96,16 +108,7 @@ const BlogIndex = (props) => {
       <Hidden mdDown>
         <Box display="flex">
           <Main {...props} />
-          <Drawer
-            variant="permanent"
-            anchor="right"
-            sx={{
-              width: drawerWidth,
-              '& .MuiDrawer-paper': {
-                width: drawerWidth,
-              },
-            }}
-          >
+          <Drawer variant="permanent" anchor="right" sx={{}}>
             <Toolbar />
             <Profile />
           </Drawer>
@@ -115,12 +118,6 @@ const BlogIndex = (props) => {
         <Main {...props} />
         <SwipeableDrawer
           onClose={(event) => {
-            // if (
-            // event.type === 'keydown' &&
-            // (event.key === 'Tab' || event.key === 'Shift')
-            // ) {
-            // return;
-            // }
             setOpen(false);
           }}
           onOpen={() => {
@@ -164,6 +161,8 @@ export const pageQuery = graphql`
           timeToRead
           excerpt
           frontmatter {
+            tags
+            categories
             date(formatString: "MMM DD, YYYY")
             title
             path

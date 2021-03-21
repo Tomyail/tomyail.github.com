@@ -10,15 +10,14 @@ import {
   Box,
   Button,
   Container,
-  Divider,
   Fab,
-  Toolbar,
   Typography,
   withStyles,
   withTheme,
 } from '../../node_modules/@material-ui/core';
 import { ScrollTop } from './ScrollTop';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import Divider from './Divider';
 
 //https://github.com/mui-org/material-ui/blob/62883f7369a2a7dcb8b77a77b2c65a62c1615926/docs/src/modules/components/MarkdownElement.js#L6
 const style = (theme: Theme) => {
@@ -281,6 +280,9 @@ const PostBody = ({ post, previous, next, siteUrl, classes }) => {
     title: post.frontmatter.title,
   };
   const theme = useTheme();
+  const {
+    frontmatter: { categories = [], tags = [] },
+  } = post;
   return (
     <Container className={classes.root} maxWidth={'md'}>
       <Box component="main">
@@ -289,6 +291,8 @@ const PostBody = ({ post, previous, next, siteUrl, classes }) => {
         </Typography>
         <Box display="flex" justifyContent="space-between">
           <Box component="span">{post.frontmatter.date}</Box>
+          <Box component="span">{categories.join(',')}</Box>
+          <Box component="span">{tags.join(',')}</Box>
         </Box>
         <Box
           className={classes.content}

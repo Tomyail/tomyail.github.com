@@ -1,9 +1,8 @@
 import _ from 'lodash';
 import Promise from 'bluebird';
 import path from 'path';
-import { createFilePath } from 'gatsby-source-filesystem';
 import R from 'ramda';
-
+import fse from 'fs-extra';
 // 获取所有的文章概要信息
 const getAllPara = (graphql) =>
   graphql(
@@ -20,6 +19,7 @@ const getAllPara = (graphql) =>
                 title
                 path
                 tags
+                categories
               }
             }
           }
@@ -35,6 +35,32 @@ const groupByTags = () => {};
 const groupByAreas = () => {};
 const renderVisiblePost = (posts, createPage) => {
   const postsPerPage = 9;
+
+  // const tags = {};
+  // const categories = {};
+  //
+  // const x = (input, target, title) => {
+  // if (input) {
+  // input.forEach((tag) => {
+  // if (!target[tag]) {
+  // target[tag] = [];
+  // }
+  // target[tag].push(title);
+  // });
+  // }
+  // };
+  // posts.forEach((post) => {
+  // const t = post.node.frontmatter.tags;
+  // const c = post.node.frontmatter.categories;
+  // const title = post.node.frontmatter.title;
+  // x(t, tags, title);
+  // x(c, categories, title);
+  // });
+  //
+  // console.log(categories);
+  // fse.writeJsonSync(path.join(__dirname,'tags.json'),tags)
+  // fse.writeJsonSync(path.join(__dirname,'cat.json'),categories)
+  //
   const numberPages = Math.ceil(posts.length / postsPerPage);
 
   const blogPost = path.resolve('./src/templates/blog-post.tsx');
@@ -103,6 +129,7 @@ exports.createPages = ({ graphql, actions }) => {
                     title
                     path
                     tags
+                    categories
                   }
                 }
               }

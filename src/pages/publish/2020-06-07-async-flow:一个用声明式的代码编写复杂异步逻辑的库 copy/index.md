@@ -1,11 +1,10 @@
 ---
-title: test
+title: 博客文章样式测试
 categories:
   - 技术
 tags:
-  - rxjs
-  - 异步编程
-path: /test/
+	- test
+path: /test-for-blog-style/
 date: 2020-06-07T14:10:59.333Z
 ---
 
