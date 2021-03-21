@@ -9,6 +9,7 @@ tags: null
 path: /wordpress-migration/
 ---
 
+
 0:清除本地 wp 的数据表，仅保留 wp-users 表及 wp-options 表
 
 1:使用 wp-db-back 插件下载原始数据。
