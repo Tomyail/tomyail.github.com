@@ -1,12 +1,10 @@
 ---
 title: Stage3D的一些基本概念
 tags:
-  - Actionscript3
-  - Molehill
+  - 技术
+  - Flash
 id: 943
 comment: false
-categories:
-  - 技术
 date: 2012-02-25T01:14:40.000Z
 path: /stage3d-basic-concept/
 ---
@@ -17,7 +15,7 @@ path: /stage3d-basic-concept/
 
 如果你安装了 Debug 版本的 Flash Player，区别舞台上的一个对象是否是 stage3D 对象的最简单的方法就是右击显示重绘区，由于 stage3D 不属于 DisplayObject，所有即使打开重绘区也是看不到红框框的。
 
-![](./stage3DLayout.jpg "stage3DLayout")
+![](./stage3DLayout.jpg 'stage3DLayout')
 
 Stage3D 层中共包含多个 stage3D 实例，它们被存放在 stage.stage3Ds 的数组里面，这个根据 API 中的说明，这个数组长度由平台决定的，我的电脑上是 4，由于 stage3D 在每次渲染之前都需要调用 clear()函数，所以我还不知道这 4 个 stage3D 是否也拥有像显示列表那样的层级关系。
 
@@ -27,7 +25,7 @@ Stage3D 采用右手坐标系，伸出你的右手，使食指向上，其余三
 
 默认情况下 stage3D 的坐标坐标原点是"舞台”的中心位置，需要注意的是这里的舞台是加引号的，也就是说这个舞台并不一定对应于 stage，而是通过 context3D 的 configureBackBuffer 方法传入 width 和 height 来定义舞台大小的。
 
-最后关于坐标系统的另外一个很重要的注意点就是 stage3D 默认的坐标系统属于齐次裁剪空间（homogeneous clip space）在这个系统下坐标值被标准化了，所谓的标准化就是让方向上面的向量（x，y，z）的坐标值域限定在[-1,1],通常情况下我们需要将这个坐标系统转换成窗口坐标，也就是 Flash 里面默认的坐标系，这个过程转换过程反映到代码上就是使用 setProgramConstantsFromMatrix 方法并传入转换矩阵来实现的。
+最后关于坐标系统的另外一个很重要的注意点就是 stage3D 默认的坐标系统属于齐次裁剪空间（homogeneous clip space）在这个系统下坐标值被标准化了，所谓的标准化就是让方向上面的向量（x，y，z）的坐标值域限定在\[-1,1],通常情况下我们需要将这个坐标系统转换成窗口坐标，也就是 Flash 里面默认的坐标系，这个过程转换过程反映到代码上就是使用 setProgramConstantsFromMatrix 方法并传入转换矩阵来实现的。
 
 ## 颜色混合
 

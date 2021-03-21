@@ -1,10 +1,9 @@
 ---
 title: 理解Unity3D里的Coroutine
 tags:
+  - 技术
   - Unity
 id: 1123
-categories:
-  - 技术
 date: 2015-08-15T14:27:26.000Z
 path: /understanding-unity-coroutine/
 ---
@@ -142,7 +141,7 @@ Unity 利用函数`StartCoroutine`把这个迭代过程分发给了**每帧**去
 第三块
 
 ```js
-Debug.Log("3" + DateTime.Now);
+Debug.Log('3' + DateTime.Now);
 ```
 
 这三块为被分割到了三个更新时间片去执行.首先第一块被直接执行,所以日志输出了

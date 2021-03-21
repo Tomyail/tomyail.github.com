@@ -1,9 +1,8 @@
 ---
 title: Redux入门
-categories:
-  - 技术
 tags:
-  - js
+  - 技术
+  - JavaScript
 date: 2015-11-25T22:59:39.000Z
 path: /introduction-of-redux/
 ---
@@ -26,7 +25,7 @@ function addItem(name, itemType) {
   return {
     type: 'ADD_ITEM',
     item: name,
-    itemType: itemType
+    itemType: itemType,
   };
 }
 
@@ -34,19 +33,19 @@ function addItem(name, itemType) {
 function changeUserName(name) {
   return {
     type: 'CHANGE_USER',
-    name: name
+    name: name,
   };
 }
 
 //reducer
-var itemReducer = function(state = { items: [] }, action) {
+var itemReducer = function (state = { items: [] }, action) {
   switch (action.type) {
     case 'ADD_ITEM':
       return {
         items: [
           ...state.items,
-          { item: action.item, itemType: action.itemType }
-        ]
+          { item: action.item, itemType: action.itemType },
+        ],
       };
     default:
       return state;
@@ -54,7 +53,10 @@ var itemReducer = function(state = { items: [] }, action) {
 };
 
 //reducer
-var userReducer = function(state = { user: { name: 'default user' } }, action) {
+var userReducer = function (
+  state = { user: { name: 'default user' } },
+  action
+) {
   switch (action.type) {
     case 'CHANGE_USER':
       return { ...state, user: { name: action.name } };
@@ -66,14 +68,14 @@ var userReducer = function(state = { user: { name: 'default user' } }, action) {
 //combine multi reducers to one reducer
 var combinedReducer = combineReducers({
   user: userReducer,
-  item: itemReducer
+  item: itemReducer,
 });
 
 //creae store using combined reducer
 var store = createStore(combinedReducer);
 
 //subscribe
-store.subscribe(function() {
+store.subscribe(function () {
   console.log('current state', store.getState());
 });
 
@@ -145,7 +147,7 @@ state 是持有当前 reducer 状态的值，第一次传入的时候需要指�
 
 ```js
 Object.assign({}, state, {
-  didInvalidate: true
+  didInvalidate: true,
 });
 ```
 
@@ -173,7 +175,7 @@ map2.get('b'); // 50
 ```js
 var combinedReducer = combineReducers({
   user: userReducer,
-  item: itemReducer
+  item: itemReducer,
 });
 ```
 
@@ -222,9 +224,9 @@ Middleware 提供了一种途径，让 action 在被 dispatch 之前有能力处
 普通写法
 
 ```js
-var yourMiddleware = function({ dispatch, getState }) {
-  return function(next) {
-    return function(action) {
+var yourMiddleware = function ({ dispatch, getState }) {
+  return function (next) {
+    return function (action) {
       // YOUR MIDDLEWARE LOGIC HERE
       // return ?
     };
@@ -235,7 +237,7 @@ var yourMiddleware = function({ dispatch, getState }) {
 文艺写法(箭头函数)
 
 ```js
-var yourMiddleware = ({ dispatch, getState }) => next => action => {
+var yourMiddleware = ({ dispatch, getState }) => (next) => (action) => {
   // YOUR MIDDLEWARE LOGIC HERE
   // return ?
 };
@@ -258,7 +260,7 @@ Middleware 函数将 dispatch 收到的参数先做一次“过滤”（通常�
 
 ```js
 export default function thunkMiddleware({ dispatch, getState }) {
-  return next => action =>
+  return (next) => (action) =>
     typeof action === 'function' ? action(dispatch, getState) : next(action);
 }
 ```
@@ -281,13 +283,13 @@ function getUserName() {
 //状态,配合UI
 function startGetUser() {
   return {
-    type: 'START_GET_USER'
+    type: 'START_GET_USER',
   };
 }
 
 function endGetUser(name) {
   return {
-    type: 'END_GET_USER'
+    type: 'END_GET_USER',
   };
 }
 ```
@@ -313,7 +315,7 @@ function getUserName2() {
         dispatch(changeUserName('fromServer'));
       }, 3000);
     },
-    type: 'GET_USER'
+    type: 'GET_USER',
   };
 }
 ```
@@ -321,9 +323,9 @@ function getUserName2() {
 那么我们的 middleware 可以写成这样：
 
 ```js
-var getUserMiddleware = function({ dispatch, getState }) {
-  return function(next) {
-    return function(action) {
+var getUserMiddleware = function ({ dispatch, getState }) {
+  return function (next) {
+    return function (action) {
       if (action.type != 'GET_USER') {
         return next(action);
       }
@@ -349,9 +351,9 @@ var getUserMiddleware = function({ dispatch, getState }) {
 
 ## 参考链接
 
-1. [Redux 中文文档](https://camsong.github.io/redux-in-chinese/)
-2. [Learn how to use redux step by step](https://github.com/happypoulp/redux-tutorial)
-3. [Awesome list of Redux examples and middlewares](https://github.com/xgrommx/awesome-redux)
-4. [深入到源码：解读 redux 的设计思路与用法](http://div.io/topic/1309)
-5. [A Comprehensive Guide to Test-First Development with Redux, React, and Immutable](http://teropa.info/blog/2015/09/10/full-stack-redux-tutorial.html)
-6. [A Soundcloud client built with React / Redux](https://github.com/andrewngu/sound-redux/)
+1.  [Redux 中文文档](https://camsong.github.io/redux-in-chinese/)
+2.  [Learn how to use redux step by step](https://github.com/happypoulp/redux-tutorial)
+3.  [Awesome list of Redux examples and middlewares](https://github.com/xgrommx/awesome-redux)
+4.  [深入到源码：解读 redux 的设计思路与用法](http://div.io/topic/1309)
+5.  [A Comprehensive Guide to Test-First Development with Redux, React, and Immutable](http://teropa.info/blog/2015/09/10/full-stack-redux-tutorial.html)
+6.  [A Soundcloud client built with React / Redux](https://github.com/andrewngu/sound-redux/)

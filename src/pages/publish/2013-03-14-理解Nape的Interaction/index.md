@@ -1,19 +1,18 @@
 ---
 title: 理解Nape的Interaction
 tags:
-  - Nape
-id: 1123
-categories:
   - 技术
+  - Flash
+id: 1123
 date: 2013-03-14T14:27:26.000Z
 path: /understanding-nape-interaction/
 ---
 
 有的时候我们想控制两个刚体是否发生碰撞,比如手机游戏 Doodle Jump 里面的小人在上升过程中不会和障碍物发生碰撞但在降落过程中会发生碰撞,这个时候就需要知道如何利用 Nape 来控制这个碰撞了.这里的碰撞在 Nape 看来是一种交互方式.Nape 定义了三种交互方式:
 
-* Collision(碰撞)
-* Sensor(感应)
-* Fluid(浮力)
+- Collision(碰撞)
+- Sensor(感应)
+- Fluid(浮力)
 
 默认情况下两个物体只会发生 Collision 交互,另外的两种交互需要设置 Shape 的**sensorEnabled** 和 **fluidEnabled** 来手动开启.
 
@@ -244,7 +243,7 @@ group 版本小球碰撞的源码:
 
 图示:
 
-[![InteractionGroup](./InteractionGroup.png "InteractionGroup")](/images/uploads/2013/03/InteractionGroup.png)
+[![InteractionGroup](./InteractionGroup.png 'InteractionGroup')](/images/uploads/2013/03/InteractionGroup.png)
 
 在这个例子中用到了 InteractionGroup 的一个树结构的特征.也就是任何 InteractionGroup 都有一个 group 属性说明这个 group 的父 group 是什么.这个 group 是一个列表所以支持
 
@@ -332,4 +331,4 @@ Shp4 是孤立的,所以不存在 Shp1 和 Shp4 之类的交互控制,**所以 S
 
 求两个节点的最近共同祖先(下图:来自<http://www.haogongju.net/art/581937>)
 
-[![Image(1)](<./Image(1).png> "Image(1)")](/images/uploads/2013/03/Image1.png)
+[![Image(1)](<./Image(1).png> 'Image(1)')](/images/uploads/2013/03/Image1.png)

@@ -1,9 +1,8 @@
 ---
 title: 如何调试minify过的js文件
 tags:
-  - js
-categories:
   - 技术
+  - JavaScript
 date: 2016-08-29T16:43:01.000Z
 path: /debug-js-without-sourcemap/
 ---
@@ -24,9 +23,9 @@ webpack 通过配置参数[devtool][2]来控制 sourcemap 的几种行为，开�
 
 试了一下果然可以，而且这个 sorucemap 支持任意路径，如下形式都是支持的：
 
-* `file:///User/XXX/hash.js.map`
-* `http://localhost:3000/hash.js.map`
-* `http://yourdomain.com/hash.js.map`
+- `file:///User/XXX/hash.js.map`
+- `http://localhost:3000/hash.js.map`
+- `http://yourdomain.com/hash.js.map`
 
 所以接下里的解决方案就比较明显了，生产环境也生产 sourcemap，只不过这个文件不显示的嵌入 js 或者 html 里面。
 
@@ -34,7 +33,7 @@ webpack 支持这种模式的 sourcemap，只要把`devtool`的值改成`hidden-
 
 之后借助 gulp 之类的任务工具把生成的 sourcemap 静态文件放在 server 某个地方，client 需要使用的时候 chrome 右击添加就可以调试了，简直爽歪歪。
 
-[1]: http://www.ruanyifeng.com/blog/2013/01/javascript_source_map.html "JavaScript Source Map 详解"
-[2]: https://webpack.github.io/docs/configuration.html#devtool "devtool"
-[minified-js]: ./2016-08-29-minified-js.jpg "minified js without sourcemap"
-[chrome-add-source-map-menu]: ./2016-08-29-chrome-add-source-map-menu.jpg "chrome add source map menu"
+[1]: http://www.ruanyifeng.com/blog/2013/01/javascript_source_map.html 'JavaScript Source Map 详解'
+[2]: https://webpack.github.io/docs/configuration.html#devtool 'devtool'
+[minified-js]: ./2016-08-29-minified-js.jpg 'minified js without sourcemap'
+[chrome-add-source-map-menu]: ./2016-08-29-chrome-add-source-map-menu.jpg 'chrome add source map menu'

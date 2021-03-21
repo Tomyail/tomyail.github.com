@@ -162,7 +162,6 @@ export const pageQuery = graphql`
           excerpt
           frontmatter {
             tags
-            categories
             date(formatString: "MMM DD, YYYY")
             title
             path

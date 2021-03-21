@@ -1,9 +1,8 @@
 ---
 title: 使用 git submodule 同步主从项目的依赖关系
 tags:
-  - git
-categories:
   - 技术
+  - Git
 date: 2017-06-13T22:48:28.000Z
 path: /using-git-submodule-lock-project/
 ---

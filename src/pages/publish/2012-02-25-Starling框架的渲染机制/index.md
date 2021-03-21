@@ -1,13 +1,10 @@
 ---
 title: Starling框架的渲染机制
 tags:
-  - Actionscript3
-  - Molehi
-  - Starling
+  - 技术
+  - Flash
 id: 950
 comment: false
-categories:
-  - 技术
 date: 2012-02-25T14:00:00.000Z
 path: /starling-render-system/
 ---
@@ -18,16 +15,16 @@ Starling 框架（[UML 图](http://crocusmodeller.com/frameworks/starling.png)�
 
 1.  通过调用  `configureBackBuffer()` 来配置主显示缓冲区属性。
 2.  创建并初始化您的呈现资源，包括：
-    * 定义场景几何的顶点和索引缓冲区
-    * 用于呈现场景的顶点和像素程序（着色器）
-    * 纹理
+    - 定义场景几何的顶点和索引缓冲区
+    - 用于呈现场景的顶点和像素程序（着色器）
+    - 纹理
 3.  呈现帧：
-    * 为场景中的一个对象或一组对象设置适当的呈现状态。
-    * 调用  `drawTriangles()` 方法可以呈现一组三角形。
-    * 更改下一组对象的呈现状态。
-    * 调用  `drawTriangles()` 可以绘制定义对象的三角形。
-    * 重复直至场景全部呈现。
-    * 调用  `present()` 方法可以在舞台上显示呈现的场景。
+    - 为场景中的一个对象或一组对象设置适当的呈现状态。
+    - 调用  `drawTriangles()` 方法可以呈现一组三角形。
+    - 更改下一组对象的呈现状态。
+    - 调用  `drawTriangles()` 可以绘制定义对象的三角形。
+    - 重复直至场景全部呈现。
+    - 调用  `present()` 方法可以在舞台上显示呈现的场景。
 
 Starling 框架的渲染过程也是按照这个流程去做的，下面来进行逐步分解这个过程。
 
@@ -41,7 +38,7 @@ QuadBatch.as:操作 Context3D 的直接类，这个类是整个渲染机制的�
 
 下图展示了我对 Starling 渲染机制的理解（UML 不会，只能将就着看了。。。）：
 
-![](./StarlingWorkflow.png "StarlingWorkflow")
+![](./StarlingWorkflow.png 'StarlingWorkflow')
 
 由此图可以了解，Starling 的渲染过程（render）就是管理顶点数据的过程。
 

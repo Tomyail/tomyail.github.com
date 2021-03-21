@@ -1,9 +1,8 @@
 ---
 title: eslint的正确使用方式
 tags:
-  - js
-categories:
   - 技术
+  - JavaScript
 date: 2017-05-09T23:24:44.000Z
 path: /eslint-with-prettier/
 ---
@@ -26,18 +25,17 @@ eslint 是一个代码质量检查工具，它能根据特定的规则检查已�
 
 2.  更新 package.json
 
-
     {
-      "scripts": {
-        "precommit": "lint-staged"
-      },
-      "lint-staged": {
-        "*.{js,jsx}": [
-          "prettier --write --single-quote",
-           "eslint --fix",
-           "git add"
-        ]
-      }
+    "scripts": {
+    "precommit": "lint-staged"
+    },
+    "lint-staged": {
+    "\*.{js,jsx}": \[
+    "prettier --write --single-quote",
+    "eslint --fix",
+    "git add"
+    ]
+    }
     }
 
 最后的效果就是在每次 commit 之前，都会格式化代码并且 eslint 被提交的代码保证风格统一。

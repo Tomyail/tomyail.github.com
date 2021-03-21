@@ -1,31 +1,28 @@
 ---
 title: async-flow:一个帮助我们用声明式的代码风格编写复杂异步逻辑的轮子
-categories:
+tags:
   - 技术
-tags: 
-  - rxjs
-  - 异步编程
+  - RxJS
 path: /write-asynchronous-logic-in-declarative-coding-style-with-async-flow/
 date: 2020-06-07T14:10:59.333Z
 ---
 
-
-我们有个关于作业的app 启动后需要先获取一个作业 id 列表（请求 A），然后根据 id 列表的长度构建 n 个页面。 当用户翻到某一页时，根据这个 id 获取当前作业的详细情况（请求 B）。
+我们有个关于作业的 app 启动后需要先获取一个作业 id 列表（请求 A），然后根据 id 列表的长度构建 n 个页面。 当用户翻到某一页时，根据这个 id 获取当前作业的详细情况（请求 B）。
 
 这是基本流程，但是这个 app 还有很多不同的模式，会根据角色和场景请求不同的 API。 比如老师角色，有布置作业，预览作业，批改作业模式。作为学生也包含很多模式，比如练习作业，订正作业，回看作业等。
 
 不同模式对应的 api 接口和数据结构可能都有一定的区别。
 
-* 老师布置模式，请求的不是接口 A，而是接口 A'（对应的接口数据解析逻辑也不一样）。
-* 老师批改和学生回看作业，除了获取作业详细情况外(请求 B），还需要额外获取学生的做题答案（请求 C）。
-* 学生订正模式，获取做题答案方式是和请求 A 同时发送的。
+- 老师布置模式，请求的不是接口 A，而是接口 A'（对应的接口数据解析逻辑也不一样）。
+- 老师批改和学生回看作业，除了获取作业详细情况外(请求 B），还需要额外获取学生的做题答案（请求 C）。
+- 学生订正模式，获取做题答案方式是和请求 A 同时发送的。
 
 所以我的想法是把这些根据模式导致的异步逻辑的差异性封装起来，对外部不可见。外部调用后只要返回统一的数据格式就好了。于是乎用 RxJS 造了一个异步流程控制的轮子。这个轮子主要解决什么问题？
 
-1. 可以用一种声明式的方式定义每个不同的异步逻辑块
-2. 不同异步逻辑块之间的依赖关系可以是先后依赖，或者并发关系。而且每个异步逻辑有能力创建子异步逻辑。
-3. 每个异步逻辑不管怎么处理，最后汇总到统一的上下文上，后续业务逻辑只要消费这个数据就好了。
-4. 隐藏 rxjs 操作符的复杂性，只要会 promise 就可以使用
+1.  可以用一种声明式的方式定义每个不同的异步逻辑块
+2.  不同异步逻辑块之间的依赖关系可以是先后依赖，或者并发关系。而且每个异步逻辑有能力创建子异步逻辑。
+3.  每个异步逻辑不管怎么处理，最后汇总到统一的上下文上，后续业务逻辑只要消费这个数据就好了。
+4.  隐藏 rxjs 操作符的复杂性，只要会 promise 就可以使用
 
 好了先放主角： [asnyc-flow](https://github.com/Tomyail/async-flow)
 
@@ -34,11 +31,10 @@ async-flow 的详细用法在项目主页的 readme 文档写了，这里主要�
 由于有很多不用的模式，所以我们可以创建不同的异步逻辑配置：
 
 ```javascript
-
-import * as apis from "./api";
+import * as apis from './api';
 
 const getHomeWorkList = {
-  name: "getHomeWorkList",
+  name: 'getHomeWorkList',
   flow: (context) => {
     return apis.getHomeWorkList(context.homeworId);
   },
@@ -52,7 +48,7 @@ const getHomeWorkList = {
   },
 };
 const getPreviewList = {
-  name: "getPreviewList",
+  name: 'getPreviewList',
   flow: (context) => {
     return apis.getPreviewList(context.previewIds);
   },
@@ -64,7 +60,7 @@ const getPreviewList = {
   },
 };
 const getExerciseDetetail = {
-  name: "getExerciseDetetail",
+  name: 'getExerciseDetetail',
   flow: (context) => {
     //由于我们约定 getExerciseDetetail 一定是在 getPreviewList 或者 getHomeWorkList 之后运行的
     //所以可以获得他们执行完后注入的 exerciseId
@@ -77,7 +73,7 @@ const getExerciseDetetail = {
   },
 };
 const getUserAnswerById = {
-  name: "getUserAnswerById",
+  name: 'getUserAnswerById',
   flow: (context) => {
     return apis.getUserAnswerById(context.exerciseId);
   },
@@ -86,7 +82,7 @@ const getUserAnswerById = {
   },
 };
 const getUserAnswerList = {
-  name: "getUserAnswerList",
+  name: 'getUserAnswerList',
   flow: (context) => {
     return apis.getUserAnswerList(context.homeworId);
   },
@@ -107,8 +103,7 @@ const getUserAnswerList = {
 在定义完所有异步流程后，剩下的就是把他们组装起来了。
 
 ```javascript
-
-import {buildFlow} from '@tomyail/async-flow';
+import { buildFlow } from '@tomyail/async-flow';
 
 //老师布置,先获取 getPreviewList,再获取 getExerciseDetetail
 const teacherPreviewFlow = (context) =>
@@ -137,27 +132,24 @@ const studentReview = (context) =>
 组装完毕之后，异步流不会自动执行，需要调用 subscribe 才能运行。
 所以最后的运行代码如下：
 
-```
-const getMode = (mode, context) => {
-  switch (mode) {
-    case "studentRevise":
-      return studentRevise(context);
-    case "teacherComment":
-      return teacherComment(context);
-    case "studentPractice":
-      return studentPractice(context);
-    case "teacherPreviewFlow":
-      return teacherPreviewFlow(context);
-  }
-};
+    const getMode = (mode, context) => {
+      switch (mode) {
+        case "studentRevise":
+          return studentRevise(context);
+        case "teacherComment":
+          return teacherComment(context);
+        case "studentPractice":
+          return studentPractice(context);
+        case "teacherPreviewFlow":
+          return teacherPreviewFlow(context);
+      }
+    };
 
-//假设值学生做题模式
-getMode("studentPractice", { homeworId: "123" }).subscribe((data) => {
-  data.getHomeWorkList; //作业列表
-  data.getExerciseDetetail; //作业详情
-  data.getUserAnswerById; //用户答案
-});
-```
+    //假设值学生做题模式
+    getMode("studentPractice", { homeworId: "123" }).subscribe((data) => {
+      data.getHomeWorkList; //作业列表
+      data.getExerciseDetetail; //作业详情
+      data.getUserAnswerById; //用户答案
+    });
 
 封装这个库的初衷是降低 rxjs 的使用门槛(我之前写过一篇 rxjs 的[简介](https://blog.tomyail.com/introducing-reactive-programming-with-rxjs/)可以参考）。目前从项目内的使用情况来看目的达到了。后续我将会把错误处理完善一下,感兴趣的帮忙点个星(星星眼~)
-

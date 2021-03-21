@@ -53,7 +53,6 @@ export const pageQuery = graphql`
       frontmatter {
         title
         tags
-        categories
         date(formatString: "YYYY-MM-DD")
         path
       }

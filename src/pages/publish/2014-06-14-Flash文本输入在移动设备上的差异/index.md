@@ -1,10 +1,9 @@
 ---
 title: Flash文本输入在移动设备上的差异
 tags:
+  - 技术
   - Flash
 id: 1245
-categories:
-  - 技术
 date: 2014-06-13T16:46:53.000Z
 path: /flash-text-mobile-difference/
 ---
@@ -25,7 +24,7 @@ path: /flash-text-mobile-difference/
 ##### 一:文本的链接事件响应有问题.
 
 `TextField`的`TextEvent.Link`无法很灵敏的响应,有时干脆直接不响应.Ipad 上也是响应了一次之后就无法在收到第二次响应了.
-因为在编辑器中有些文本在点击它时需要获取一些额外数据,我通过 Link 事件并获得`TextEvent.text`的值来获取这部分额外数据.  
+因为在编辑器中有些文本在点击它时需要获取一些额外数据,我通过 Link 事件并获得`TextEvent.text`的值来获取这部分额外数据.\
 解决方法:[Text URL in AIR iOS app not selectable](http://stackoverflow.com/questions/12627757/text-url-in-air-ios-app-not-selectable)
 
 ##### 二:键盘行为的差异
@@ -34,9 +33,9 @@ path: /flash-text-mobile-difference/
 
 首先,移动设备不像 PC 那样能很容易的获取到键盘,所以直接监听键盘事件在移动设备上是无法工作的.
 
-* 默认情况下当应用的焦点位于输入文本位置时,软键盘会自动弹出.但是问题在于我的文本不是输入文本,所以不会自动弹出键盘,而且我不能将我的文本设置成输入文本,不然用户就能**随便编辑**这段文本,而且之前应用的文本样式会**全部消失**.
-* 我无法接收到`KeyDown`之类的键盘输入事件,因此就算给这段文本增加`needsSoftKeyboard=true`或者`requestSoftKeyboard()`;这类的代码也没什么作用,因为就算能弹出键盘但是监听不到键盘输入也是没用的.
-* 输入文本在 Ipad 上只能发出`Change`事件,所以只能通过对比`Change`前后的文本差异来推算用户输入了什么字符.
+- 默认情况下当应用的焦点位于输入文本位置时,软键盘会自动弹出.但是问题在于我的文本不是输入文本,所以不会自动弹出键盘,而且我不能将我的文本设置成输入文本,不然用户就能**随便编辑**这段文本,而且之前应用的文本样式会**全部消失**.
+- 我无法接收到`KeyDown`之类的键盘输入事件,因此就算给这段文本增加`needsSoftKeyboard=true`或者`requestSoftKeyboard()`;这类的代码也没什么作用,因为就算能弹出键盘但是监听不到键盘输入也是没用的.
+- 输入文本在 Ipad 上只能发出`Change`事件,所以只能通过对比`Change`前后的文本差异来推算用户输入了什么字符.
 
 解决方法:
 由于移动设备的键盘行为和 PC 有一定的不同,这里后来想出了两种解决方法.

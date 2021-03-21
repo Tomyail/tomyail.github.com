@@ -1,9 +1,8 @@
 ---
 title: 扯淡js和es6 续
-categories:
-  - 技术
 tags:
-  - js
+  - 技术
+  - JavaScript
 date: 2016-03-02T13:42:24.000Z
 path: /thinking-about-js-and-es6-2/
 ---

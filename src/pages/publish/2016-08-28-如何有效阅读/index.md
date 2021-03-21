@@ -1,9 +1,7 @@
 ---
 title: 如何有效阅读
 tags:
-  - 其他
-categories:
-  - 读摘
+  - Reading-Note
 date: 2016-08-28T15:10:50.000Z
 path: /how-to-read-book/
 ---
@@ -34,12 +32,7 @@ path: /how-to-read-book/
 2.  kindle 购买的书本无法共享给他人，不过可以把账号共享了然后其他人关闭阅读同步。
 
 [1]: https://twitter.com/xiaolai/status/768629096163123200
-[2]: http://pne.people.si.umich.edu/PDF/howtoread.pdf "how to read"
+[2]: http://pne.people.si.umich.edu/PDF/howtoread.pdf 'how to read'
 [4]: http://share.jike.ruguoapp.com/topics/551d1653e4b0cd5b623b4155
-[image-1]: ./how-to-read-book.png "如何阅读思维图"
-[image-2]: ./how-to-export-kindle-highlight.jpg "how to export kindle highlight"
-
-
-
-
-
+[image-1]: ./how-to-read-book.png '如何阅读思维图'
+[image-2]: ./how-to-export-kindle-highlight.jpg 'how to export kindle highlight'

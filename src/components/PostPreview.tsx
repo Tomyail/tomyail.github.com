@@ -6,7 +6,7 @@ import React from 'react';
 
 const PostPreview = ({ node }) => {
   const {
-    frontmatter: { categories = [], tags = [] },
+    frontmatter: {  tags = [] },
   } = node;
   if (!tags) {
   }
@@ -30,7 +30,6 @@ const PostPreview = ({ node }) => {
         }
         subheader={`${node.frontmatter.date} | ${node.timeToRead} min read`}
       />
-      <Box>{categories.join(',') + tags.join(',')}</Box>
       <Box>
         <Typography paragraph variant="body1">
           {node.excerpt}
