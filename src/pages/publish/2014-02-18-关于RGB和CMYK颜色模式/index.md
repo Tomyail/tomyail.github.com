@@ -4,7 +4,8 @@ id: 1204
 categories:
   - 技术
 date: 2014-02-17T23:19:13.000Z
-tags: null
+tags:
+	- 技术
 path: /cmyk-rgb/
 ---
 
@@ -14,11 +15,11 @@ path: /cmyk-rgb/
 
 光波三原色的加色混合结果
 
-![Additive color mixing](./Image.png "Image")
+![Additive color mixing](./Image.png 'Image')
 
 颜料减色混合的结果
 
-![Subtractive color mixing](./Image1.png "Image1")
+![Subtractive color mixing](./Image1.png 'Image1')
 
 <!--more-->
 
@@ -49,11 +50,11 @@ cmyk 用百分比表示网店面积覆盖率(相当于该颜色的厚度?),每�
 
 如下图,cmy 能够吸收和它正对的颜色,反射和它相邻的两种颜色.
 
-![color circle](./色环-300x267.jpg "色环-300x267")
+![color circle](./色环-300x267.jpg '色环-300x267')
 
 ### 参考资料:
 
-* [印刷四分色模式](http://zh.wikipedia.org/wiki/%E5%8D%B0%E5%88%B7%E5%9B%9B%E5%88%86%E8%89%B2%E6%A8%A1%E5%BC%8F)
-* [加色混合](http://zh.wikipedia.org/wiki/%E5%8A%A0%E8%89%B2%E6%B3%95)
-* [减](http://zh.wikipedia.org/wiki/%E6%B8%9B%E8%89%B2%E6%B3%95)
-* [色混合](http://zh.wikipedia.org/wiki/%E6%B8%9B%E8%89%B2%E6%B3%95)
+- [印刷四分色模式](http://zh.wikipedia.org/wiki/%E5%8D%B0%E5%88%B7%E5%9B%9B%E5%88%86%E8%89%B2%E6%A8%A1%E5%BC%8F)
+- [加色混合](http://zh.wikipedia.org/wiki/%E5%8A%A0%E8%89%B2%E6%B3%95)
+- [减](http://zh.wikipedia.org/wiki/%E6%B8%9B%E8%89%B2%E6%B3%95)
+- [色混合](http://zh.wikipedia.org/wiki/%E6%B8%9B%E8%89%B2%E6%B3%95)

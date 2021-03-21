@@ -5,10 +5,10 @@ comment: true
 categories:
   - 技术
 date: 2011-10-18T23:07:42.000Z
-tags: null
+tags:
+	- 技术
 path: /wordpress-migration/
 ---
-
 
 0:清除本地 wp 的数据表，仅保留 wp-users 表及 wp-options 表
 
