@@ -290,7 +290,7 @@ const PostBody = ({ post, previous, next, siteUrl, classes }) => {
           {post.frontmatter.title}
         </Typography>
         <Box display="flex" justifyContent="space-between">
-          <Box component="span">{post.frontmatter.date}</Box>
+          <Box component="span">{post.frontmatter.created_at}</Box>
           <Box component="span">{tags.join(',')}</Box>
         </Box>
         <Box

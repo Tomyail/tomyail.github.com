@@ -5,8 +5,9 @@ tags:
   - Vim
 id: 967
 comment: true
-date: 2012-04-02T12:11:32.000Z
 path: /vim-hexe-ide/
+created_at: 2012-04-02T12:11:32.000Z
+updated_at: 2012-04-02T12:11:32.000Z
 ---
 
 将 Vim 作为 Haxe IDE 的过程基本完成，留此文备忘。

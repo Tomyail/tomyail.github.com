@@ -152,7 +152,7 @@ export const pageQuery = graphql`
     }
     allMarkdownRemark(
       filter: { frontmatter: { visible: { ne: false } } }
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { fields: [frontmatter___created_at], order: DESC }
       limit: $limit
       skip: $skip
     ) {
@@ -162,7 +162,7 @@ export const pageQuery = graphql`
           excerpt
           frontmatter {
             tags
-            date(formatString: "MMM DD, YYYY")
+            created_at
             title
             path
           }

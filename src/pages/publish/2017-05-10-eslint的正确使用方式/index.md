@@ -3,8 +3,9 @@ title: eslint的正确使用方式
 tags:
   - 技术
   - JavaScript
-date: 2017-05-09T23:24:44.000Z
 path: /eslint-with-prettier/
+created_at: 2017-05-09T23:24:44.000Z
+updated_at: 2017-05-09T23:24:44.000Z
 ---
 
 最近项目里面来了新人，他对项目的代码风格提出了质疑，于是乎之前被遗忘的 eslint 又被提上了议程。

@@ -28,7 +28,7 @@ const PostPreview = ({ node }) => {
             <div>{title}</div>
           </Link>
         }
-        subheader={`${node.frontmatter.date} | ${node.timeToRead} min read`}
+        subheader={`${node.frontmatter.created_at} | ${node.timeToRead} min read`}
       />
       <Box>
         <Typography paragraph variant="body1">

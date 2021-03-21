@@ -3,8 +3,9 @@ title: 扯淡js和es6 续
 tags:
   - 技术
   - JavaScript
-date: 2016-03-02T13:42:24.000Z
 path: /thinking-about-js-and-es6-2/
+created_at: 2016-03-02T13:42:24.000Z
+updated_at: 2016-03-02T13:42:24.000Z
 ---
 
 事情从我使用 koa 开始吧。[koa](https://github.com/koajs/koa)是 js 界的[tj 大神](https://www.zhihu.com/question/24377059)又一力作。它是一个 server 框架，据说要成为下一代 express，主要亮点是使用 generator 替代回调以及 promise 产生的回调链，让代码看上去更加优雅。

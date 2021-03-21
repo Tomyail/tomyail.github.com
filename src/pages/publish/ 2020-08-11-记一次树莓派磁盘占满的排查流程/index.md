@@ -3,8 +3,9 @@ title: 记一次树莓派磁盘占满的排查流程
 tags:
   - Unix-like
   - 技术
-date: 2020-08-11T09:34:43.853Z
 path: /troubleshooting-for-raspberry-pi's-out-of-disk-space/
+created_at: 2020-08-11T09:34:43.853Z
+updated_at: 2020-08-11T09:34:43.853Z
 ---
 
 买来的树莓派积攒了一段时间灰之后想再次使用发现 vnc 连不上了,一直报远程关闭了连接. 下意识重启了一下,没解决...

@@ -4,8 +4,9 @@ tags:
   - 技术
   - Flash
 id: 1147
-date: 2013-04-05T18:54:44.000Z
 path: /nape-callback/
+created_at: 2013-04-05T18:54:44.000Z
+updated_at: 2013-04-05T18:54:44.000Z
 ---
 
 Nape 的回调系统和 Flash 原生的事件系统还是有区别的,虽然它们的底层可能都是通过观察者模式来实现的,但是它们暴露给外部的 API 是不一样的,Flash 原生的事件系统中每个 EventDispatcher 是监听对象,但在 Nape 中监听对象只有 space,它通过匹配特定的模式来触发回调.

@@ -51,6 +51,7 @@ const readMarkdowns = (dir) => {
       return false;
     },
   });
+	// console.log(markdowns.map(m=>m.path))
   return markdowns;
 };
 module.exports = {
@@ -76,9 +77,6 @@ module.exports = {
       )
     ).pipe(
       mergeAll(),
-      // tap((x) => {
-      //   console.log('x', x);
-      // }),
       filter((x) => x.result && x.result[0]),
       map((x) => ({ path: x.path, file: x.result[1],content:x.file }))
     );

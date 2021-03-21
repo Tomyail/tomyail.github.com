@@ -10,7 +10,7 @@ const getAllPara = (graphql) =>
       {
         allMarkdownRemark(
           limit: 1000
-          sort: { fields: [frontmatter___date], order: DESC }
+          sort: { fields: [frontmatter___created_at], order: DESC }
         ) {
           totalCount
           edges {
@@ -94,7 +94,7 @@ exports.createPages = ({ graphql, actions }) => {
           {
             allMarkdownRemark(
               limit: 1000
-              sort: { fields: [frontmatter___date], order: DESC }
+              sort: { fields: [frontmatter___created_at], order: DESC }
             ) {
               totalCount
               edges {

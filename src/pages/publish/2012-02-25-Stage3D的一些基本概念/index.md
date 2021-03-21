@@ -5,8 +5,9 @@ tags:
   - Flash
 id: 943
 comment: false
-date: 2012-02-25T01:14:40.000Z
 path: /stage3d-basic-concept/
+created_at: 2012-02-25T01:14:40.000Z
+updated_at: 2012-02-25T01:14:40.000Z
 ---
 
 ## 层的概念

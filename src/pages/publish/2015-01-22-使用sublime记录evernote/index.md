@@ -1,12 +1,11 @@
 ---
 title: 使用sublime记录evernote
 id: 1251
-categories:
-  - 技术
-date: 2015-01-21T18:22:15.000Z
 tags:
-	- 技术
+  - 技术
 path: /using-sublime-to-update-evernote/
+created_at: 2015-01-21T18:22:15.000Z
+updated_at: 2015-01-21T18:22:15.000Z
 ---
 
 evernote 的格式化编辑功能一直很弱,我平时写文档习惯使用 markdown 保持简单的格式.以前使用马克飞象编辑 markdown 文件然后同步到 evernote.

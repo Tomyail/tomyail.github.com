@@ -4,8 +4,9 @@ tags:
   - 技术
   - JavaScript
   - React
-date: 2017-08-27T22:27:14.000Z
 path: /react-router-migration/
+created_at: 2017-08-27T22:27:14.000Z
+updated_at: 2017-08-27T22:27:14.000Z
 ---
 
 最近项目从 React-Router 3 升级到 4 版本,经历了一堆坑,但是也加深了对 router 的理解.由于[官网](https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/guides/migrating.md)的迁移文档毫无诚意,所以写篇博客记录下.

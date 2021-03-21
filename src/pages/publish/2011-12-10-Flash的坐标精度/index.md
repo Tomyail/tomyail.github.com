@@ -5,8 +5,9 @@ tags:
   - Flash
 id: 928
 comment: false
-date: 2011-12-09T18:52:56.000Z
 path: /flash-coordinate-accuracy/
+created_at: 2011-12-09T18:52:56.000Z
+updated_at: 2011-12-09T18:52:56.000Z
 ---
 
 今天用坐标旋转公式写物体的运动刚开始出现了一个怪现象，理论上应该是标准圆周运动的代码最后出来的效果却是半径越来越小的圆周运动，错误的轨迹如下图：

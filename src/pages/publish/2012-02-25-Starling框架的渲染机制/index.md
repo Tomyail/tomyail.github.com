@@ -5,8 +5,9 @@ tags:
   - Flash
 id: 950
 comment: false
-date: 2012-02-25T14:00:00.000Z
 path: /starling-render-system/
+created_at: 2012-02-25T14:00:00.000Z
+updated_at: 2012-02-25T14:00:00.000Z
 ---
 
 Starling 框架（[UML 图](http://crocusmodeller.com/frameworks/starling.png)）是一个封装了 Stage3D 底层操作的 GPU 渲染框架，所以理解了其渲染机制也就能对 Stage3D 有一个初级的认识了。

@@ -4,7 +4,8 @@ tags:
   - 技术
   - RxJS
 path: /write-asynchronous-logic-in-declarative-coding-style-with-async-flow/
-date: 2020-06-07T14:10:59.333Z
+created_at: 2020-06-07T14:10:59.333Z
+updated_at: 2020-06-07T14:10:59.333Z
 ---
 
 我们有个关于作业的 app 启动后需要先获取一个作业 id 列表（请求 A），然后根据 id 列表的长度构建 n 个页面。 当用户翻到某一页时，根据这个 id 获取当前作业的详细情况（请求 B）。

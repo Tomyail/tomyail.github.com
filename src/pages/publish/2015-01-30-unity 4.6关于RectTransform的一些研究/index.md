@@ -4,8 +4,9 @@ tags:
   - 技术
   - Unity
 id: 1259
-date: 2015-01-30T10:42:58.000Z
 path: /unity-rect-transform/
+created_at: 2015-01-30T10:42:58.000Z
+updated_at: 2015-01-30T10:42:58.000Z
 ---
 
 ### 坐标

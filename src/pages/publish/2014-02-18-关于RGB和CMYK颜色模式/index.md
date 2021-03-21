@@ -1,12 +1,11 @@
 ---
 title: 关于RGB和CMYK颜色模式
 id: 1204
-categories:
-  - 技术
-date: 2014-02-17T23:19:13.000Z
 tags:
-	- 技术
+  - 技术
 path: /cmyk-rgb/
+created_at: 2014-02-17T23:19:13.000Z
+updated_at: 2014-02-17T23:19:13.000Z
 ---
 
 ### 为什么印刷中不用三原色(RGB)而用 CMYK?

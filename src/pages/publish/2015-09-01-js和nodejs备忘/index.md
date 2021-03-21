@@ -1,10 +1,11 @@
 ---
 title: js和nodejs备忘
-date: 2015-08-31T22:13:45.000Z
 tags:
   - 技术
   - JavaScript
 path: /js-foundation/
+created_at: 2015-08-31T22:13:45.000Z
+updated_at: 2015-08-31T22:13:45.000Z
 ---
 
 ## js 和 nodejs 的区别

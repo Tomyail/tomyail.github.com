@@ -4,7 +4,8 @@ tags:
   - 技术
   - Electron
 path: /migration-from-electron-2-to-5/
-date: 2019-10-30T10:26:13.752Z
+created_at: 2019-10-30T10:26:13.752Z
+updated_at: 2019-10-30T10:26:13.752Z
 ---
 
 从 2 升级到 5，发现 electron 在安全性提升了很多。这也导致迁移遇到了一堆问题

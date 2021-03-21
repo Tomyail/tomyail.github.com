@@ -5,8 +5,9 @@ tags:
   - Flash
 id: 954
 comment: false
-date: 2012-02-27T20:13:34.000Z
 path: /box2d-usage/
+created_at: 2012-02-27T20:13:34.000Z
+updated_at: 2012-02-27T20:13:34.000Z
 ---
 
 感谢这篇[Box2D 入门介绍](http://blog.allanbishop.com/box2d-2-1a-tutorial-part-1/)，此博客有关于 Box2D 的一系列文章，值得关注。背景：Box2D 是一个非常著名并且广泛使用的 2D 物理引擎，最初版本的 Box2D 是 C++写的，作者是暴雪的首席软件工程师  Erin Catto。后来被[BorisTheBrave](http://personal.boristhebrave.com/category/platform/box2d)童鞋移植到了 Flash 平台才有了 as3 版本。如果嫌 as3 版本的太慢可以使用  [Jesse Sternberg](http://www.sideroller.com/wck/)使用炼金术（Alchemy）编译出来的 swc，另外他还开发了一个 WCK 框架让 Box2D 对象可以通过 Flash IDE 以可视化的方式创建排列，gotoandlearn 网站上有一个具体的[结合 WCK 的 BOX2D](http://gotoandlearn.com/play.php?id=135)[视频](http://gotoandlearn.com/play.php?id=135)[教程](http://gotoandlearn.com/play.php?id=135)。由于以熟悉 Box2D 框架为主，所以我使用 as3 版本的 Box2D。Box2D 的最新[官方文档](http://127.0.0.1/wordpress/wp-admin/www.box2d.org/manual.html)，稍微过时一点的[中文文档](http://directguo.com/blog/wp-content/uploads/2010/05/box2d_manual_cn.pdf)，文档是针对 C++版本的 Box2D，请做好心理准备。。。

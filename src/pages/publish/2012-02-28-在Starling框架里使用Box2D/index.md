@@ -5,8 +5,9 @@ tags:
   - Flash
 id: 960
 comment: false
-date: 2012-02-27T22:29:16.000Z
 path: /using-box2d-in-starling/
+created_at: 2012-02-27T22:29:16.000Z
+updated_at: 2012-02-27T22:29:16.000Z
 ---
 
 前面的那篇入门文章介绍了[如何使用 Box2D](http://tomyail.com/blog/?p=954 'Box2D使用笔记'),并且掌握了内置的渲染方法。

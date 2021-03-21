@@ -1,9 +1,8 @@
 {
-  "Unix-like": [
-    "记一次树莓派磁盘占满的排查流程"
-  ],
+  "Unix-like": ["记一次树莓派磁盘占满的排查流程"],
   "技术": [
     "记一次树莓派磁盘占满的排查流程",
+    "Wordpress 数据迁移指南",
     "Flash的坐标精度",
     "Stage3D的一些基本概念",
     "Starling框架的渲染机制",
@@ -16,7 +15,9 @@
     "Nape的回调系统",
     "Nape的几何相关笔记(GeomPoly)",
     "使用Maven管理Flash项目",
+    "关于RGB和CMYK颜色模式",
     "Flash文本输入在移动设备上的差异",
+    "使用sublime记录evernote",
     "unity 4.6关于RectTransform的一些研究",
     "理解Unity3D里的Coroutine",
     "js和nodejs备忘",
@@ -25,6 +26,7 @@
     "扯淡js和es6",
     "扯淡js和es6 续",
     "React的动画小结",
+    "加速electron在国内的下载速度",
     "如何调试minify过的js文件",
     "使用travis自动部署hexo日志",
     "eslint的正确使用方式",
@@ -35,44 +37,8 @@
     "基于 s3 的单页应用的一种纯前端灰度发布实现",
     "electron 集成 addon 方案简介",
     "RxJS 和响应式编程简介",
-    "async-flow:一个帮助我们用声明式的代码风格编写复杂异步逻辑的轮子"
-  ],
-  "undefined": [
-    "记一次树莓派磁盘占满的排查流程",
-    "Flash的坐标精度",
-    "Stage3D的一些基本概念",
-    "Starling框架的渲染机制",
-    "Box2D使用笔记",
-    "在Starling框架里使用Box2D",
-    "将Vim配置成Haxe的IDE",
-    "使用Flash单元测试框架asunit",
-    "Nape刚体研究小结",
-    "理解Nape的Interaction",
-    "Nape的回调系统",
-    "Nape的几何相关笔记(GeomPoly)",
-    "使用Maven管理Flash项目",
-    "Flash文本输入在移动设备上的差异",
-    "unity 4.6关于RectTransform的一些研究",
-    "理解Unity3D里的Coroutine",
-    "js和nodejs备忘",
-    "从Wordpress迁移到Hexo",
-    "Redux入门",
-    "扯淡js和es6",
-    "扯淡js和es6 续",
-    "React的动画小结",
-    "如何有效阅读",
-    "如何调试minify过的js文件",
-    "《巨人的陨落》书评",
-    "使用travis自动部署hexo日志",
-    "eslint的正确使用方式",
-    "使用 git submodule 同步主从项目的依赖关系",
-    "如何花30分钟解决 eslint 产生的各种错误",
-    "react-router 升级填坑记录",
-    "从 electron 2 迁移到 5 遇到的坑",
-    "基于 s3 的单页应用的一种纯前端灰度发布实现",
-    "electron 集成 addon 方案简介",
-    "RxJS 和响应式编程简介",
-    "async-flow:一个帮助我们用声明式的代码风格编写复杂异步逻辑的轮子"
+    "async-flow:一个帮助我们用声明式的代码风格编写复杂异步逻辑的轮子",
+    "博客文章样式测试"
   ],
   "Flash": [
     "Flash的坐标精度",
@@ -86,16 +52,9 @@
     "Nape的几何相关笔记(GeomPoly)",
     "Flash文本输入在移动设备上的差异"
   ],
-  "Vim": [
-    "将Vim配置成Haxe的IDE"
-  ],
-  "Unit-test": [
-    "使用Flash单元测试框架asunit"
-  ],
-  "Unity": [
-    "unity 4.6关于RectTransform的一些研究",
-    "理解Unity3D里的Coroutine"
-  ],
+  "Vim": ["将Vim配置成Haxe的IDE"],
+  "Unit-test": ["使用Flash单元测试框架asunit"],
+  "Unity": ["unity 4.6关于RectTransform的一些研究", "理解Unity3D里的Coroutine"],
   "JavaScript": [
     "js和nodejs备忘",
     "Redux入门",
@@ -112,19 +71,13 @@
     "react-router 升级填坑记录",
     "基于 s3 的单页应用的一种纯前端灰度发布实现"
   ],
-  "Reading-Note": [
-    "如何有效阅读",
-    "《巨人的陨落》书评"
-  ],
-  "CI": [
-    "使用travis自动部署hexo日志"
-  ],
-  "Git": [
-    "使用 git submodule 同步主从项目的依赖关系"
-  ],
+  "Reading-Note": ["如何有效阅读", "《巨人的陨落》书评"],
+  "CI": ["使用travis自动部署hexo日志"],
+  "Git": ["使用 git submodule 同步主从项目的依赖关系"],
   "Electron": [
     "从 electron 2 迁移到 5 遇到的坑",
-    "electron 集成 addon 方案简介"
+    "electron 集成 addon 方案简介",
+    "加速electron在国内的下载速度"
   ],
   "RxJS": [
     "RxJS 和响应式编程简介",
