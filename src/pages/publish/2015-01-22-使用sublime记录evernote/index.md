@@ -4,7 +4,8 @@ id: 1251
 categories:
   - 技术
 date: 2015-01-21T18:22:15.000Z
-tags: null
+tags:
+	- 技术
 path: /using-sublime-to-update-evernote/
 ---
 
@@ -51,12 +52,12 @@ evernote 插件只在 sublime 3 中使用,2 中木有,所以需要先升级到 s
 ```js
 [
   {
-    keys: ["super+e"],
-    command: "show_overlay",
-    args: { overlay: "command_palette", text: "Evernote: " }
+    keys: ['super+e'],
+    command: 'show_overlay',
+    args: { overlay: 'command_palette', text: 'Evernote: ' },
   },
-  { keys: ["ctrl+e", "ctrl+s"], command: "send_to_evernote" },
-  { keys: ["ctrl+e", "ctrl+o"], command: "open_evernote_note" }
+  { keys: ['ctrl+e', 'ctrl+s'], command: 'send_to_evernote' },
+  { keys: ['ctrl+e', 'ctrl+o'], command: 'open_evernote_note' },
 ];
 ```
 
