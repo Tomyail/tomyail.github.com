@@ -108,7 +108,11 @@ const BlogIndex = (props) => {
       <Hidden mdDown>
         <Box display="flex">
           <Main {...props} />
-          <Drawer variant="permanent" anchor="right" sx={{}}>
+          <Drawer
+            variant="permanent"
+            anchor="right"
+            sx={{ width: 16 * 8, '& .MuiPaper-root': { width: 16 * 8 } }}
+          >
             <Toolbar />
             <Profile />
           </Drawer>

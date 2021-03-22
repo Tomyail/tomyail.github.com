@@ -10,7 +10,7 @@ import { graphql, Link, useStaticQuery } from 'gatsby';
 import React from 'react';
 import { useTheme } from '../../plugins/custom-mui-theme';
 import DehazeOutlinedIcon from '@material-ui/icons/DehazeOutlined';
-const Header = ({ showDrawerSwitch = false, onSwitchClick = undefined }) => {
+const Header = ({ showDrawerSwitch, onSwitchClick }) => {
   const { setTheme, theme } = useTheme();
   const data = useStaticQuery(graphql`
     query HeaderQuery {
