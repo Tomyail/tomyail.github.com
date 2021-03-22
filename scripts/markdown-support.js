@@ -12,6 +12,7 @@ const { filter, map, mergeAll, tap, reduce } = require('rxjs/operators');
 const configUnified = () => {
   return unified().use(parse).use(stringify).use(frontmatter, ['yaml']);
 };
+
 const filterMarkdown = (path, filter) => {
   return new Observable((sub) => {
     configUnified()
@@ -54,6 +55,7 @@ const readMarkdowns = (dir) => {
   // console.log(markdowns.map(m=>m.path))
   return markdowns;
 };
+
 module.exports = {
   filterMarkdowns: ({ inputDir, markdownFilter }) => {
     const markdowns = readMarkdowns(inputDir);
