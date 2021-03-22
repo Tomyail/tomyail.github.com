@@ -1,9 +1,9 @@
-var vfile = require('to-vfile');
-var report = require('vfile-reporter');
-var unified = require('unified');
-var parse = require('remark-parse');
-var stringify = require('remark-stringify');
-var frontmatter = require('remark-frontmatter');
+const vfile = require('to-vfile');
+const report = require('vfile-reporter');
+const unified = require('unified');
+const parse = require('remark-parse');
+const stringify = require('remark-stringify');
+const frontmatter = require('remark-frontmatter');
 const klaw = require('klaw-sync');
 const path = require('path');
 const { Observable, from } = require('rxjs');
@@ -51,7 +51,7 @@ const readMarkdowns = (dir) => {
       return false;
     },
   });
-	// console.log(markdowns.map(m=>m.path))
+  // console.log(markdowns.map(m=>m.path))
   return markdowns;
 };
 module.exports = {
@@ -78,7 +78,7 @@ module.exports = {
     ).pipe(
       mergeAll(),
       filter((x) => x.result && x.result[0]),
-      map((x) => ({ path: x.path, file: x.result[1],content:x.file }))
+      map((x) => ({ path: x.path, file: x.result[1], content: x.file }))
     );
   },
 };
