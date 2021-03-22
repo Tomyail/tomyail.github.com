@@ -115,7 +115,7 @@ export default {
 						html
 						frontmatter {
 						  title
-						  date
+						  created_at
 						  path
 						}
 					  }
