@@ -1,11 +1,11 @@
 ---
 title: js和nodejs备忘
-date: 2015-08-31T22:13:45.000Z
 tags:
-  - js
-categories:
   - 技术
+  - JavaScript
 path: /js-foundation/
+created_at: 2015-08-31T22:13:45.000Z
+updated_at: 2015-08-31T22:13:45.000Z
 ---
 
 ## js 和 nodejs 的区别
@@ -30,8 +30,8 @@ bower 是针对浏览器的包管理工具,npm 前后端通用.
 
 #### 参考资料:
 
-* [浏览器加载 CommonJS 模块的原理与实现](http://www.ruanyifeng.com/blog/2015/05/commonjs-in-browser.html)
-* [AMD 和 CMD 的区别有哪些？](http://www.zhihu.com/question/20351507)
+- [浏览器加载 CommonJS 模块的原理与实现](http://www.ruanyifeng.com/blog/2015/05/commonjs-in-browser.html)
+- [AMD 和 CMD 的区别有哪些？](http://www.zhihu.com/question/20351507)
 
 <!--more-->
 
@@ -66,33 +66,33 @@ nodejs 里面模块的导出使用`module.export`来实现
 //https://stackoverflow.com/questions/16213495/how-to-inheritance-in-module-of-nodejs
 
 //构造函数
-var Base = function(name) {
+var Base = function (name) {
   //var开头的变量是私有变量,外部无法访问.
   var _name = name;
   var isWolking = false;
 
   //this开头的是公共变量,这样写就是公共函数
   //这些不是类的函数,也就是说每次new出来的时候也会创建这些函数,这样比较占内存.如果是通用方法,需要写到原型上
-  this.startWalk = function() {
+  this.startWalk = function () {
     isWolking = true;
   };
 
-  this.stopWalk = function() {
+  this.stopWalk = function () {
     isWolking = false;
   };
 
-  this.isWolking = function() {
+  this.isWolking = function () {
     return isWolking;
   };
 
-  this.fly = function() {
-    console.log(_name + " fly");
+  this.fly = function () {
+    console.log(_name + ' fly');
   };
 };
 
 //在原型定义的函数是每个实例共用的,所以占用空间小?
-Base.prototype.methodA = function() {
-  console.log("methodA");
+Base.prototype.methodA = function () {
+  console.log('methodA');
 };
 
 module.exports = Base;
@@ -102,17 +102,17 @@ module.exports = Base;
 
 ```js
 //https://stackoverflow.com/questions/15014133/util-inherits-how-to-call-method-of-super-on-instance
-var utils = require("util");
-var Base = require("./Base");
+var utils = require('util');
+var Base = require('./Base');
 
 function Child() {
   //用此方法把父类的模块方法导入进来,加了此方法后就能在此类访问父类的比如`startWalk`之类的方法
   Base.apply(this, arguments);
   var _fly = this.fly;
-  this.fly = function() {
+  this.fly = function () {
     //访问父类的方法
     _fly();
-    console.log("from fly " + this.isWolking());
+    console.log('from fly ' + this.isWolking());
   };
 }
 
@@ -121,15 +121,15 @@ function Child() {
 utils.inherits(Child, Base);
 
 //定义新方法
-Child.prototype.methodB = function() {
-  console.log("methodB");
+Child.prototype.methodB = function () {
+  console.log('methodB');
 };
 
 //重写父类方法
-Child.prototype.methodA = function() {
+Child.prototype.methodA = function () {
   //注意是Child,不是Base
   Child.super_.prototype.methodA.call(this);
-  console.log("and methodA from Child");
+  console.log('and methodA from Child');
 };
 
 module.exports = Child;
@@ -138,9 +138,9 @@ module.exports = Child;
 `App.js`
 
 ```js
-var Child = require("./Child");
+var Child = require('./Child');
 
-var child = new Child("child");
+var child = new Child('child');
 //console.log(child);
 child.methodA();
 child.methodB();

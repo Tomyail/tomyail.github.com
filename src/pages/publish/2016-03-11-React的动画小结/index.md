@@ -1,12 +1,12 @@
 ---
 title: React的动画小结
-categories:
-  - 技术
 tags:
-  - js
-  - react
-date: 2016-03-10T22:15:59.000Z
+  - 技术
+  - JavaScript
+  - React
 path: /react-animation/
+created_at: 2016-03-10T22:15:59.000Z
+updated_at: 2016-03-10T22:15:59.000Z
 ---
 
 在搞 Ember 开发时，简单的做过一些 CSS 动画，主要参考了这篇文章。[CSS 简介](http://www.ruanyifeng.com/blog/2014/02/css_transition_and_animation.html)。当时动画切换的基本思路定义几个`animation`，每个`animation`和一个`css`的`class`绑定，改变动画就是改变当前`div`的`class`。但是这个方法在 React 里面似乎不起作用，尝试在 Chrome 里面直接修改 React 渲染好的 dom 的 class，也没有效果，目前还不知道原因。
@@ -21,12 +21,12 @@ React 提供的动画组件功能很简单，对动画的动态控制基本不�
 var ToolbarAnimation = {
   up: velocityHelpers.registerEffect({
     defaultDuration: 500,
-    calls: [[{ top: "-60px" }, 1]]
+    calls: [[{ top: '-60px' }, 1]],
   }),
   down: velocityHelpers.registerEffect({
     defaultDuration: 500,
-    calls: [[{ top: 0 }, 1]]
-  })
+    calls: [[{ top: 0 }, 1]],
+  }),
 };
 ```
 
@@ -41,7 +41,7 @@ return (
     enter={{ animation: FadeAnimation.in }}
     leave={{ animation: FadeAnimation.out }}
   >
-    {this.state.view === "userList"
+    {this.state.view === 'userList'
       ? this.renderUserList()
       : this.renderLogin()}
   </VelocityTransitionGroup>

@@ -1,20 +1,17 @@
 ---
 title: 基于 s3 的单页应用的一种纯前端灰度发布实现
-categories:
+tags:
   - 技术
-tags: 
-  - react
-  - spa
-  - a-b test
-  - s3
+  - React
 path: /a-b-testing-for-create-react-app/
-date: 2020-03-13T08:26:59.333Z
+created_at: 2020-03-13T08:26:59.333Z
+updated_at: 2020-03-13T08:26:59.333Z
 ---
 
 为什么要做这个功能:
 
-1. 不用借助外部(native) 来修改入口 url, 整个灰度控制完全前端控制
-2. 控制线上发布风险
+1.  不用借助外部(native) 来修改入口 url, 整个灰度控制完全前端控制
+2.  控制线上发布风险
 
 如何实现
 
@@ -62,8 +59,8 @@ date: 2020-03-13T08:26:59.333Z
 
 主要区别包含如下几点:
 
-1. 原来的 `static` 目录名称变更为根据当前 git 的 commit id 决定.
-2. 新增 version.json 字段,其内容如下:
+1.  原来的 `static` 目录名称变更为根据当前 git 的 commit id 决定.
+2.  新增 version.json 字段,其内容如下:
 
 ```json
 [
@@ -79,7 +76,7 @@ date: 2020-03-13T08:26:59.333Z
 
 其中最重要的两个字段是`rate` 和 `comment`, 这两个字段的用处将在后面的'运行阶段'详细说明.
 
-3. 原来 index.html 的 body 包含当前编译的打包代码:
+3.  原来 index.html 的 body 包含当前编译的打包代码:
 
 ```html
 <script>
@@ -137,12 +134,12 @@ class InterpolateHtmlPlugin {
   }
 
   apply(compiler) {
-    compiler.hooks.compilation.tap('InterpolateHtmlPlugin', compilation => {
+    compiler.hooks.compilation.tap('InterpolateHtmlPlugin', (compilation) => {
       this.htmlWebpackPlugin
         .getHooks(compilation)
-        .afterTemplateExecution.tap('InterpolateHtmlPlugin', data => {
+        .afterTemplateExecution.tap('InterpolateHtmlPlugin', (data) => {
           // Run HTML through a series of user-specified string replacements.
-          Object.keys(this.replacements).forEach(key => {
+          Object.keys(this.replacements).forEach((key) => {
             const value = this.replacements[key];
             data.html = data.html.replace(
               new RegExp('%' + key + '%', 'g'),
@@ -155,7 +152,7 @@ class InterpolateHtmlPlugin {
 }
 
 //将 static 目录替换成 git commit id 目录
-const modifyOutputPath = config => {
+const modifyOutputPath = (config) => {
   config.output.filename = config.output.filename.replace(
     'static/js',
     `${prefix}/js`
@@ -165,7 +162,7 @@ const modifyOutputPath = config => {
     `${prefix}/js`
   );
 
-  const loaders = config.module.rules.find(rule => Array.isArray(rule.oneOf))
+  const loaders = config.module.rules.find((rule) => Array.isArray(rule.oneOf))
     .oneOf;
 
   loaders
@@ -203,7 +200,7 @@ const modifyOutputPath = config => {
 //这个插件的作用是在拦截 `html-webpack-plugin`插件,将其输出的内容输出到 meta.json 上面,并且把版本信息写入 version.json
 class MyPlugin {
   apply(compiler) {
-    compiler.hooks.compilation.tap('MyPlugin', compilation => {
+    compiler.hooks.compilation.tap('MyPlugin', (compilation) => {
       HtmlWebpackPlugin.getHooks(compilation).afterTemplateExecution.tapAsync(
         'MyPlugin', // <-- Set a meaningful name here for stacktraces
         (data, cb) => {
@@ -255,9 +252,9 @@ if (process.env.DEPLOY_TYPE !== 'k8s') config = modifyOutputPath(config);
 
 下面说明具体步骤:
 
-1. 下载远程的 version.json 内容并合并到本地的 version.json
-2. 为了防止灰度选择版本失败,线上部署始终会保留一份 latest 文件夹.方便当取不到 git comit 时能够安全回退
-3. 覆盖上传
+1.  下载远程的 version.json 内容并合并到本地的 version.json
+2.  为了防止灰度选择版本失败,线上部署始终会保留一份 latest 文件夹.方便当取不到 git comit 时能够安全回退
+3.  覆盖上传
 
 ```javascript
 const cp = require('child_process');
@@ -410,20 +407,20 @@ module.exports = context => {
 
 ### 运行阶段
 
-运行代码的主要作用是读取远程的 version.json 文件,然后根据里面的 rate 字段在 [0-1]区间分配比例,之后通过 random 函数取一个随机值,看这个值最终落在哪个区间,之后读取选定的 version 里面的 meta.json 信息,动态拼接到 index.html 上面即可实现动态选择版本.
+运行代码的主要作用是读取远程的 version.json 文件,然后根据里面的 rate 字段在 \[0-1]区间分配比例,之后通过 random 函数取一个随机值,看这个值最终落在哪个区间,之后读取选定的 version 里面的 meta.json 信息,动态拼接到 index.html 上面即可实现动态选择版本.
 
-1. 默认情况下灰度发布不生效,全部使用 latest 版本,这也是第一个步骤生成的 version.json 里面 rate 是 0 的原因(主要懒得配置..)
+1.  默认情况下灰度发布不生效,全部使用 latest 版本,这也是第一个步骤生成的 version.json 里面 rate 是 0 的原因(主要懒得配置..)
 
 以下代码是直接写在项目 public 的 index.html 模板文件里面的,之后 `html-webpack-plugin` 插件会把里面的 `PUBLIC_URL` 和 `DEPLOY_TYPE`替换为真实值.
 
 ```html
 <script>
   //https://babeljs.io/repl
-  const getJSON = function(url, callback) {
+  const getJSON = function (url, callback) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
     xhr.responseType = 'json';
-    xhr.onload = function() {
+    xhr.onload = function () {
       var status = xhr.status;
       if (status === 200) {
         callback(null, xhr.response);
@@ -434,8 +431,8 @@ module.exports = context => {
     xhr.send();
   };
 
-  const choiceVersion = versions => {
-    const validVersions = versions.filter(version => version.comment);
+  const choiceVersion = (versions) => {
+    const validVersions = versions.filter((version) => version.comment);
     const total = validVersions.reduce((acc, cur) => acc + cur.rate, 0);
     if (total < 1) {
       validVersions.push({
@@ -457,21 +454,21 @@ module.exports = context => {
     const rate = Math.random();
 
     const target = ranged.find(
-      item => rate > item.range[0] && rate <= item.range[1]
+      (item) => rate > item.range[0] && rate <= item.range[1]
     );
 
     console.log('rate %s,target %o', rate, target);
     return target;
   };
   const applyVersion = (version, data) => {
-    data.forEach(function(item) {
+    data.forEach(function (item) {
       const node = document.createElement(item.tagName, {});
       if (item.innerHTML) node.innerHTML = item.innerHTML;
       Object.keys(item.attributes || {})
-        .filter(function(attributeName) {
+        .filter(function (attributeName) {
           return item.attributes[attributeName] !== false;
         })
-        .forEach(attributeName => {
+        .forEach((attributeName) => {
           node.setAttribute(attributeName, item.attributes[attributeName]);
         });
 
@@ -487,7 +484,7 @@ module.exports = context => {
       );
     });
   };
-  const loadTargetVersion = version => {
+  const loadTargetVersion = (version) => {
     getJSON(
       `%PUBLIC_URL%/${
         version.comment ? version.comment : 'latest'
@@ -519,6 +516,5 @@ module.exports = context => {
   if ('%DEPLOY_TYPE%' === 's3') loadAbTestFromRemote();
 </script>
 ```
-
 
 好了,一篇流水账完成..

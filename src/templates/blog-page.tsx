@@ -108,7 +108,11 @@ const BlogIndex = (props) => {
       <Hidden mdDown>
         <Box display="flex">
           <Main {...props} />
-          <Drawer variant="permanent" anchor="right" sx={{}}>
+          <Drawer
+            variant="permanent"
+            anchor="right"
+            sx={{ width: 16 * 8, '& .MuiPaper-root': { width: 16 * 8 } }}
+          >
             <Toolbar />
             <Profile />
           </Drawer>
@@ -152,7 +156,7 @@ export const pageQuery = graphql`
     }
     allMarkdownRemark(
       filter: { frontmatter: { visible: { ne: false } } }
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { fields: [frontmatter___created_at], order: DESC }
       limit: $limit
       skip: $skip
     ) {
@@ -162,8 +166,7 @@ export const pageQuery = graphql`
           excerpt
           frontmatter {
             tags
-            categories
-            date(formatString: "MMM DD, YYYY")
+            created_at
             title
             path
           }

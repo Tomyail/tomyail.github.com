@@ -107,7 +107,7 @@ export default {
 				{
 				  allMarkdownRemark(
 					limit: 1000,
-					sort: { order: DESC, fields: [frontmatter___date] },
+					sort: { order: DESC, fields: [frontmatter___created_at] },
 				  ) {
 					edges {
 					  node {
@@ -115,7 +115,7 @@ export default {
 						html
 						frontmatter {
 						  title
-						  date
+						  created_at
 						  path
 						}
 					  }

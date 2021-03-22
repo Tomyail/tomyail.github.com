@@ -1,12 +1,12 @@
 ---
 title: Nape的回调系统
 tags:
-  - Nape
-id: 1147
-categories:
   - 技术
-date: 2013-04-05T18:54:44.000Z
+  - Flash
+id: 1147
 path: /nape-callback/
+created_at: 2013-04-05T18:54:44.000Z
+updated_at: 2013-04-05T18:54:44.000Z
 ---
 
 Nape 的回调系统和 Flash 原生的事件系统还是有区别的,虽然它们的底层可能都是通过观察者模式来实现的,但是它们暴露给外部的 API 是不一样的,Flash 原生的事件系统中每个 EventDispatcher 是监听对象,但在 Nape 中监听对象只有 space,它通过匹配特定的模式来触发回调.
@@ -114,14 +114,14 @@ options = SPIKE.including(COLLECTABLE).excluding(COLLECTOR).excluding(SPIKEABLE)
 
 这里的 event 只接受两种类型(如果用的是 dev 版本,传入非法 event 会有人性化的报错)
 
-* CbEvent.SLEEP 目标休眠
-* CbEvent.WAKE 目标激活回调(handler)接受一个 BodyCallback 类型的参数,**返回 Void**
+- CbEvent.SLEEP 目标休眠
+- CbEvent.WAKE 目标激活回调(handler)接受一个 BodyCallback 类型的参数,**返回 Void**
 
 ##### **ConstraintListener:针对 Nape 里面物理约束的状态监听,先掠过**
 
-* CbEvent.SLEEP
-* CbEvent.WAKE
-* CbEvent.BREAK
+- CbEvent.SLEEP
+- CbEvent.WAKE
+- CbEvent.BREAK
 
 ##### InteractionListener:交互监听,可以用来监听两两刚体的交互状态
 
@@ -129,9 +129,9 @@ options = SPIKE.including(COLLECTABLE).excluding(COLLECTOR).excluding(SPIKEABLE)
 
 物体 1(options1)和物体 2(options2)在某时(event)发生某事(interactionType)时做什么(handler)
 
-* CbEvent.BEGIN 交互开始
-* CbEvent.ONGOING 紧接在 Begin 之后,表示正处于交互中
-* CbEvent.END 交互结束时回调(handler)接受一个 InteractionCallback 类型的参数,**返回 Void**
+- CbEvent.BEGIN 交互开始
+- CbEvent.ONGOING 紧接在 Begin 之后,表示正处于交互中
+- CbEvent.END 交互结束时回调(handler)接受一个 InteractionCallback 类型的参数,**返回 Void**
 
 ##### **PreListeners**
 

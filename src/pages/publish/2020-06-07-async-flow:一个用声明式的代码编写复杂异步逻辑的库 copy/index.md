@@ -1,11 +1,10 @@
 ---
 title: 博客文章样式测试
-categories:
-  - 技术
 tags:
-	- test
+  - 技术
 path: /test-for-blog-style/
-date: 2020-06-07T14:10:59.333Z
+created_at: 2021-03-20T14:10:59.333Z
+updated_at: 2021-03-20T14:10:59.333Z
 ---
 
 You will like those projects!
@@ -56,7 +55,7 @@ _This is italic text_
 
 _This is italic text_
 
-~~Strikethrough~~
+\~~Strikethrough~~
 
 ## Blockquotes
 
@@ -72,25 +71,37 @@ Unordered
 
 - Create a list by starting a line with `+`, `-`, or `*`
 - Sub-lists are made by indenting 2 spaces:
+
   - Marker character change forces new list start:
+
     - Ac tristique libero volutpat at
-    * Facilisis in pretium nisl aliquet
+
+    <!---->
+
+    - Facilisis in pretium nisl aliquet
+
+    <!---->
+
     - Nulla volutpat aliquam velit
+
 - Very easy!
 
 Ordered
 
-1. Lorem ipsum dolor sit amet
-2. Consectetur adipiscing elit
-3. Integer molestie lorem at massa
+1.  Lorem ipsum dolor sit amet
 
-4. You can use sequential numbers...
-5. ...or keep all the numbers as `1.`
+2.  Consectetur adipiscing elit
+
+3.  Integer molestie lorem at massa
+
+4.  You can use sequential numbers...
+
+5.  ...or keep all the numbers as `1.`
 
 Start numbering with offset:
 
 57. foo
-1. bar
+58. bar
 
 ## Code
 
@@ -176,27 +187,27 @@ see [how to change output](https://github.com/markdown-it/markdown-it-emoji#chan
 
 ### [\<ins>](https://github.com/markdown-it/markdown-it-ins)
 
-++Inserted text++
+\++Inserted text++
 
 ### [\<mark>](https://github.com/markdown-it/markdown-it-mark)
 
-==Marked text==
+\==Marked text==
 
 ### [Footnotes](https://github.com/markdown-it/markdown-it-footnote)
 
-Footnote 1 link[^first].
+Footnote 1 link\[^first].
 
-Footnote 2 link[^second].
+Footnote 2 link\[^second].
 
-Inline footnote^[Text of inline footnote] definition.
+Inline footnote^\[Text of inline footnote] definition.
 
-Duplicated footnote reference[^second].
+Duplicated footnote reference\[^second].
 
-[^first]: Footnote **can have markup**
+\[^first]: Footnote **can have markup**
 
     and multiple paragraphs.
 
-[^second]: Footnote text.
+\[^second]: Footnote text.
 
 ### [Definition lists](https://github.com/markdown-it/markdown-it-deflist)
 
@@ -216,11 +227,11 @@ Term 2 with _inline markup_
 _Compact style:_
 
 Term 1
-~ Definition 1
+\~ Definition 1
 
 Term 2
-~ Definition 2a
-~ Definition 2b
+\~ Definition 2a
+\~ Definition 2b
 
 ### [Abbreviations](https://github.com/markdown-it/markdown-it-abbr)
 
@@ -228,7 +239,7 @@ This is HTML abbreviation example.
 
 It converts "HTML", but keep intact partial entries like "xxxHTMLyyy" and so on.
 
-\*[HTML]: Hyper Text Markup Language
+\*\[HTML]: Hyper Text Markup Language
 
 ### [Custom containers](https://github.com/markdown-it/markdown-it-container)
 

@@ -281,7 +281,7 @@ const PostBody = ({ post, previous, next, siteUrl, classes }) => {
   };
   const theme = useTheme();
   const {
-    frontmatter: { categories = [], tags = [] },
+    frontmatter: { tags = [] },
   } = post;
   return (
     <Container className={classes.root} maxWidth={'md'}>
@@ -290,8 +290,9 @@ const PostBody = ({ post, previous, next, siteUrl, classes }) => {
           {post.frontmatter.title}
         </Typography>
         <Box display="flex" justifyContent="space-between">
-          <Box component="span">{post.frontmatter.date}</Box>
-          <Box component="span">{categories.join(',')}</Box>
+          <Box component="span">
+            {new Date(post.frontmatter.created_at).toLocaleDateString()}
+          </Box>
           <Box component="span">{tags.join(',')}</Box>
         </Box>
         <Box

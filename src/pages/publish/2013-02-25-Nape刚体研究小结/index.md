@@ -1,19 +1,19 @@
 ---
 title: Nape刚体研究小结
 tags:
-  - Nape
-id: 1065
-categories:
   - 技术
-date: 2013-02-24T20:18:06.000Z
+  - Flash
+id: 1065
 path: /nape-rigid/
+created_at: 2013-02-24T20:18:06.000Z
+updated_at: 2013-02-24T20:18:06.000Z
 ---
 
 ### Body 的类型:
 
-* BodyType.DYNAMIC(默认):用来模拟现实世界的刚体,拥有质量并且一旦加入 Nape 的空间(Space)里便会自动受到各种力的作用
-* BodyType.STATIC:不受各种力的作用(设置其 force 属性会报错)
-* BodyType.KINEMATIC:特征和静态刚体(STATIC Body)一样,但是可以设置其 velocity 属性来改变速度
+- BodyType.DYNAMIC(默认):用来模拟现实世界的刚体,拥有质量并且一旦加入 Nape 的空间(Space)里便会自动受到各种力的作用
+- BodyType.STATIC:不受各种力的作用(设置其 force 属性会报错)
+- BodyType.KINEMATIC:特征和静态刚体(STATIC Body)一样,但是可以设置其 velocity 属性来改变速度
   Body 不是简单的质点,所有的 Body 都是有形状和体积的,默认情况下都会进行碰撞检测.
 
 ### Shape:
@@ -40,12 +40,12 @@ drawShapeDetail 表示是否绘制重心,用**空心**方块表示.
 
 如下图:
 
-![](./nape_debug.png "nape_debug")
+![](./nape_debug.png 'nape_debug')
 
 Polygon 有两个静态方法 box 和 rect,两者的区别就是刚体两个心的位置
 
-* 利用 box 方法创建的 shape 重心和坐标原点都在方块的中央
-* 利用 rect 方法创建的 shape 原点在左上角,重心在形状的中心,所以下落时会绕原点进行旋转
+- 利用 box 方法创建的 shape 重心和坐标原点都在方块的中央
+- 利用 rect 方法创建的 shape 原点在左上角,重心在形状的中心,所以下落时会绕原点进行旋转
 
 ### 例子
 
@@ -66,7 +66,7 @@ trace(body.position); //输出(100,100)
 
 运行截图:
 
-![](./nape_box.png "nape_box")
+![](./nape_box.png 'nape_box')
 
 利用**box**创建的刚体重心和原点都在方块的中点
 
@@ -88,7 +88,7 @@ trace(body.position); //输出(100,100)
 
 运行截图:
 
-![](./nape_rect.png "nape_rect")
+![](./nape_rect.png 'nape_rect')
 
 利用 rect 创建的刚体重心原点在(100,100)的位置,也就是左上角.重心在(150,150)的位置,也就是刚体的形状中心.
 
@@ -113,7 +113,7 @@ trace(body.position); //输出(150,150)
 
 运行截图:
 
-![](./nape_algin.png "nape_algin")
+![](./nape_algin.png 'nape_algin')
 
 align()的作用是将坐标系原点移动到重心点上去.
 

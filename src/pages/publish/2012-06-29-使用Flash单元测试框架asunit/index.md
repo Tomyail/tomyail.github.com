@@ -1,13 +1,13 @@
 ---
 title: 使用Flash单元测试框架asunit
 tags:
-  - unittest
+  - 技术
+  - Unit-test
 id: 1045
 comment: false
-categories:
-  - 技术
-date: 2012-06-28T23:00:00.000Z
 path: /using-asunit/
+created_at: 2012-06-28T23:00:00.000Z
+updated_at: 2012-06-28T23:00:00.000Z
 ---
 
 ### 一些废话
@@ -102,25 +102,25 @@ fail</pre>
 
 asunit 提供的 meta 还是很丰富的，框架本身能识别如下形式的 meta
 
-- [Suit]：写在类前面，声明此 meta 的类 asunit 会自动实例化其公开属性并将其看作是一个小的单元测试类并执行其中的具体测试代码。
+- \[Suit]：写在类前面，声明此 meta 的类 asunit 会自动实例化其公开属性并将其看作是一个小的单元测试类并执行其中的具体测试代码。
 
-- [BeforeClass]：在单元测试类实例化之前执行，标记有该 meta 的函数应该是静态函数，一个测试类里面可以包含多个此标签，但无法精确控制每个函数的执行次序
+- \[BeforeClass]：在单元测试类实例化之前执行，标记有该 meta 的函数应该是静态函数，一个测试类里面可以包含多个此标签，但无法精确控制每个函数的执行次序
 
-- [Before]：在每个标记有 Test 的 meta 函数之前都会先执行此 meta 标记对应的函数
+- \[Before]：在每个标记有 Test 的 meta 函数之前都会先执行此 meta 标记对应的函数
 
-- [After]：在每个标记有 Test 的 meta 函数之后都会执行此 meta 标记对应的函数
+- \[After]：在每个标记有 Test 的 meta 函数之后都会执行此 meta 标记对应的函数
 
-- [AfterClass]：在单元测试类实例化之后执行，标记有该 meta 的函数应该是静态函数，一个测试类里面可以包含多个此标签，但无法精确控制每个函数的执行次序
+- \[AfterClass]：在单元测试类实例化之后执行，标记有该 meta 的函数应该是静态函数，一个测试类里面可以包含多个此标签，但无法精确控制每个函数的执行次序
 
-- [Test]：标记有此 meta 的函数表示需要测试
+- \[Test]：标记有此 meta 的函数表示需要测试
 
-- [Test(expects="someError")]：测试此函数并忽略特定的错误抛出
+- \[Test(expects="someError")]：测试此函数并忽略特定的错误抛出
 
-- [Test(order=2)]：order 越低执行优先级越高，可以是负数，默认是 0
+- \[Test(order=2)]：order 越低执行优先级越高，可以是负数，默认是 0
 
 asunit 内部对带有 meta 的函数执行了两次排序，第一次是按函数名字，第二次是按 order，所以对于没有标记有 order 的函数我们不能确定其执行的准确顺序
 
-- [Ignore]：这个 meta 可以和其他 meta 一起存在，标有该 meta 的函数将被忽略执行
+- \[Ignore]：这个 meta 可以和其他 meta 一起存在，标有该 meta 的函数将被忽略执行
 
 通过查看以下这个测试类对应的输出就能很清楚的了解这几个 meta 的执行逻辑了：
 
@@ -199,11 +199,11 @@ bc2
 [object ClassA] a
 ac</pre>
 
-- [RunWith(someclass)]&#x3A;用自定义的 Runner 代替框架内部的 Testunner 或者 SuiteRunner，需要实现 IRunner 接口，是个高级 meta 接口，如果使用 asmock 框架，需要利用此接口。
+- \[RunWith(someclass)]:用自定义的 Runner 代替框架内部的 Testunner 或者 SuiteRunner，需要实现 IRunner 接口，是个高级 meta 接口，如果使用 asmock 框架，需要利用此接口。
 
 还包括一个[swiftsuspenders](https://github.com/tschneidereit/SwiftSuspenders)框架实现的 meta
 
-- [Inject]&#x3A;利用此 meta 能够实现[依赖注入](http://www.martinfowler.com/articles/injection.html)，对于这项技术我还没有理解透彻，回头有时间看看这个框架以及 robotleg。利用这个 meta 我们能够在运行时获取 asunit 里面的几个对象
+- \[Inject]:利用此 meta 能够实现[依赖注入](http://www.martinfowler.com/articles/injection.html)，对于这项技术我还没有理解透彻，回头有时间看看这个框架以及 robotleg。利用这个 meta 我们能够在运行时获取 asunit 里面的几个对象
 
 1：async 异步测试需要用到此类
 

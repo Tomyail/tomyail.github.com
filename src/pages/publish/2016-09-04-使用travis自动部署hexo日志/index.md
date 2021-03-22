@@ -1,11 +1,11 @@
 ---
 title: 使用travis自动部署hexo日志
 tags:
-  - tip
-categories:
   - 技术
-date: 2016-09-04T15:44:21.000Z
+  - CI
 path: /writing-hexo-blog-with-travis-ci/
+created_at: 2016-09-04T15:44:21.000Z
+updated_at: 2016-09-04T15:44:21.000Z
 ---
 
 ## 起因
@@ -13,8 +13,8 @@ path: /writing-hexo-blog-with-travis-ci/
 最近打算好好写博客，所以又重新打理起了自己的日志。现在我写日记的流程基本是这样的。
 
 1.  首先本地有两个`git`目录`a`，`b`分别指向同一项目的不同分支。
-    2.  目录`a`对应`master`分支，是 hexo 发布后的内容
-    3.  目录`b`对应`draft`分支，是 hexo 的原始`markdown`内容
+    2\. 目录`a`对应`master`分支，是 hexo 发布后的内容
+    3\. 目录`b`对应`draft`分支，是 hexo 的原始`markdown`内容
 2.  想到一个主题
 3.  先用[mweb][1]在`b`目录的`draft`文件夹中写好内容
 4.  完成后使用`hexo publish {name}`把日志移到`post`文件夹
@@ -194,9 +194,9 @@ oauth 的方式需要使用`github-token`，上面文章有提到，你需要先
 
 程序员就得懒，能自动做掉的尽量自动化，保持 dry 原则。travis 能配置的东西很多,此文章只是用来入门以及记录自己遇到的坑。更多细节需要查阅 travis 文档以及对 shell 脚本有一定的了解。
 
-[1]: http://zh.mweb.im/ "mweb"
+[1]: http://zh.mweb.im/ 'mweb'
 [2]: https://github.com/Tomyail/tomyail.github.com/blob/draft/script/publish.sh
-[3]: http://chris.beams.io/posts/git-commit/ "How to Write a Git Commit Message"
+[3]: http://chris.beams.io/posts/git-commit/ 'How to Write a Git Commit Message'
 [4]: http://www.ruanyifeng.com/blog/2015/09/continuous-integration.html
 [5]: https://travis-ci.org/
 [6]: http://w3cboy.com/post/2016/03/travisci-hexo-deploy/
@@ -207,7 +207,7 @@ oauth 的方式需要使用`github-token`，上面文章有提到，你需要先
 [11]: https://developer.github.com/guides/using-ssh-agent-forwarding/
 [12]: http://www.unixwiz.net/techtips/ssh-agent-forwarding.html
 [13]: https://wiki.archlinux.org/index.php/SSH_keys_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
-[14]: https://gist.github.com/gubatron/d96594d982c5043be6d4 "multiple-deploy-keys-multiple-private-repos-github-ssh-config.md"
+[14]: https://gist.github.com/gubatron/d96594d982c5043be6d4 'multiple-deploy-keys-multiple-private-repos-github-ssh-config.md'
 [img1]: ./2016-09-04-travis-setting1.jpg
 [img2]: ./2016-09-04-travis-setting2.jpg
 [img3]: ./2016-09-10-add-custom-env-var.jpg

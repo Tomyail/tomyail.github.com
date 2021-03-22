@@ -1,8 +1,8 @@
-const { filterMarkdown } = require('./filterMarkdown');
+const { filterMarkdowns } = require('./markdown-support');
 const path = require('path');
 const yaml = require('js-yaml');
 
-filterMarkdown({
+filterMarkdowns({
   inputDir: path.join(__dirname, '..', 'src/pages/publish'),
   markdownFilter: ({ path, file }) => {
     if (file.children[0].type !== 'yaml') {
@@ -12,7 +12,7 @@ filterMarkdown({
 
     const frontmatter = yaml.load(file.children[0].value);
 
-    if (!frontmatter.tags || !frontmatter.categories) {
+    if (!frontmatter.tags ) {
       return true;
     }
     return false;

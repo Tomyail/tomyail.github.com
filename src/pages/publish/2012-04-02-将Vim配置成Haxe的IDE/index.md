@@ -1,14 +1,13 @@
 ---
 title: 将Vim配置成Haxe的IDE
 tags:
-  - Haxe
-  - VIM
+  - 技术
+  - Vim
 id: 967
 comment: true
-categories:
-  - 技术
-date: 2012-04-02T12:11:32.000Z
 path: /vim-hexe-ide/
+created_at: 2012-04-02T12:11:32.000Z
+updated_at: 2012-04-02T12:11:32.000Z
 ---
 
 将 Vim 作为 Haxe IDE 的过程基本完成，留此文备忘。
@@ -39,7 +38,7 @@ path: /vim-hexe-ide/
 
 之后打开 nape 项目里的 cx 文件，代码亮了!
 
-按照 vim-haxe 的 readme 文件，按&lt;Ctrl+X>&lt;Ctrl+O>   和&lt;Ctrl+X>&lt;Ctrl+U>能自动补全，我按了前一个弹出要我指定 hxml 文件，于是我写了一个，但之后报什么"List 作 String 使用”之类的一大堆错误 (- -!!!)
+按照 vim-haxe 的 readme 文件，按\<Ctrl+X>\<Ctrl+O>   和\<Ctrl+X>\<Ctrl+U>能自动补全，我按了前一个弹出要我指定 hxml 文件，于是我写了一个，但之后报什么"List 作 String 使用”之类的一大堆错误 (- -!!!)
 
 另外 vim 输入
 
@@ -67,7 +66,7 @@ path: /vim-hexe-ide/
 
 <pre>ctags -R</pre>
 
-就会发现多出一个 tags 文件，里面是各种函数变量的定义，验证 tags 是否有效的方法就是将光标移到一个方法或者类上面，按&lt;CTRL+]>看能否跳到指定的定义上面去。
+就会发现多出一个 tags 文件，里面是各种函数变量的定义，验证 tags 是否有效的方法就是将光标移到一个方法或者类上面，按\<CTRL+]>看能否跳到指定的定义上面去。
 
 2:WinManager
 
@@ -95,13 +94,13 @@ let Tlist_Exit_OnlyWindow=1</pre>
 
 <pre>:set tags+=/haxe-src/tags</pre>
 
-<del>此时发现输入&lt;c_x>&lt;c_o>以及&lt;c_x>&lt;c_u>能偶尔出来代码提示，真心的偶尔...</del>
+<del>此时发现输入\<c_x>\<c_o>以及\<c_x>\<c_u>能偶尔出来代码提示，真心的偶尔...</del>
 
 更新：
 
 经过一段时间是试用以及其 vim 源码的阅读，发现这个插件大致是这么用的：
 
-1：如果你是双击一个 hx 文件直接用 vim 打开，当输入&lt;c_x>&lt;c_o>时会在根目录里寻找 hxml 文件
+1：如果你是双击一个 hx 文件直接用 vim 打开，当输入\<c_x>\<c_o>时会在根目录里寻找 hxml 文件
 
 2：如果你在有 hx 文件的目录先打开终端，然后通过终端用 vim 打开 hx 文件，此时插件会去当前目录里面寻找。
 
@@ -111,11 +110,11 @@ let Tlist_Exit_OnlyWindow=1</pre>
 
 5：当指定 hxml 文件时，插件在每次保存(:w)时都会编译一次，如果有错误会在 quickfix 里面提示。
 
-结论：如果你的 hxml 指令很多，能通过&lt;c_x>&lt;c_o>载入自己的 hxml 最好。只是简单的运行的话可以用 2 方式选择自动生成 hxml 代码并运行。如果你会编写 makefile 文件，可以将 hxml 文件的指令写到 makefile 里面，然后用插件自带的脚本作为代码提示的条件（因为你按&lt;c_x>&lt;c_o>时就会提示你选择 hxml 文件）。
+结论：如果你的 hxml 指令很多，能通过\<c_x>\<c_o>载入自己的 hxml 最好。只是简单的运行的话可以用 2 方式选择自动生成 hxml 代码并运行。如果你会编写 makefile 文件，可以将 hxml 文件的指令写到 makefile 里面，然后用插件自带的脚本作为代码提示的条件（因为你按\<c_x>\<c_o>时就会提示你选择 hxml 文件）。
 
 最后截图留念..
 
-![](<./DummyNapeMain.cx + (~-Develop-source-haxe-nape-cx-src) - VIM_024.png> "DummyNapeMain.cx + (~-Develop-source-haxe-nape-cx-src) - VIM_024")
+![](<./DummyNapeMain.cx + (~-Develop-source-haxe-nape-cx-src) - VIM_024.png> 'DummyNapeMain.cx + (~-Develop-source-haxe-nape-cx-src) - VIM_024')
 
 补充：
 

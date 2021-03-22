@@ -1,18 +1,16 @@
 ---
 title: 在Starling框架里使用Box2D
 tags:
-  - Actionscript3
-  - Box2D
-  - Starling
+  - 技术
+  - Flash
 id: 960
 comment: false
-categories:
-  - 技术
-date: 2012-02-27T22:29:16.000Z
 path: /using-box2d-in-starling/
+created_at: 2012-02-27T22:29:16.000Z
+updated_at: 2012-02-27T22:29:16.000Z
 ---
 
-前面的那篇入门文章介绍了[如何使用 Box2D](http://tomyail.com/blog/?p=954 "Box2D使用笔记"),并且掌握了内置的渲染方法。
+前面的那篇入门文章介绍了[如何使用 Box2D](http://tomyail.com/blog/?p=954 'Box2D使用笔记'),并且掌握了内置的渲染方法。
 
 如果我们将渲染工作交给 Starling 工作该怎么做么，贴代码：
 

@@ -1,12 +1,12 @@
 ---
 title: unity 4.6关于RectTransform的一些研究
 tags:
+  - 技术
   - Unity
 id: 1259
-categories:
-  - 技术
-date: 2015-01-30T10:42:58.000Z
 path: /unity-rect-transform/
+created_at: 2015-01-30T10:42:58.000Z
+updated_at: 2015-01-30T10:42:58.000Z
 ---
 
 ### 坐标
@@ -39,11 +39,11 @@ unity 里面的坐标是笛卡尔坐标系,和 flash 的还是有区别的..
 
 也就说说锚点和角决定尺寸,锚点和中心点决定位置.
 
-![Image4](./Image[4].gif "Image[4]")
+![Image4](./Image[4].gif 'Image[4]')
 
 在这张图里,最上面四个小三角就是四个锚点,周围四个实心的点是 RectTransform 的角,中间的圆环就是中心点,四个锚点在一起,所以对象的尺寸没有随父容器尺寸的变化而变化.
 
-![Image(1)[4]](<./Image(1)[4].gif> "Image(1)[4]")
+![Image(1)[4]](<./Image(1)[4].gif> 'Image(1)[4]')
 
 在这张图里面水平锚点被分开了,所以对象的宽度会随着父容器尺寸的变化而变化.
 

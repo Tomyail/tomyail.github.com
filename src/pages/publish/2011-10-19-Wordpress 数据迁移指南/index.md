@@ -2,12 +2,11 @@
 title: Wordpress 数据迁移指南
 id: 922
 comment: true
-categories:
-  - 技术
-date: 2011-10-18T23:07:42.000Z
 tags:
-	- 技术
+  - 技术
 path: /wordpress-migration/
+created_at: 2011-10-18T23:07:42.000Z
+updated_at: 2011-10-18T23:07:42.000Z
 ---
 
 0:清除本地 wp 的数据表，仅保留 wp-users 表及 wp-options 表

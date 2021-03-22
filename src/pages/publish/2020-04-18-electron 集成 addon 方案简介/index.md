@@ -1,12 +1,11 @@
 ---
 title: electron 集成 addon 方案简介
-categories:
-  - 技术
 tags:
-  - electron
-  - node-addon
+  - 技术
+  - Electron
 path: /introducing-node-addon-development-with-electron/
-date: 2020-04-18T13:10:59.333Z
+created_at: 2020-04-18T13:10:59.333Z
+updated_at: 2020-04-18T13:10:59.333Z
 ---
 
 ## addon 简介
@@ -57,9 +56,7 @@ addon 的事后 debug 和 js 差不多. 首先编译后的时候把 sourcemap �
 
 解决方法是安装 32 位 electron（用 64 位 electron 编译没用的）
 
-```
-npm install --arch=ia32 electron
-```
+    npm install --arch=ia32 electron
 
 之后再 package.json 里面定义 `arch:ia32`
 
