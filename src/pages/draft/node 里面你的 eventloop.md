@@ -1,42 +1,49 @@
-
 首先看一篇非常好的事件循环文章
 
 https://blog.risingstack.com/node-js-at-scale-understanding-node-js-event-loop/#event-loop
 
 但是这篇文章里面说的这段代码:
 
-```js
-console.log('script start')
+```javascript
+console.log('script start');
 
 const interval = setInterval(() => {
-  console.log('setInterval')
-}, 0)
+  console.log('setInterval');
+}, 0);
 
 setTimeout(() => {
-  console.log('setTimeout 1')
-  Promise.resolve().then(() => {
-    console.log('promise 3')
-  }).then(() => {
-    console.log('promise 4')
-  }).then(() => {
-    setTimeout(() => {
-      console.log('setTimeout 2')
-      Promise.resolve().then(() => {
-        console.log('promise 5')
-      }).then(() => {
-        console.log('promise 6')
-      }).then(() => {
-        clearInterval(interval)
-      })
-    }, 0)
-  })
-}, 0)
+  console.log('setTimeout 1');
+  Promise.resolve()
+    .then(() => {
+      console.log('promise 3');
+    })
+    .then(() => {
+      console.log('promise 4');
+    })
+    .then(() => {
+      setTimeout(() => {
+        console.log('setTimeout 2');
+        Promise.resolve()
+          .then(() => {
+            console.log('promise 5');
+          })
+          .then(() => {
+            console.log('promise 6');
+          })
+          .then(() => {
+            clearInterval(interval);
+          });
+      }, 0);
+    });
+}, 0);
 
-Promise.resolve().then(() => {
-  console.log('promise 1')
-}).then(() => {
-  console.log('promise 2')
-})
+Promise.resolve()
+  .then(() => {
+    console.log('promise 1');
+  })
+  .then(() => {
+    console.log('promise 2');
+  });
 ```
 
 文章认为的输出是:
@@ -56,8 +63,8 @@ promise5
 promise6
 ```
 
-
 然而我在浏览器里面里面的输出:
+
 ```
 script start
 VM111:28 promise 1
@@ -75,6 +82,6 @@ VM111:19 promise 6
 
 最后发现文章里面有人和我有同样的疑问
 
-最好定位到了 nodej 的一个issue:
+最好定位到了 nodej 的一个 issue:
 
 https://github.com/nodejs/node/issues/15081

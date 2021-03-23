@@ -64,7 +64,7 @@ namespace Script
 
 ### 输出
 
-```js
+```text
 1;
 3;
 2;
@@ -119,10 +119,12 @@ namespace Script
 
 ### 输出
 
-    111/14/2014 14:34:57
-    End yieldFun2
-    211/14/2014 14:34:58
-    311/14/2014 14:34:59
+```text
+111/14/2014 14:34:57
+End yieldFun2
+211/14/2014 14:34:58
+311/14/2014 14:34:59
+```
 
 ### 结论(没有源码,都是推论)
 
@@ -149,7 +151,7 @@ yield return new WaitForSeconds(1f);
 
 第三块
 
-```js
+```csharp
 Debug.Log('3' + DateTime.Now);
 ```
 
@@ -239,9 +241,11 @@ namespace Script
 
 ### 输出
 
-    1:111/14/2014 17:42:03
-    311/14/2014 17:42:03
-    311/14/2014 17:42:04
+```text
+1:111/14/2014 17:42:03
+311/14/2014 17:42:03
+311/14/2014 17:42:04
+```
 
 ### 结论
 
@@ -258,10 +262,12 @@ yield return <expression>;
 
 这里的`<expression>`在 Unity 中可以多种对象
 
-    基本数据对象:立即结束
-    YieldInstruction对象,包括(WaitForSeconds,WaitForFixedUpdate):等待时间或者等待更新完毕
-    WWW对象:下载完毕
-    自定义
+```text
+基本数据对象:立即结束
+YieldInstruction对象,包括(WaitForSeconds,WaitForFixedUpdate):等待时间或者等待更新完毕
+WWW对象:下载完毕
+自定义
+```
 
 ### 例子
 

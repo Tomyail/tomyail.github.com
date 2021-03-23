@@ -41,20 +41,7 @@ const style = (theme: Theme) => {
         marginTop: -96, // Offset for the anchor.
         position: 'absolute',
       },
-      // '& .gatsby-highlight pre[class*="language-"]:after': {
-      //   content: '"js"',
-      //   background: "#f7df1e",
-      //   color: "black",
-      //   borderRadius: "0 0 0.25rem 0.25rem",
-      //   fontSize: "12px",
-      //   letterSpacing: "0.025rem",
-      //   padding: "0.1rem 0.5rem",
-      //   position: "absolute",
-      //   right: "1rem",
-      //   textAlign: "right",
-      //   texttransform: "uppercase",
-      //   top: 0,
-      // },
+
       '& pre': {
         position: 'relative',
         margin: theme.spacing(3, 'auto'),
@@ -70,10 +57,32 @@ const style = (theme: Theme) => {
         },
       },
 
-      // '& code[class*="language-"]': {
-      //   // Avoid layout jump after hydration (style injected by prism)
-      //   lineHeight: 1.5,
-      // },
+      //lang tag
+      '& .gatsby-highlight': {
+        position: 'relative',
+      },
+
+      '& div[data-language="javascript"]:before': {
+        color: 'red',
+        content: '"js"',
+        zIndex: 1,
+        left: theme.spacing(2),
+        top: 0,
+        position: 'absolute',
+      },
+
+      '& div[data-language="typescript"]:before': {
+        color: 'red',
+        content: '"ts"',
+      },
+
+      '& div[data-language="json"]:before': {
+        color: 'red',
+        content: '"json"',
+      },
+
+      //end lang tag:w
+
       // // only  inline code
       '& :not(pre) > code[class*="language-"]': {
         direction: 'ltr',

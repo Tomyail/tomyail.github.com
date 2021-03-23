@@ -110,10 +110,12 @@ Inline `code`
 
 Indented code
 
-    // Some comments
-    line 1 of code
-    line 2 of code
-    line 3 of code
+```text
+// Some comments
+line 1 of code
+line 2 of code
+line 3 of code
+```
 
 Block code "fences"
 
@@ -123,7 +125,7 @@ Sample text here...
 
 Syntax highlighting
 
-```js{numberLines: 5}
+```javascript
 var foo = function (bar) {
   return bar++; // highlight-line
 };
@@ -206,7 +208,9 @@ Duplicated footnote reference\[^second].
 
 \[^first]: Footnote **can have markup**
 
-    and multiple paragraphs.
+```text
+and multiple paragraphs.
+```
 
 \[^second]: Footnote text.
 
@@ -221,9 +225,11 @@ Term 2 with _inline markup_
 
 : Definition 2
 
-        { some code, part of Definition 2 }
+```text
+    { some code, part of Definition 2 }
 
-    Third paragraph of definition 2.
+Third paragraph of definition 2.
+```
 
 _Compact style:_
 

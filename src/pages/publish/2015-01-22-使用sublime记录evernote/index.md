@@ -48,7 +48,7 @@ evernote 插件只在 sublime 3 中使用,2 中木有,所以需要先升级到 s
 
 这个是官网推荐的配置,还挺合手..
 
-```js
+```json
 [
   {
     keys: ['super+e'],

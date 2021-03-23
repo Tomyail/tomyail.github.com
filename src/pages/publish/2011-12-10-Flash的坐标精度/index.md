@@ -51,7 +51,7 @@ protected function updateFrame(event:Event):void
 
 打印第二段代码里面的 trace 的结果：
 
-```
+```text
 preX 49.87820251299122 curX 49.80973490458729 fishX 49.8
 preX 49.80973490458729 curX 49.72609476841368 fishX 49.7
 preX 49.72609476841368 curX 49.627307582066116 fishX 49.6

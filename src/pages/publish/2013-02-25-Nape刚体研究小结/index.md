@@ -51,7 +51,7 @@ Polygon 有两个静态方法 box 和 rect,两者的区别就是刚体两个心�
 
 #### (1):利用 box 函数创建刚体测试
 
-```js
+```actionscript
 body = new Body(BodyType.KINEMATIC);
 shape = new Polygon(Polygon.box(100, 100));
 body.shapes.add(shape);
@@ -72,7 +72,7 @@ trace(body.position); //输出(100,100)
 
 #### (2):利用 rect 函数创建刚体测试
 
-```js
+```actionscript
 body = new Body(BodyType.KINEMATIC);
 shape = new Polygon(Polygon.rect(0, 0, 100, 100));
 body.shapes.add(shape);
@@ -96,7 +96,7 @@ trace(body.position); //输出(100,100)
 
 #### (3)测试 algin()的作用
 
-```js
+```actionscript
 body = new Body(BodyType.KINEMATIC);
 shape = new Polygon(Polygon.rect(0, 0, 100, 100));
 body.shapes.add(shape);

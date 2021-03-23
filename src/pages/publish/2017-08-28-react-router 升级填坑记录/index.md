@@ -13,10 +13,12 @@ updated_at: 2017-08-27T22:27:14.000Z
 
 ReactRouter3 升级到 4,个人觉得最大的变化是去掉了钩子函数,当匹配到路由规则后,直接渲染对应的组件.
 
-                      onEnter
-    v3  match route +----------> render component
+```text
+                  onEnter
+v3  match route +----------> render component
 
-    v4  match route +----------> render component
+v4  match route +----------> render component
+```
 
 在 v3 里面,当路径匹配之后, `Route` 会首先触发其 `onEnter` 钩子,在这个钩子里面,我们可以做一些自己的业务逻辑,比如获取用户数据,鉴权等操作, **我们可以等这些异步操作完成之后调用回调函数,等回调函数触发后才会渲染目标组件**,换句话说如果没有触发 `onEnter` 的回调函数,所有对应的路由组件都不会 mount 渲染.
 
@@ -35,7 +37,7 @@ ReactRouter3 升级到 4,个人觉得最大的变化是去掉了钩子函数,当
 
 在 V3 版本里面代码大致是这样的:
 
-```js
+```javascript
 <Route path="/" component={Home} onEnter={startup}>
   <Route path="users" components={User}>
     <Route path="list" component={List} />k
@@ -52,7 +54,7 @@ ReactRouter3 升级到 4,个人觉得最大的变化是去掉了钩子函数,当
 
 更好的解决方案可能是改 app 的启动逻辑,改成类似如下的代码:
 
-```js
+```javascript
 import { Route, withRouter } from 'react-router';
 function mapStateToProps(state) {
   return {
@@ -86,7 +88,7 @@ export default class AppRoute extends Component {
 
 另外 v4 版本的路由全部是动态的,所以 path 必须写完整,如果想和 v3 那样自动是相对路由,可以这么写:
 
-```js
+```javascript
 import { Route, withRouter } from 'react-router';
 function mapStateToProps(state) {
   return {

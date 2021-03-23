@@ -11,7 +11,7 @@ updated_at: 2016-03-23T19:02:30.000Z
 
 安装 electron 的时候会下载`electron-prebuilt`,`electron-prebuilt`是一个 zip 包，默认被托管在 github 上，在某些网络下下载会非常慢。通过查看[electron-download](https://github.com/electron-userland/electron-download/blob/master/index.js)的源码和 readme 知道，其实是可以换下载地址的
 
-```js
+```javascript
 var url =
   process.env.NPM_CONFIG_ELECTRON_MIRROR ||
   process.env.ELECTRON_MIRROR ||
@@ -41,6 +41,8 @@ export ELECTRON_MIRROR="https://npm.taobao.org/mirrors/electron/"
 
 缓存的默认地址在:
 
-    $HOME/.electron
+```text
+$HOME/.electron
+```
 
 通过添加`ELECTRON_CUSTOM_DIR`可以自定义缓存目录，方法同上。

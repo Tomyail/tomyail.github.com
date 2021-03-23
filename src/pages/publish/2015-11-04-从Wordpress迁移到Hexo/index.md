@@ -74,19 +74,21 @@ updated_at: 2015-11-04T14:20:29.000Z
 
 老的资源管理格式,图片和文章使用了两个并列的目录结构,就像这个样子.
 
-    ├── source
-    │   ├── _drafts
-    │   │   ├── elasticsearch.md
-    │   │   ├── js-native-app.md
-    │   │   └── shadowsocks-on-netgear-R6300-v2.md
-    │   ├── _posts
-    │   │   ├── alpha-error.md
-    │   │   ├── as2-class-question.md
-    │   │   ├── assess-test.md
-    │   ├── images
-    │   │   ├── default_avatar.jpg
-    │   │   └── uploads
-    │   │       └── default_avatar.jpg
+```text
+├── source
+│   ├── _drafts
+│   │   ├── elasticsearch.md
+│   │   ├── js-native-app.md
+│   │   └── shadowsocks-on-netgear-R6300-v2.md
+│   ├── _posts
+│   │   ├── alpha-error.md
+│   │   ├── as2-class-question.md
+│   │   ├── assess-test.md
+│   ├── images
+│   │   ├── default_avatar.jpg
+│   │   └── uploads
+│   │       └── default_avatar.jpg
+```
 
 所以如果在 Mou 里面引用图片,需要加上`..`返回父目录,但用了`..`会出现首页显示问题.
 
@@ -98,28 +100,32 @@ updated_at: 2015-11-04T14:20:29.000Z
 
 至于 md 里面具体怎么引用,下面两种方式都是可以的:
 
-    ![test](/assess-test/default_avatar.jpg)
-    {% asset_img default_avatar.jpg test %}
+```text
+![test](/assess-test/default_avatar.jpg)
+{% asset_img default_avatar.jpg test %}
+```
 
 我更倾向前者,虽然麻烦,但是是标准的 markdown 写法,不用 hexo 处理也能在别的地方显示.
 
 这是使用资源文件夹方式后的文件夹路径
 
-    ├── source
-    │   ├── _drafts
-    │   │   ├── elasticsearch.md
-    │   │   ├── js-native-app.md
-    │   │   └── shadowsocks-on-netgear-R6300-v2.md
-    │   ├── _posts
-    │   │   ├── alpha-error.md
-    │   │   ├── as2-class-question.md
-    │   │   ├── assess-test
-    │   │   │   └── default_avatar.jpg
-    │   │   ├── assess-test.md
-    │   ├── images
-    │   │   ├── default_avatar.jpg
-    │   │   └── uploads
-    │   │       └── default_avatar.jpg
+```text
+├── source
+│   ├── _drafts
+│   │   ├── elasticsearch.md
+│   │   ├── js-native-app.md
+│   │   └── shadowsocks-on-netgear-R6300-v2.md
+│   ├── _posts
+│   │   ├── alpha-error.md
+│   │   ├── as2-class-question.md
+│   │   ├── assess-test
+│   │   │   └── default_avatar.jpg
+│   │   ├── assess-test.md
+│   ├── images
+│   │   ├── default_avatar.jpg
+│   │   └── uploads
+│   │       └── default_avatar.jpg
+```
 
 ### 更新配置
 

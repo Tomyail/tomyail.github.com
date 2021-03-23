@@ -49,19 +49,21 @@ npm init
 
 假定有如下代码结构.我们想让 Child 继承 Base,并且能在 App.js 里面调用.
 
-    .
-    ├── app
-    │   ├── Base.js
-    │   ├── Child.js
-    │   └── App.js
-    └── node_modules
-        └── moment
+```text
+.
+├── app
+│   ├── Base.js
+│   ├── Child.js
+│   └── App.js
+└── node_modules
+    └── moment
+```
 
 nodejs 里面模块的导出使用`module.export`来实现
 
 `Base.js`:
 
-```js
+```javascript
 //http://www.ruanyifeng.com/blog/2012/10/javascript_module.html
 //http://www.cnblogs.com/dolphinX/p/3485260.html
 //https://stackoverflow.com/questions/15014133/util-inherits-how-to-call-method-of-super-on-instance
@@ -102,7 +104,7 @@ module.exports = Base;
 
 `Child.js`
 
-```js
+```javascript
 //https://stackoverflow.com/questions/15014133/util-inherits-how-to-call-method-of-super-on-instance
 var utils = require('util');
 var Base = require('./Base');
@@ -139,7 +141,7 @@ module.exports = Child;
 
 `App.js`
 
-```js
+```javascript
 var Child = require('./Child');
 
 var child = new Child('child');
