@@ -54,16 +54,18 @@ mask 是-1,二进制是 11...11.
 
 filter 版本小球碰撞的源码:
 
-    private function testSimpleFilter():void
+```actionscript
+private function testSimpleFilter():void
+{
+    createBall(10, 5, 5, new Material(Number.POSITIVE_INFINITY));
+    var box:Body = createBox(100, 10, BodyType.KINEMATIC, 50, 100);
+    new PushButton(this, 200, 100, "swap:filter", clickCallback);
+    function clickCallback(e:MouseEvent):void
     {
-        createBall(10, 5, 5, new Material(Number.POSITIVE_INFINITY));
-        var box:Body = createBox(100, 10, BodyType.KINEMATIC, 50, 100);
-        new PushButton(this, 200, 100, "swap:filter", clickCallback);
-        function clickCallback(e:MouseEvent):void
-        {
-            box.shapes.at(0).filter.collisionMask = ~box.shapes.at(0).filter.collisionMask;
-        }
+        box.shapes.at(0).filter.collisionMask = ~box.shapes.at(0).filter.collisionMask;
     }
+}
+```
 
 ###### 使用 InteractionFilters 的一般思路是
 
@@ -113,7 +115,8 @@ C 的 mask 是 001 也就是十进制的 1;
 
 控制三组对象碰撞关系的 filter 版本源码:
 
-<pre>private function testMultiFilter():void
+```as
+private function testMultiFilter():void
 {
 
     var Ba1:Body = createBall(10,110,100);
@@ -142,7 +145,8 @@ C 的 mask 是 001 也就是十进制的 1;
 
     Bc1.shapes.at(0).filter.collisionMask = ~(4|2);
     Bc2.shapes.at(0).filter.collisionMask = ~(4|2);
-}</pre>
+}
+```
 
 所有 group 的按位和操作必须是 0,如果不是会怎么样呢?做个实验就知道了.
 
@@ -192,7 +196,8 @@ Filter 只是 Shape 的属性,Nape 为 Interactor 类提供了 group 属性,这�
 
 group 版本小球碰撞的源码:
 
-<pre>private function testSimpleGroup():void
+```as
+private function testSimpleGroup():void
 {
     var group:InteractionGroup = new InteractionGroup();
     var ball:Body = createBall(10, 5, 5, new Material(Number.POSITIVE_INFINITY));
@@ -203,11 +208,13 @@ group 版本小球碰撞的源码:
     {
         group.ignore = !group.ignore;
     }
-}</pre>
+}
+```
 
 控制三组对象碰撞关系的 group 版本源码:
 
-<pre>private function testMultiGroup():void
+````as
+private function testMultiGroup():void
 {
     var groupA:InteractionGroup = new InteractionGroup(true);
     var groupB:InteractionGroup = new InteractionGroup(false);
@@ -240,11 +247,12 @@ group 版本小球碰撞的源码:
     var Bc2:Body = createBall(100,100,100);
     Bc1.group = groupC;
     Bc2.group = groupC;
-}</pre>
+}
+```as
 
 图示:
 
-[![InteractionGroup](./InteractionGroup.png 'InteractionGroup')](/images/uploads/2013/03/InteractionGroup.png)
+[![InteractionGroup](./InteractionGroup.png "InteractionGroup")](/images/uploads/2013/03/InteractionGroup.png)
 
 在这个例子中用到了 InteractionGroup 的一个树结构的特征.也就是任何 InteractionGroup 都有一个 group 属性说明这个 group 的父 group 是什么.这个 group 是一个列表所以支持
 
@@ -256,17 +264,24 @@ groupA.group = groupAC;
 
 对于多次嵌套树结构,需要通过查找他们的最近共同祖先(MRCA)来确定是属于哪一个 group 的.这里拿官方手册上的例子好了.
 
-<pre>           Group1
+
+````
+
+           Group1
           /   |
          /  Group2      Group3
         /    |    \       |
     Body1   /      Cmp1   |
-   /    \  /      /    \  |
-Shp1   Shp2   Body2     Cmp2
-                |         |
-               Shp3     Body3
-                          |
-                        Shp4</pre>
+
+/ \ / / \ |
+Shp1 Shp2 Body2 Cmp2
+| |
+Shp3 Body3
+|
+Shp4
+
+```
+
 
 这是它们的原始结构关系,这里着重看看 shape 之间的关系.
 
@@ -284,17 +299,26 @@ Shp4 依次往上递归得到碰到的第一个 group 是 G3.
 
 2:结合这几个 Group 的关系就能确定最终得到的 Group 关系图:
 
-<pre>        Group1
+```
+
+        Group1
         /   \           Group3
     Shp1    Group2        |
             /    \      Shp4
-         Shp2    Shp3</pre>
+         Shp2    Shp3
 
-<span style="text-decoration: line-through;">MRCA(Shp1, Shp2) == Group1</span>;//Shp1 和 Shp2 属于同一个刚体,所以他们是一起运动的也就不存在交互作用了.
+```
+
+
+```
+
+MRCA(Shp1, Shp2) == Group1;//Shp1 和 Shp2 属于同一个刚体,所以他们是一起运动的也就不存在交互作用了.
 
 MRCA(Shp1, Shp3) == Group1;
 
 MRCA(Shp2, Shp3) == Group2;
+
+```
 
 Shp4 是孤立的,所以不存在 Shp1 和 Shp4 之类的交互控制,**所以 Shp4 和所有其他对象默认都是发生碰撞的**.
 
@@ -332,4 +356,5 @@ Shp4 是孤立的,所以不存在 Shp1 和 Shp4 之类的交互控制,**所以 S
 
 求两个节点的最近共同祖先(下图:来自<http://www.haogongju.net/art/581937>)
 
-[![Image(1)](<./Image(1).png> 'Image(1)')](/images/uploads/2013/03/Image1.png)
+[![Image(1)](./Image\(1\).png "Image(1)")](/images/uploads/2013/03/Image1.png)
+```

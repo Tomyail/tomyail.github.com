@@ -75,39 +75,43 @@ rect 的 x 和 y 返回左下角相对于中心点的距离,w 和 h 返回本身
 
 overlay 模式就是 position,否则是世界坐标,需要 worldtoscreen 进行转换
 
-    private Vector3 GetSpacePos(RectTransform rect, Canvas canvas, Camera camera)
+```csharp
+private Vector3 GetSpacePos(RectTransform rect, Canvas canvas, Camera camera)
+{
+    if (canvas.renderMode == RenderMode.ScreenSpaceOverlay)
     {
-        if (canvas.renderMode == RenderMode.ScreenSpaceOverlay)
-        {
-            return rect.position;
-        }
-        return camera.WorldToScreenPoint(rect.position);
-
+        return rect.position;
     }
+    return camera.WorldToScreenPoint(rect.position);
+
+}
+```
 
 ##### GetWorldCorners
 
 返回四个角的世界坐标,对应的屏幕坐标依然和渲染模式有关
 
-    private void GetSpaceCorners(RectTransform rect, Canvas canvas, Vector3[] corners,Camera camera)
+```csharp
+private void GetSpaceCorners(RectTransform rect, Canvas canvas, Vector3[] corners,Camera camera)
+{
+    if (camera == null)
     {
-        if (camera == null)
-        {
-            camera = Camera.main;
-        }
-        rect.GetWorldCorners(corners);
-        if (canvas.renderMode == RenderMode.ScreenSpaceOverlay)
-        {
+        camera = Camera.main;
+    }
+    rect.GetWorldCorners(corners);
+    if (canvas.renderMode == RenderMode.ScreenSpaceOverlay)
+    {
 
-        }
-        else
+    }
+    else
+    {
+        for (var i = 0; i < corners.Length; i++)
         {
-            for (var i = 0; i < corners.Length; i++)
-            {
-                corners[i] = camera.WorldToScreenPoint(corners[i]);
-            }
+            corners[i] = camera.WorldToScreenPoint(corners[i]);
         }
     }
+}
+```
 
 ##### RectTransformUtility.RectangleContainsScreenPoint
 
@@ -117,42 +121,44 @@ overlay 模式就是 position,否则是世界坐标,需要 worldtoscreen 进行�
 
 ##### 获取鼠标点下图片的像素
 
-    public Rect GetSpaceRect(Canvas canvas, RectTransform rect, Camera camera)
+```csharp
+public Rect GetSpaceRect(Canvas canvas, RectTransform rect, Camera camera)
+{
+    Rect spaceRect = rect.rect;
+    Vector3 spacePos = GetSpacePos(rect, canvas, camera);
+    //lossyScale
+    spaceRect.x = spaceRect.x * rect.lossyScale.x + spacePos.x;
+    spaceRect.y = spaceRect.y * rect.lossyScale.y + spacePos.y;
+    spaceRect.width = spaceRect.width * rect.lossyScale.x;
+    spaceRect.height = spaceRect.height * rect.lossyScale.y;
+    return spaceRect;
+}
+
+public bool RectContainsScreenPoint(Vector3 point, Canvas canvas, RectTransform rect, Camera camera)
+{
+    if (canvas.renderMode != RenderMode.ScreenSpaceOverlay)
     {
-        Rect spaceRect = rect.rect;
-        Vector3 spacePos = GetSpacePos(rect, canvas, camera);
-        //lossyScale
-        spaceRect.x = spaceRect.x * rect.lossyScale.x + spacePos.x;
-        spaceRect.y = spaceRect.y * rect.lossyScale.y + spacePos.y;
-        spaceRect.width = spaceRect.width * rect.lossyScale.x;
-        spaceRect.height = spaceRect.height * rect.lossyScale.y;
-        return spaceRect;
+        return RectTransformUtility.RectangleContainsScreenPoint(rect, point, camera);
     }
 
-    public bool RectContainsScreenPoint(Vector3 point, Canvas canvas, RectTransform rect, Camera camera)
-    {
-        if (canvas.renderMode != RenderMode.ScreenSpaceOverlay)
-        {
-            return RectTransformUtility.RectangleContainsScreenPoint(rect, point, camera);
-        }
+    return GetSpaceRect(canvas, rect, camera).Contains(point);
+}
 
-        return GetSpaceRect(canvas, rect, camera).Contains(point);
-    }
-
-    // Update is called once per frame
-    void Update()
+// Update is called once per frame
+void Update()
+{
+    if (RectContainsScreenPoint(Input.mousePosition, _canvas, rect, _canvas.camera))
     {
-        if (RectContainsScreenPoint(Input.mousePosition, _canvas, rect, _canvas.camera))
-        {
-            Image image = _uiObject.GetComponent<Image>();
-            var spaceRect = GetSpaceRect(_canvas, rect, camera);
-            var localPos = Input.mousePosition - new Vector3(spaceRect.x, spaceRect.y);
-            var realPos = new Vector2(localPos.x , localPos.y );
-            var imageToTextre = new Vector2(image.sprite.textureRect.width/spaceRect.width,
-                image.sprite.textureRect.height/spaceRect.height);
-            _resultImage.color = _uiObject.GetComponent<Image>().sprite.texture.GetPixel((int)(realPos.x*imageToTextre.x), (int)(realPos.y*imageToTextre.y));
-        }
+        Image image = _uiObject.GetComponent<Image>();
+        var spaceRect = GetSpaceRect(_canvas, rect, camera);
+        var localPos = Input.mousePosition - new Vector3(spaceRect.x, spaceRect.y);
+        var realPos = new Vector2(localPos.x , localPos.y );
+        var imageToTextre = new Vector2(image.sprite.textureRect.width/spaceRect.width,
+            image.sprite.textureRect.height/spaceRect.height);
+        _resultImage.color = _uiObject.GetComponent<Image>().sprite.texture.GetPixel((int)(realPos.x*imageToTextre.x), (int)(realPos.y*imageToTextre.y));
     }
+}
+```
 
 只在 RenderMode 是 ScreenSpaceOverlay 测试通过,主要过程涉及到坐标转换.
 

@@ -172,17 +172,21 @@ updated_at: 2015-11-04T14:20:29.000Z
 
 需要修改两个地方的`.htaccess`文件,第一个是老的`wordpress`,新增如下记录:
 
-    <IfModule mod_rewrite.c>
-    RewriteEngine On
-    redirect 301 /blog http://blog.tomyail.com
-    </IfModule>
+```nginx
+<IfModule mod_rewrite.c>
+RewriteEngine On
+redirect 301 /blog http://blog.tomyail.com
+</IfModule>
+```
 
 第二个是新的博客路径下面,为 htaccess 新增如下记录:
 
-    <IfModule mod_rewrite.c>
-    RewriteEngine On
-    redirect 301 /935 http://blog.tomyail.com/learning-git-via-eclipse/
-    </IfModule>
+```nginx
+<IfModule mod_rewrite.c>
+RewriteEngine On
+redirect 301 /935 http://blog.tomyail.com/learning-git-via-eclipse/
+</IfModule>
+```
 
 ### 发布
 

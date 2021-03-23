@@ -15,31 +15,33 @@ Polygon 的构造函数和接收 GeomPoly.
 
 ### Polygon 的 regular 算法
 
-    keep public static function regular(xRadius:Float, yRadius:Float, edgeCount:Int, angleOffset=0.0, weak:Bool=false):Array<Vec2> {
+```actionscript
+public static function regular(xRadius:Float, yRadius:Float, edgeCount:Int, angleOffset=0.0, weak:Bool=false):Array<Vec2> {
 
-            DEBUG(if(isNaN(xRadius) || isNaN(yRadius) || isNaN(angleOffset))
+        DEBUG(if(isNaN(xRadius) || isNaN(yRadius) || isNaN(angleOffset))
 
-                throw "Error: Polygon.regular cannot accept NaN arguments";
+            throw "Error: Polygon.regular cannot accept NaN arguments";
 
-            )
+        )
 
-            var ret = [];
+        var ret = [];
 
-            var dangle = Math.PI*2/edgeCount;
+        var dangle = Math.PI*2/edgeCount;
 
-            for(i in 0...edgeCount) {
+        for(i in 0...edgeCount) {
 
-                var ang = i*dangle + angleOffset;
+            var ang = i*dangle + angleOffset;
 
-                var x = Vec2.get(Math.cos(ang)*xRadius,Math.sin(ang)*yRadius,weak);
+            var x = Vec2.get(Math.cos(ang)*xRadius,Math.sin(ang)*yRadius,weak);
 
-                ret.push(x);
+            ret.push(x);
 
-            }
+        }
 
-            return ret;
+        return ret;
 
-        }
+    }
+```
 
 <!--more-->
 

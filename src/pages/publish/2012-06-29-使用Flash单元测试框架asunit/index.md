@@ -124,66 +124,68 @@ asunit 内部对带有 meta 的函数执行了两次排序，第一次是按函�
 
 通过查看以下这个测试类对应的输出就能很清楚的了解这几个 meta 的执行逻辑了：
 
-    package test
+```actionscript
+package test
+{
+
+    public class ClassA
     {
 
-        public class ClassA
+        [AfterClass]
+        public static function ac():void
         {
+            trace("ac");
+        }
 
-            [AfterClass]
-            public static function ac():void
-            {
-                trace("ac");
-            }
+        [BeforeClass]
+        public static function bc1():void
+        {
+            trace("bc1");
+        }
 
-            [BeforeClass]
-            public static function bc1():void
-            {
-                trace("bc1");
-            }
+        [BeforeClass(order = -1)]
+        public static function bc2():void
+        {
+            trace("bc2");
+        }
 
-            [BeforeClass(order = -1)]
-            public static function bc2():void
-            {
-                trace("bc2");
-            }
+        public function ClassA()
+        {
+        }
 
-            public function ClassA()
-            {
-            }
+        [After]
+        public function a():void
+        {
+            trace(this , "a");
+        }
 
-            [After]
-            public function a():void
-            {
-                trace(this , "a");
-            }
+        [Before]
+        public function b():void
+        {
+            trace(this , "b");
+        }
 
-            [Before]
-            public function b():void
-            {
-                trace(this , "b");
-            }
+        [Test]
+        public function test1():void
+        {
+            trace(this , "Test1");
+        }
 
-            [Test]
-            public function test1():void
-            {
-                trace(this , "Test1");
-            }
+        [Test(order = -1)]
+        public function test2():void
+        {
+            trace(this , "Test2");
+        }
 
-            [Test(order = -1)]
-            public function test2():void
-            {
-                trace(this , "Test2");
-            }
-
-            [Ignore(description = "the ignore function")]
-            [Test]
-            public function test3():void
-            {
-                trace(this , "Test3");
-            }
+        [Ignore(description = "the ignore function")]
+        [Test]
+        public function test3():void
+        {
+            trace(this , "Test3");
         }
     }
+}
+```
 
 输出：
 
@@ -231,88 +233,92 @@ asunit 为我们提供两种异步测试模型：
 
 这是第一种异步测试的最简单版本：
 
-    package test
+```actionscript
+package test
+{
+    import asunit.framework.IAsync;
+
+    import flash.events.Event;
+    import flash.net.URLLoader;
+    import flash.net.URLRequest;
+
+    public class AsynTest
     {
-        import asunit.framework.IAsync;
-
-        import flash.events.Event;
-        import flash.net.URLLoader;
-        import flash.net.URLRequest;
-
-        public class AsynTest
+        public function AsynTest()
         {
-            public function AsynTest()
-            {
-            }
+        }
 
-            [Inject]
-            public var asyn:IAsync;
+        [Inject]
+        public var asyn:IAsync;
 
-            [Test]
-            public function asynTest():void
-            {
-                var loader:URLLoader = new URLLoader();
-                loader.addEventListener(Event.COMPLETE,asyn.add(loadComplete,500));
-                loader.load(new URLRequest("someurl"));
-            }
+        [Test]
+        public function asynTest():void
+        {
+            var loader:URLLoader = new URLLoader();
+            loader.addEventListener(Event.COMPLETE,asyn.add(loadComplete,500));
+            loader.load(new URLRequest("someurl"));
+        }
 
-            private function loadComplete(e:Event):void
-            {
-                //assertSomeThing
-            }
+        private function loadComplete(e:Event):void
+        {
+            //assertSomeThing
         }
     }
+}
+```
 
 这是第二种异步测试的简单版本：
 
-    package test
+```actionscript
+package test
+{
+    import asunit.events.TimeoutCommandEvent;
+    import asunit.framework.Async;
+    import asunit.framework.IAsync;
+    import asunit.framework.TimeoutCommand;
+
+    import flash.events.Event;
+    import flash.events.EventDispatcher;
+
+    public class EventAsynTest
     {
-        import asunit.events.TimeoutCommandEvent;
-        import asunit.framework.Async;
-        import asunit.framework.IAsync;
-        import asunit.framework.TimeoutCommand;
-
-        import flash.events.Event;
-        import flash.events.EventDispatcher;
-
-        public class EventAsynTest
+        public function EventAsynTest()
         {
-            public function EventAsynTest()
-            {
-            }
+        }
 
-            [Inject]
-            public var async:IAsync;
-            private var dispatcher:EventDispatcher;
+        [Inject]
+        public var async:IAsync;
+        private var dispatcher:EventDispatcher;
 
-            [Test]
-            public function eventAsynTest():void
-            {
-                dispatcher = new EventDispatcher();
-                var asyn:Async = new Async();
-                asyn.proceedOnEvent(dispatcher , Event.ACTIVATE , 200);
-                /**以下两种监听虽然能检测到是否超时但是超时警告不会加入测试结果，如果需要在测试结果中反馈，使用async注入*/
-                (asyn.getPending()[0] as TimeoutCommand).addEventListener(TimeoutCommandEvent.CALLED , onCall);
-                (asyn.getPending()[0] as TimeoutCommand).addEventListener(TimeoutCommandEvent.TIMED_OUT , onTimeout);
-                /**这种方式会在超过500ms如果没执行onCall函数会在结果中报告超时异常*/
-                //(asyn.getPending()[0] as TimeoutCommand).addEventListener(TimeoutCommandEvent.CALLED,async.add(onCall,500));
-                /**这个事件在需要的时候发出*/
-                //dispatcher.dispatchEvent(new Event(Event.ACTIVATE));
-            }
+        [Test]
+        public function eventAsynTest():void
+        {
+            dispatcher = new EventDispatcher();
+            var asyn:Async = new Async();
+            asyn.proceedOnEvent(dispatcher , Event.ACTIVATE , 200);
+            /**以下两种监听虽然能检测到是否超时但是超时警告不会加入测试结果，如果需要在测试结果中反馈，使用async注入*/
+            (asyn.getPending()[0] as TimeoutCommand).addEventListener(TimeoutCommandEvent.CALLED , onCall);
+            (asyn.getPending()[0] as TimeoutCommand).addEventListener(TimeoutCommandEvent.TIMED_OUT , onTimeout);
+            /**这种方式会在超过500ms如果没执行onCall函数会在结果中报告超时异常*/
+            //(asyn.getPending()[0] as TimeoutCommand).addEventListener(TimeoutCommandEvent.CALLED,async.add(onCall,500));
+            /**这个事件在需要的时候发出*/
+            //dispatcher.dispatchEvent(new Event(Event.ACTIVATE));
+        }
 
-            /**call when dispatcher dispatch an Event.Active Event*/
-            private function onCall(e:TimeoutCommandEvent):void
-            {
-                //someAsserttest
-            }
+        /**call when dispatcher dispatch an Event.Active Event*/
+        private function onCall(e:TimeoutCommandEvent):void
+        {
+            //someAsserttest
+        }
 
-            /**/
-            private function onTimeout(e:TimeoutCommandEvent):void
-            {
-                //timeout
-            }
+        /**/
+        private function onTimeout(e:TimeoutCommandEvent):void
+        {
+            //timeout
         }
     }
+}
+```
 
 如果觉得这两个例子不知所云，可以查看作者写的异步测试代码
 

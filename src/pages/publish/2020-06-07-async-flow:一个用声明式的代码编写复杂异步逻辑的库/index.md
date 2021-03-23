@@ -133,24 +133,26 @@ const studentReview = (context) =>
 组装完毕之后，异步流不会自动执行，需要调用 subscribe 才能运行。
 所以最后的运行代码如下：
 
-    const getMode = (mode, context) => {
-      switch (mode) {
-        case "studentRevise":
-          return studentRevise(context);
-        case "teacherComment":
-          return teacherComment(context);
-        case "studentPractice":
-          return studentPractice(context);
-        case "teacherPreviewFlow":
-          return teacherPreviewFlow(context);
-      }
-    };
+```typescript
+const getMode = (mode, context) => {
+  switch (mode) {
+    case 'studentRevise':
+      return studentRevise(context);
+    case 'teacherComment':
+      return teacherComment(context);
+    case 'studentPractice':
+      return studentPractice(context);
+    case 'teacherPreviewFlow':
+      return teacherPreviewFlow(context);
+  }
+};
 
-    //假设值学生做题模式
-    getMode("studentPractice", { homeworId: "123" }).subscribe((data) => {
-      data.getHomeWorkList; //作业列表
-      data.getExerciseDetetail; //作业详情
-      data.getUserAnswerById; //用户答案
-    });
+//假设值学生做题模式
+getMode('studentPractice', { homeworId: '123' }).subscribe((data) => {
+  data.getHomeWorkList; //作业列表
+  data.getExerciseDetetail; //作业详情
+  data.getUserAnswerById; //用户答案
+});
+```
 
 封装这个库的初衷是降低 rxjs 的使用门槛(我之前写过一篇 rxjs 的[简介](https://blog.tomyail.com/introducing-reactive-programming-with-rxjs/)可以参考）。目前从项目内的使用情况来看目的达到了。后续我将会把错误处理完善一下,感兴趣的帮忙点个星(星星眼~)

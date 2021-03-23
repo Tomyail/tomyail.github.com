@@ -62,18 +62,20 @@ travis 通过识别项目根目录下的`.travis.yml`文件来确认需要执行
 
 以下是我项目的初始配置。
 
-    language: node_js
+```yaml
+language: node_js
 
-    node_js: #node 版本
-    - stable
+node_js: #node 版本
+  - stable
 
-    os: # 虚拟机系统
-    - osx
+os: # 虚拟机系统
+  - osx
 
-    cache: #缓存不更新的文件
-      apt: true
-      directories:
-      - node_modules
+cache: #缓存不更新的文件
+  apt: true
+  directories:
+    - node_modules
+```
 
 把这个文件 push 到 github，稍等片刻你应该能看到 travis 会自动触发编译并且报告编译成功。
 
@@ -103,7 +105,9 @@ deploykey 基于个人喜好，如果你想为项目提供单独的公私钥匙�
 
 命令行输入：
 
-    ssh-keygen -t rsa -b 4096 -C "youremail"
+```bash
+ssh-keygen -t rsa -b 4096 -C "youremail"
+```
 
 **在询问我们保存路径的时候，不要按回车**，不然会覆盖`～/.ssh/id_rsa*`(假设已经有）。我们重命名一下，比如输入`id_rsa_repo`，这个时候就会在**命令行当前目录**生成一对 ssh 秘钥（id_rsa_repo 和 id_rsa_repo.pub)
 
@@ -119,23 +123,31 @@ travis 可以看成是一个无状态的虚拟机，每次触发一个任务的�
 
 为了加密我们的私钥，首先我们需要下载 travis 提供的命令行工具（travis-cli）。
 
-    gem install travis
+```bash
+gem install travis
+```
 
 安装成功之后，使用 github 账号登陆
 
-    travis login --auto
+```bash
+travis login --auto
+```
 
 登陆方式你可以选择使用用户名密码，或者[github-token][9]。
 
 如果使用 token 登录，命令改成如下方式登录
 
-    travis login --github-token 'yourToken'
+```bash
+travis login --github-token 'yourToken'
+```
 
 通过 `travis whoami`确认登陆是否成功。
 
 之后输入加密我们的`id_rsa_repo`文件：
 
-    travis encrypt-file id_rsa_repo
+```bash
+travis encrypt-file id_rsa_repo
+```
 
 不出意外会在当前目录多出来一个`id_rsa_repo.enc`文件，同时 travis 的项目网页 setting 里面会多出来两行**加密**过的环境变量`encrypted_XXX_key`和`encrypted_XXX_iv`。
 
@@ -153,12 +165,14 @@ ssh_config 文件如下：
 
 最后修改 `.travis.yml`文件，加入解密代码以及 ssh agent 的配置。
 
-    before_install:
-    - openssl aes-256-cbc -K $encrypted_XXX_key -iv $encrypted_XXX_iv -in id_rsa_repo.enc -out ~/.ssh/id_rsa -d
-    - chmod 600 ~/.ssh/id_rsa
-    - eval $(ssh-agent)
-    - ssh-add ~/.ssh/id_rsa
-    - cp ssh_config ~/.ssh/config
+```yaml
+before_install:
+  - openssl aes-256-cbc -K $encrypted_XXX_key -iv $encrypted_XXX_iv -in id_rsa_repo.enc -out ~/.ssh/id_rsa -d
+  - chmod 600 ~/.ssh/id_rsa
+  - eval $(ssh-agent)
+  - ssh-add ~/.ssh/id_rsa
+  - cp ssh_config ~/.ssh/config
+```
 
 ##### 基于 oauth 的权限配置
 
@@ -180,9 +194,11 @@ oauth 的方式需要使用`github-token`，上面文章有提到，你需要先
 
 所以你可以在`.travis.yml`文件加入如下命令修改仓库地址
 
-    before_install:
-    - git remote rm origin
-    - git remote add origin https://$GH_TOKEN@github.com/username/reponame.git
+```yaml
+before_install:
+  - git remote rm origin
+  - git remote add origin https://$GH_TOKEN@github.com/username/reponame.git
+```
 
 之后其他 github 仓库也需要按照上面这种格式重写 url。
 

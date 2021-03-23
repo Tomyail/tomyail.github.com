@@ -23,7 +23,9 @@ var url =
 
 一：临时方式：
 
-    DEBUG=* ELECTRON_MIRROR="https://npm.taobao.org/mirrors/electron/" npm install electron
+```bash
+DEBUG=* ELECTRON_MIRROR="https://npm.taobao.org/mirrors/electron/" npm install electron
+```
 
 加入`DEBUG=*`是为了查看调试信息，确认下载源是否替换成功。
 
@@ -31,7 +33,9 @@ var url =
 
 给环境变量文件(.zshrc/.bashrc)加入环境变量值（前者对应 zsh，后者是 bash，自己看情况）
 
-    export ELECTRON_MIRROR="https://npm.taobao.org/mirrors/electron/"
+```bash
+export ELECTRON_MIRROR="https://npm.taobao.org/mirrors/electron/"
+```
 
 另外某些情况下会出现安装包下载不完整导致 electron 安装失败的原因，可以尝试清除 electron 缓存。
 

@@ -30,35 +30,37 @@ yield 是 C#定义的一个关键字,相关文档([C# yield](http://msdn.microso
 
 ### 例子
 
-    using System;
-    using UnityEngine;
-    using System.Collections;
-    namespace Script
+```csharp
+using System;
+using UnityEngine;
+using System.Collections;
+namespace Script
+{
+    public class CoroutinesDemo:MonoBehaviour
     {
-        public class CoroutinesDemo:MonoBehaviour
+        void Start()
         {
-            void Start()
+            IEnumerator ator =  yieldFun1();
+            Debug.Log(1);
+            while(ator.MoveNext())
             {
-                IEnumerator ator =  yieldFun1();
-                Debug.Log(1);
-                while(ator.MoveNext())
-                {
-                    Debug.Log(2);
-                    Debug.Log(ator.Current);
-                }
-            }
-
-            IEnumerator yieldFun1()
-            {
-                Debug.Log(3);
-                yield return 1;89
-                Debug.Log(4);
-                yield return 2;
-                Debug.Log(5);
-                yield return 3;
+                Debug.Log(2);
+                Debug.Log(ator.Current);
             }
         }
+
+        IEnumerator yieldFun1()
+        {
+            Debug.Log(3);
+            yield return 1;89
+            Debug.Log(4);
+            yield return 2;
+            Debug.Log(5);
+            yield return 3;
+        }
     }
+}
+```
 
 ### 输出
 
@@ -89,29 +91,31 @@ yield 是 C#定义的一个关键字,相关文档([C# yield](http://msdn.microso
 
 ### 例子
 
-    using System;
-    using UnityEngine;
-    using System.Collections;
-    namespace Script
+```csharp
+using System;
+using UnityEngine;
+using System.Collections;
+namespace Script
+{
+    public class CoroutinesDemo:MonoBehaviour
     {
-        public class CoroutinesDemo:MonoBehaviour
+        void Start()
         {
-            void Start()
-            {
-                StartCoroutine(yieldFun2());
-                Debug.Log("End yieldFun2");
-            }
+            StartCoroutine(yieldFun2());
+            Debug.Log("End yieldFun2");
+        }
 
-            IEnumerator yieldFun2()
-            {
-                Debug.Log("1"+DateTime.Now);
-                yield return new WaitForSeconds(1f);
-                Debug.Log("2"+DateTime.Now);
-                yield return new WaitForSeconds(1f);
-                Debug.Log("3"+DateTime.Now);
-            }
+        IEnumerator yieldFun2()
+        {
+            Debug.Log("1"+DateTime.Now);
+            yield return new WaitForSeconds(1f);
+            Debug.Log("2"+DateTime.Now);
+            yield return new WaitForSeconds(1f);
+            Debug.Log("3"+DateTime.Now);
         }
     }
+}
+```
 
 ### 输出
 
@@ -131,13 +135,17 @@ Unity 利用函数`StartCoroutine`把这个迭代过程分发给了**每帧**去
 
 第一块
 
-    Debug.Log("1"+DateTime.Now);
-    yield return new WaitForSeconds(1f);
+```csharp
+Debug.Log("1"+DateTime.Now);
+yield return new WaitForSeconds(1f);
+```
 
 第二块
 
-    Debug.Log("2"+DateTime.Now);
-    yield return new WaitForSeconds(1f);
+```csharp
+Debug.Log("2"+DateTime.Now);
+yield return new WaitForSeconds(1f);
+```
 
 第三块
 
@@ -161,71 +169,73 @@ Debug.Log('3' + DateTime.Now);
 
 ### 例子
 
-    using System;
-    using UnityEngine;
-    using System.Collections;
-    namespace Script
+```csharp
+using System;
+using UnityEngine;
+using System.Collections;
+namespace Script
+{
+    public class CoroutinesDemo:MonoBehaviour
     {
-        public class CoroutinesDemo:MonoBehaviour
+        void Start()
         {
-            void Start()
-            {
-                test1();
-                test2();
-            }
-
-            IEnumerator yieldFun1()
-            {
-                Debug.Log("1:1"+DateTime.Now);
-                yield return new WaitForSeconds(1f);
-                yield break;
-                Debug.Log("1:2"+DateTime.Now);
-                yield return new WaitForSeconds(1f);
-                Debug.Log("1:3"+DateTime.Now);
-            }
-
-            IEnumerator yieldFun2()
-            {
-                Debug.Log("2:1"+DateTime.Now);
-                yield return new WaitForSeconds(1f);
-                Debug.Log("2:2"+DateTime.Now);
-                yield return new WaitForSeconds(1f);
-                Debug.Log("2:3"+DateTime.Now);
-            }
-
-            IEnumerator yieldFun3()
-            {
-                while(true)
-                {
-                    Debug.Log("3"+DateTime.Now);
-                    yield return new WaitForSeconds(1f);
-                }
-            }
-
-            void test1()
-            {
-                StartCoroutine(yieldFun1());
-            }
-
-            void test2()
-            {
-                StartCoroutine(stop());
-            }
-
-
-            IEnumerator stop()
-            {
-
-
-                StartCoroutine("yieldFun3");
-    //            StartCoroutine(yieldFun3());
-                yield return new WaitForSeconds(2f);
-                StopCoroutine("yieldFun3");
-    //            StopCoroutine(yieldFun3());
-            }
-
+            test1();
+            test2();
         }
+
+        IEnumerator yieldFun1()
+        {
+            Debug.Log("1:1"+DateTime.Now);
+            yield return new WaitForSeconds(1f);
+            yield break;
+            Debug.Log("1:2"+DateTime.Now);
+            yield return new WaitForSeconds(1f);
+            Debug.Log("1:3"+DateTime.Now);
+        }
+
+        IEnumerator yieldFun2()
+        {
+            Debug.Log("2:1"+DateTime.Now);
+            yield return new WaitForSeconds(1f);
+            Debug.Log("2:2"+DateTime.Now);
+            yield return new WaitForSeconds(1f);
+            Debug.Log("2:3"+DateTime.Now);
+        }
+
+        IEnumerator yieldFun3()
+        {
+            while(true)
+            {
+                Debug.Log("3"+DateTime.Now);
+                yield return new WaitForSeconds(1f);
+            }
+        }
+
+        void test1()
+        {
+            StartCoroutine(yieldFun1());
+        }
+
+        void test2()
+        {
+            StartCoroutine(stop());
+        }
+
+
+        IEnumerator stop()
+        {
+
+
+            StartCoroutine("yieldFun3");
+//            StartCoroutine(yieldFun3());
+            yield return new WaitForSeconds(2f);
+            StopCoroutine("yieldFun3");
+//            StopCoroutine(yieldFun3());
+        }
+
     }
+}
+```
 
 ### 输出
 
@@ -242,7 +252,9 @@ Debug.Log('3' + DateTime.Now);
 
 ## yield 返回值
 
-    yield return <expression>;
+```csharp
+yield return <expression>;
+```
 
 这里的`<expression>`在 Unity 中可以多种对象
 
@@ -253,38 +265,40 @@ Debug.Log('3' + DateTime.Now);
 
 ### 例子
 
-    using System;
-    using UnityEngine;
-    using System.Collections;
-    namespace Script
+```csharp
+using System;
+using UnityEngine;
+using System.Collections;
+namespace Script
+{
+    public class CoroutinesDemo:MonoBehaviour
     {
-        public class CoroutinesDemo:MonoBehaviour
+        void Start()
         {
-            void Start()
+//            if image is too small ,you can try a big file
+//            string url = "https://www.google.com.hk/images/srpr/logo11w.png";
+            string url = "http://www.baidu.com/img/bd_logo1.png";
+            StartCoroutine(loudRes(url));
+        }
+
+
+        IEnumerator loudRes(string url)
+        {
+            WWW www = new WWW(url);
+            while (!www.isDone)
             {
-    //            if image is too small ,you can try a big file
-    //            string url = "https://www.google.com.hk/images/srpr/logo11w.png";
-                string url = "http://www.baidu.com/img/bd_logo1.png";
-                StartCoroutine(loudRes(url));
+                Debug.Log(www.progress);
+//                yield return www;
+                yield return null;
             }
+            Debug.Log("down");
 
-
-            IEnumerator loudRes(string url)
-            {
-                WWW www = new WWW(url);
-                while (!www.isDone)
-                {
-                    Debug.Log(www.progress);
-    //                yield return www;
-                    yield return null;
-                }
-                Debug.Log("down");
-
-
-            }
 
         }
+
     }
+}
+```
 
 我这里用了两种 yield 返回值,第一种被我注释掉的直接返回 www 对象,第二种返回空如果运行起来就会发现第一种 progress 的 log 只打了一次,第二种会完成多次包含进度的数据,为什么?
 因为上面说过了,如果 yield 返回的对象是 www,那么代码块结束的标志是 www 下载完毕,当 www 下载完毕的时候,www,isdown 一定是 true,所以跳出循环

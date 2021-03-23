@@ -30,16 +30,9 @@ filterMarkdowns({
     }, {})
   )
   .subscribe((x) => {
-
     fs.writeFileSync(
       path.join(__dirname, 'code.json'),
-      JSON.stringify(
-				x,
-        null,
-        2
-      ),
+      JSON.stringify(x, null, 2),
       'utf-8'
     );
-
-
   });

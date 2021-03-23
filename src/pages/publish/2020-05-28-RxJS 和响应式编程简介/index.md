@@ -466,26 +466,30 @@ fromEvent(document.getElementById('button'), 'click').pipe(
 
 这段代码没有按照希望的执行的主要原因是 map 返回的值不是数字，而是**子 Observable**。这个**子 Observable**就是高阶 Observable，和上述函数式提到的高阶函数有点类似。我们需要订阅这个**子 Observable**，然后在其有值后输出。rxs 有个操作符就是干这个的 `mergeMap`。在理解了 MergeMap 的定义之后，我们可以自己实现一遍：
 
-    const mergeMap = fn => observable => {
-      return new Observable(sucribe => {
-        const sub = observable.subscribe(item => {
-          //用 from 把 fn(item)转成 Observerable
-          from(fn(item)).subscribe(innerItem => {
-            sucribe.next(innerItem);
-          });
-        });
-
-        return () => {
-          sub.unsubscribe();
-        };
+```typescript
+const mergeMap = (fn) => (observable) => {
+  return new Observable((sucribe) => {
+    const sub = observable.subscribe((item) => {
+      //用 from 把 fn(item)转成 Observerable
+      from(fn(item)).subscribe((innerItem) => {
+        sucribe.next(innerItem);
       });
-    };
+    });
 
-    fromEvent(document.getElementById("button"), "click").pipe(
-      scan((acc, cur) => acc + 1, 0),
-      tap(console.log),
-      mergeMap(item => timer(item * 1000).pipe(mapTo(item)))
-    ).subscribe(console.log);
+    return () => {
+      sub.unsubscribe();
+    };
+  });
+};
+
+fromEvent(document.getElementById('button'), 'click')
+  .pipe(
+    scan((acc, cur) => acc + 1, 0),
+    tap(console.log),
+    mergeMap((item) => timer(item * 1000).pipe(mapTo(item)))
+  )
+  .subscribe(console.log);
+```
 
 和 mergeMap 很像的还有另外三个操作符
 

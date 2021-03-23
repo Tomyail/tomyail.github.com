@@ -18,7 +18,9 @@ updated_at: 2017-06-23T00:09:24.000Z
 
 执行:
 
-    yarn add -D eslint eslint eslint-plugin-react babel-eslint
+```bash
+yarn add -D eslint eslint eslint-plugin-react babel-eslint
+```
 
 安装所有依赖.
 
@@ -81,7 +83,9 @@ prettier 是一个强大的代码格式化工具,它能自动格式化 es6, jsx,
 
 在使用`yarn global add prettier`全局安装了 prettier 之后在项目下面执行如下命令:
 
-    prettier --write --trailing-comma es5 --single-quote "src/**/*.{js,jsx,css}"
+```bash
+prettier --write --trailing-comma es5 --single-quote "src/**/*.{js,jsx,css}"
+```
 
 这句话的意思是格式化 src 下面所有的 js,jsx 和 css 文件.
 
@@ -99,11 +103,15 @@ prettier 是一个强大的代码格式化工具,它能自动格式化 es6, jsx,
 
 [js-codemode](https://github.com/cpojer/js-codemod)是一个代码转换工具,基于 fb 的 [jscodeshift](https://github.com/facebook/jscodeshift)框架.首先使用
 
-    yarn add global jscodeshift
+```bash
+yarn add global jscodeshift
+```
 
 在项目的同级目录,执行全局安装这个框架.之后执行
 
-    git clone https://github.com/cpojer/js-codemod.git
+```bash
+git clone https://github.com/cpojer/js-codemod.git
+```
 
 获取 `js-codemod`
 
@@ -113,11 +121,15 @@ prettier 是一个强大的代码格式化工具,它能自动格式化 es6, jsx,
 
 [no-var](https://github.com/cpojer/js-codemod#no-vars):去掉 `var`.
 
-    jscodeshift -t js-codemod/transforms/no-vars.js ./lint-demo/src
+```bash
+jscodeshift -t js-codemod/transforms/no-vars.js ./lint-demo/src
+```
 
 [template-literals](https://github.com/cpojer/js-codemod#template-literals):使用模板字符串代替字符串拼接.
 
-    jscodeshift -t js-codemod/transforms/template-literals.js ./lint-demo/src
+```bash
+jscodeshift -t js-codemod/transforms/template-literals.js ./lint-demo/src
+```
 
 经历了上述指令,lint 结果又少了一点:
 
@@ -166,30 +178,36 @@ foobar(null, 3);
 
 具体脚本 github 写的很清楚了:
 
-    {
-      "scripts": {
-        "precommit": "lint-staged"
-      },
-      "lint-staged": {
-        "*.js": ["eslint --fix", "git add"]
-      }
-    }
+```json
+{
+  "scripts": {
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": ["eslint --fix", "git add"]
+  }
+}
+```
 
 脚本下面新增一个命令 precommit(这个名字是 git 钩子名字,所以必须这么写),再新增一个`lint-staged`配置项(这个名字也是写死的,因为 lint-staged 库依赖这个名字).但是这个配置项里面的内容是活的.
 
 上述命令:
 
-       "*.js": ["eslint --fix", "git add"]
+```json
+   "*.js": ["eslint --fix", "git add"]
+```
 
 的意思是对所有的 js 文件做检查并自动修复,然后把修复后的文件加入 git.
 
 最后按照实际需求我把命令改成了如下形式供你们参考:
 
-    "{src,dev}/**/*.{js,jsx}": [
-      "eslint --fix",
-      "prettier --write --trailing-comma es5 --single-quote",
-      "git add"
-    ]
+```json
+"{src,dev}/**/*.{js,jsx}": [
+  "eslint --fix",
+  "prettier --write --trailing-comma es5 --single-quote",
+  "git add"
+]
+```
 
 针对 src 和 dev 下面所有的 js 和 jsx 文件.
 

@@ -19,7 +19,9 @@ updated_at: 2011-10-18T23:07:42.000Z
 
 4:将文章中所有的域名替换成本地的，防止裂图
 
-    UPDATE wp_posts SET post_content =replace(post_content,'tomyail.com/blog','localhost/wordpress');
+```sql
+UPDATE wp_posts SET post_content =replace(post_content,'tomyail.com/blog','localhost/wordpress');
+```
 
 5:进入网站后台下载所有图片放入本地
 

@@ -16,7 +16,9 @@ A 是主项目, B 是从属项目, A 项目单纯引用着 B 资源,不需要对
 
 第一次配置需要使用
 
-    git submodule add {url} [name]
+```bash
+git submodule add {url} [name]
+```
 
 成功之后会拉取项目并且生成 submodule 的配置文件 `.gitmodules`
 

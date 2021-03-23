@@ -37,7 +37,9 @@ bower 是针对浏览器的包管理工具,npm 前后端通用.
 
 ## 如何新建一个 node 项目
 
-    npm init
+```bash
+npm init
+```
 
 可以使用[Yeoman](http://yeoman.io/)为 js 项目指定项目类型,这样便可以以一种更加通用的项目结构创建项目.
 
