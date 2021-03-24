@@ -9,8 +9,6 @@ created_at: 2015-08-15T14:27:26.000Z
 updated_at: 2015-08-15T14:27:26.000Z
 ---
 
-# 理解 Unity3D 里的 Coroutine
-
 Coroutine,翻译过来叫协程,这东西在 as3 里面没有,所以觉得挺新鲜的,顾做点研究.
 
 Unity 里面的 Coroutine 通过关键字 yield 来定义的([Unity Coroutine](http://docs.unity3d.com/ScriptReference/Coroutine.html)),所以我们先看这个关键字.
@@ -22,9 +20,9 @@ Unity 里面的 Coroutine 通过关键字 yield 来定义的([Unity Coroutine](h
 
 yield 是 C#定义的一个关键字,相关文档([C# yield](http://msdn.microsoft.com/zh-cn/library/9k7k7cf0.aspx))
 
->     使用 yield return 语句可一次返回一个元素。
->     通过 foreach 语句或 LINQ 查询来使用迭代器方法。 foreach循环的每次迭代都会调用迭代器方法。 迭代器方法运行到 yield return 语句时，会返回一个 expression，并保留当前在代码中的位置。 当下次调用迭代器函数时执行从该位置重新启动。
->     可以使用 yield break 语句来终止迭代。
+> 使用 yield return 语句可一次返回一个元素。
+> 通过 foreach 语句或 LINQ 查询来使用迭代器方法。 foreach 循环的每次迭代都会调用迭代器方法。 迭代器方法运行到 yield return 语句时，会返回一个 expression，并保留当前在代码中的位置。 当下次调用迭代器函数时执行从该位置重新启动。
+> 可以使用 yield break 语句来终止迭代。
 
 <!--more-->
 

@@ -63,7 +63,8 @@ const style = (theme: Theme) => {
       },
 
       '& div[data-language]:before': {
-        top: theme.spacing(-2),
+				fontWeight:500,
+        top: theme.spacing(-18/8),
         color: '#6272a4',
         right: theme.spacing(2),
         zIndex: 1,

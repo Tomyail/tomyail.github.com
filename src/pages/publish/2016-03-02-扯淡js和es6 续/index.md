@@ -15,9 +15,10 @@ updated_at: 2016-03-02T13:42:24.000Z
 然后我就想，既然 generator 对 nodejs 有版本要求，那就使用 babel 把代码转译（transpiling，转换＋编译）成 es5 的代码吧。babel 是干啥的它的[中文文档](https://github.com/thejameskyle/babel-handbook/blob/master/translations/zh-Hans/user-handbook.md)写的很详细。无论是使用 babel 还是 babel-node，似乎它的转换都不会自动把库代码（node_modules 里面的代码）也转换成 es5。但是 koa 依赖的`composition`库定义了一行 generator 函数`promiseToGenerator`，node 低版本又不认 generator，所以就会报\*不识别之类的语法错误。
 
 这时的解决方案应该有三种：
-1\. babel 强制转换 node_modules 里面的代码，听上去挺蠢的，我没去做。
-2\. 使用 webpack 把关联代码都转换了，思路和 1 差不多只不过产出是一个打包过的大 js 文件。
-3\. 给运行的的 node 加入`--harmony_generators`或者升级到 node4。
+
+1. babel 强制转换 node_modules 里面的代码，听上去挺蠢的，我没去做。
+2. 使用 webpack 把关联代码都转换了，思路和 1 差不多只不过产出是一个打包过的大 js 文件。
+3. 给运行的的 node 加入`--harmony_generators`或者升级到 node4。
 
 最终我应该会选择 2，因为一定有一大堆现成的参考案例可以使用。这里主要说明下 node 的`--harmony`参数。
 
