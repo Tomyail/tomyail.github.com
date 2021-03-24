@@ -62,23 +62,60 @@ const style = (theme: Theme) => {
         position: 'relative',
       },
 
-      '& div[data-language="javascript"]:before': {
-        color: 'red',
-        content: '"js"',
+      '& div[data-language]:before': {
+        top: theme.spacing(-2),
+        color: '#6272a4',
+        right: theme.spacing(2),
         zIndex: 1,
-        left: theme.spacing(2),
-        top: 0,
         position: 'absolute',
+        background: '#282a36',
+        borderTopLeftRadius: theme.spacing(1),
+        borderTopRightRadius: theme.spacing(1),
+        padding: theme.spacing(0, 0.5),
+        textAlign: 'center',
       },
 
       '& div[data-language="typescript"]:before': {
-        color: 'red',
         content: '"ts"',
       },
 
       '& div[data-language="json"]:before': {
-        color: 'red',
         content: '"json"',
+      },
+      '& div[data-language="sql"]:before': {
+        content: '"sql"',
+      },
+
+      '& div[data-language="actionscript"]:before': {
+        content: '"as"',
+      },
+
+      '& div[data-language="text"]:before': {
+        content: '"text"',
+      },
+
+      '& div[data-language="csharp"]:before': {
+        content: '"c#"',
+      },
+
+      '& div[data-language="bash"]:before': {
+        content: '"bash"',
+      },
+
+      '& div[data-language="nginx"]:before': {
+        content: '"nginx"',
+      },
+
+      '& div[data-language="yaml"]:before': {
+        content: '"yaml"',
+      },
+
+      '& div[data-language="html"]:before': {
+        content: '"html"',
+      },
+
+      '& div[data-language="javascript"]:before': {
+        content: '"js"',
       },
 
       //end lang tag:w
