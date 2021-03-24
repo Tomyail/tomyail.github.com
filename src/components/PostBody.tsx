@@ -41,20 +41,7 @@ const style = (theme: Theme) => {
         marginTop: -96, // Offset for the anchor.
         position: 'absolute',
       },
-      // '& .gatsby-highlight pre[class*="language-"]:after': {
-      //   content: '"js"',
-      //   background: "#f7df1e",
-      //   color: "black",
-      //   borderRadius: "0 0 0.25rem 0.25rem",
-      //   fontSize: "12px",
-      //   letterSpacing: "0.025rem",
-      //   padding: "0.1rem 0.5rem",
-      //   position: "absolute",
-      //   right: "1rem",
-      //   textAlign: "right",
-      //   texttransform: "uppercase",
-      //   top: 0,
-      // },
+
       '& pre': {
         position: 'relative',
         margin: theme.spacing(3, 'auto'),
@@ -70,10 +57,70 @@ const style = (theme: Theme) => {
         },
       },
 
-      // '& code[class*="language-"]': {
-      //   // Avoid layout jump after hydration (style injected by prism)
-      //   lineHeight: 1.5,
-      // },
+      //lang tag
+      '& .gatsby-highlight': {
+        position: 'relative',
+      },
+
+      '& div[data-language]:before': {
+				fontWeight:500,
+        top: theme.spacing(-18/8),
+        color: '#6272a4',
+        right: theme.spacing(2),
+        zIndex: 1,
+        position: 'absolute',
+        background: '#282a36',
+        borderTopLeftRadius: theme.spacing(1),
+        borderTopRightRadius: theme.spacing(1),
+        padding: theme.spacing(0, 0.5),
+        textAlign: 'center',
+      },
+
+      '& div[data-language="typescript"]:before': {
+        content: '"ts"',
+      },
+
+      '& div[data-language="json"]:before': {
+        content: '"json"',
+      },
+      '& div[data-language="sql"]:before': {
+        content: '"sql"',
+      },
+
+      '& div[data-language="actionscript"]:before': {
+        content: '"as"',
+      },
+
+      '& div[data-language="text"]:before': {
+        content: '"text"',
+      },
+
+      '& div[data-language="csharp"]:before': {
+        content: '"c#"',
+      },
+
+      '& div[data-language="bash"]:before': {
+        content: '"bash"',
+      },
+
+      '& div[data-language="nginx"]:before': {
+        content: '"nginx"',
+      },
+
+      '& div[data-language="yaml"]:before': {
+        content: '"yaml"',
+      },
+
+      '& div[data-language="html"]:before': {
+        content: '"html"',
+      },
+
+      '& div[data-language="javascript"]:before': {
+        content: '"js"',
+      },
+
+      //end lang tag:w
+
       // // only  inline code
       '& :not(pre) > code[class*="language-"]': {
         direction: 'ltr',

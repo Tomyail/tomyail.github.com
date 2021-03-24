@@ -157,11 +157,13 @@ travis encrypt-file id_rsa_repo
 
 ssh_config 文件如下：
 
-    Host github.com
-        User git
-        StrictHostKeyChecking no
-        IdentityFile ~/.ssh/id_rsa
-        IdentitiesOnly yes
+```text
+Host github.com
+    User git
+    StrictHostKeyChecking no
+    IdentityFile ~/.ssh/id_rsa
+    IdentitiesOnly yes
+```
 
 最后修改 `.travis.yml`文件，加入解密代码以及 ssh agent 的配置。
 
@@ -182,7 +184,9 @@ oauth 的方式需要使用`github-token`，上面文章有提到，你需要先
 
 基于 ssh 的权限配置，你需要使用 ssh 协议，所以你的 github 仓库远程路径如下:
 
-    git@github.com:username/reponame.git
+```text
+git@github.com:username/reponame.git
+```
 
 但是如果使用 oauth，你需要使用 https 方式，你的 git 远程路径需要改成
 
@@ -190,7 +194,9 @@ oauth 的方式需要使用`github-token`，上面文章有提到，你需要先
 
 ![][img3]
 
-    https://$GH_TOKEN@github.com/username/reponame.git
+```text
+https://$GH_TOKEN@github.com/username/reponame.git
+```
 
 所以你可以在`.travis.yml`文件加入如下命令修改仓库地址
 

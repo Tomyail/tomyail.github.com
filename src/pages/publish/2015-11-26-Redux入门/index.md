@@ -18,7 +18,7 @@ updated_at: 2015-11-25T22:59:39.000Z
 
 Redux 框架本身非常小，代码量也很少，所以在介绍 Redux 之前把 Redux 的基本代码先展示一下应该是个好主意。
 
-```js
+```javascript
 import { createStore, combineReducers } from 'redux';
 
 //action 1
@@ -89,10 +89,12 @@ store.dispatch(changeUserName('newName'));
 
 输出结果
 
-    current state { user: { user: { name: 'default user' } },item: { items: [ [Object] ] } }
-    current state { user: { user: { name: 'default user' } },item: { items: [ [Object], [Object] ] } }
-    current state { user: { user: { name: 'default user' } },item: { items: [ [Object], [Object], [Object] ] } }
-    current state { user: { user: { name: 'newName' } },     item: { items: [ [Object], [Object], [Object] ] } }
+```text
+current state { user: { user: { name: 'default user' } },item: { items: [ [Object] ] } }
+current state { user: { user: { name: 'default user' } },item: { items: [ [Object], [Object] ] } }
+current state { user: { user: { name: 'default user' } },item: { items: [ [Object], [Object], [Object] ] } }
+current state { user: { user: { name: 'newName' } },     item: { items: [ [Object], [Object], [Object] ] } }
+```
 
 # Redux 入门介绍
 
@@ -146,7 +148,7 @@ state 是持有当前 reducer 状态的值，第一次传入的时候需要指�
 
 一：[Object.assign](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
 
-```js
+```javascript
 Object.assign({}, state, {
   didInvalidate: true,
 });
@@ -154,12 +156,14 @@ Object.assign({}, state, {
 
 二： [ecmascript-rest-spread](https://github.com/sebmarkbage/ecmascript-rest-spread)
 
-    //Object Spread
-    { ...state, message: action.value}
+```text
+//Object Spread
+{ ...state, message: action.value}
+```
 
 三： [immutable](https://facebook.github.io/immutable-js/)
 
-```js
+```javascript
 var Immutable = require('immutable');
 var map1 = Immutable.Map({ a: 1, b: 2, c: 3 });
 var map2 = map1.set('b', 50);
@@ -173,7 +177,7 @@ map2.get('b'); // 50
 
 上述例子中
 
-```js
+```javascript
 var combinedReducer = combineReducers({
   user: userReducer,
   item: itemReducer,
@@ -224,7 +228,7 @@ Middleware 提供了一种途径，让 action 在被 dispatch 之前有能力处
 
 普通写法
 
-```js
+```javascript
 var yourMiddleware = function ({ dispatch, getState }) {
   return function (next) {
     return function (action) {
@@ -237,7 +241,7 @@ var yourMiddleware = function ({ dispatch, getState }) {
 
 文艺写法(箭头函数)
 
-```js
+```javascript
 var yourMiddleware = ({ dispatch, getState }) => (next) => (action) => {
   // YOUR MIDDLEWARE LOGIC HERE
   // return ?
@@ -259,7 +263,7 @@ Middleware 函数将 dispatch 收到的参数先做一次“过滤”（通常�
 
 看一下官方提供`redux-thunk`实现的抽象 middleware
 
-```js
+```javascript
 export default function thunkMiddleware({ dispatch, getState }) {
   return (next) => (action) =>
     typeof action === 'function' ? action(dispatch, getState) : next(action);
@@ -270,7 +274,7 @@ export default function thunkMiddleware({ dispatch, getState }) {
 
 为了验证 middleware 的用法，我增加了一些代码：
 
-```js
+```javascript
 function getUserName() {
   return (dispatch, getState) => {
     dispatch(startGetUser());
@@ -297,7 +301,7 @@ function endGetUser(name) {
 
 最后通过`applyMiddleware`把 middleware 混合到`createStore`函数里面。并使用这个函数创建 store（有点绕。。）
 
-```js
+```javascript
 var createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
 var store = createStoreWithMiddleware(combinedReducer);
 ```
@@ -306,7 +310,7 @@ var store = createStoreWithMiddleware(combinedReducer);
 
 只要有能解析特定类型的 action，其实 action 可以是任何对象。比如我把上面的`getUserName`改一下：
 
-```js
+```javascript
 function getUserName2() {
   return {
     cb: (dispatch, getState) => {
@@ -323,7 +327,7 @@ function getUserName2() {
 
 那么我们的 middleware 可以写成这样：
 
-```js
+```javascript
 var getUserMiddleware = function ({ dispatch, getState }) {
   return function (next) {
     return function (action) {

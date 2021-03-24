@@ -9,8 +9,6 @@ created_at: 2015-08-15T14:27:26.000Z
 updated_at: 2015-08-15T14:27:26.000Z
 ---
 
-# 理解 Unity3D 里的 Coroutine
-
 Coroutine,翻译过来叫协程,这东西在 as3 里面没有,所以觉得挺新鲜的,顾做点研究.
 
 Unity 里面的 Coroutine 通过关键字 yield 来定义的([Unity Coroutine](http://docs.unity3d.com/ScriptReference/Coroutine.html)),所以我们先看这个关键字.
@@ -22,9 +20,9 @@ Unity 里面的 Coroutine 通过关键字 yield 来定义的([Unity Coroutine](h
 
 yield 是 C#定义的一个关键字,相关文档([C# yield](http://msdn.microsoft.com/zh-cn/library/9k7k7cf0.aspx))
 
->     使用 yield return 语句可一次返回一个元素。
->     通过 foreach 语句或 LINQ 查询来使用迭代器方法。 foreach循环的每次迭代都会调用迭代器方法。 迭代器方法运行到 yield return 语句时，会返回一个 expression，并保留当前在代码中的位置。 当下次调用迭代器函数时执行从该位置重新启动。
->     可以使用 yield break 语句来终止迭代。
+> 使用 yield return 语句可一次返回一个元素。
+> 通过 foreach 语句或 LINQ 查询来使用迭代器方法。 foreach 循环的每次迭代都会调用迭代器方法。 迭代器方法运行到 yield return 语句时，会返回一个 expression，并保留当前在代码中的位置。 当下次调用迭代器函数时执行从该位置重新启动。
+> 可以使用 yield break 语句来终止迭代。
 
 <!--more-->
 
@@ -64,7 +62,7 @@ namespace Script
 
 ### 输出
 
-```js
+```text
 1;
 3;
 2;
@@ -119,10 +117,12 @@ namespace Script
 
 ### 输出
 
-    111/14/2014 14:34:57
-    End yieldFun2
-    211/14/2014 14:34:58
-    311/14/2014 14:34:59
+```text
+111/14/2014 14:34:57
+End yieldFun2
+211/14/2014 14:34:58
+311/14/2014 14:34:59
+```
 
 ### 结论(没有源码,都是推论)
 
@@ -149,7 +149,7 @@ yield return new WaitForSeconds(1f);
 
 第三块
 
-```js
+```csharp
 Debug.Log('3' + DateTime.Now);
 ```
 
@@ -239,9 +239,11 @@ namespace Script
 
 ### 输出
 
-    1:111/14/2014 17:42:03
-    311/14/2014 17:42:03
-    311/14/2014 17:42:04
+```text
+1:111/14/2014 17:42:03
+311/14/2014 17:42:03
+311/14/2014 17:42:04
+```
 
 ### 结论
 
@@ -258,10 +260,12 @@ yield return <expression>;
 
 这里的`<expression>`在 Unity 中可以多种对象
 
-    基本数据对象:立即结束
-    YieldInstruction对象,包括(WaitForSeconds,WaitForFixedUpdate):等待时间或者等待更新完毕
-    WWW对象:下载完毕
-    自定义
+```text
+基本数据对象:立即结束
+YieldInstruction对象,包括(WaitForSeconds,WaitForFixedUpdate):等待时间或者等待更新完毕
+WWW对象:下载完毕
+自定义
+```
 
 ### 例子
 

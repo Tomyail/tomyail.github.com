@@ -17,7 +17,7 @@ React 提供的动画组件功能很简单，对动画的动态控制基本不�
 
 然后看到了[Velocity.js](http://julian.com/research/velocity/),这是一个基于 js 的动画库，搜了一下，发现这个库有 react 版本[velocity-react](https://www.npmjs.com/package/velocity-react)。用了一下，发现功能还是非常强大的。它内置了一系列的动画预设，如果我们需要自己定义动画，需要自定义一个动画对象，比如下面这样的：
 
-```js
+```javascript
 var ToolbarAnimation = {
   up: velocityHelpers.registerEffect({
     defaultDuration: 500,
@@ -34,7 +34,7 @@ var ToolbarAnimation = {
 
 注意：使用`VelocityTransitionGroup`动画的时候，请按照`ReactCSSTransitionGroup`文档的要求给子对象加上 key，否则动画切换可能失效。
 
-```js
+```javascript
 return (
   <VelocityTransitionGroup
     component="div"

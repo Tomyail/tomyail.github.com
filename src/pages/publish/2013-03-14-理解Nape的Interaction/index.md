@@ -115,7 +115,7 @@ C 的 mask 是 001 也就是十进制的 1;
 
 控制三组对象碰撞关系的 filter 版本源码:
 
-```as
+```actionscript
 private function testMultiFilter():void
 {
 
@@ -196,7 +196,7 @@ Filter 只是 Shape 的属性,Nape 为 Interactor 类提供了 group 属性,这�
 
 group 版本小球碰撞的源码:
 
-```as
+```actionscript
 private function testSimpleGroup():void
 {
     var group:InteractionGroup = new InteractionGroup();
@@ -213,7 +213,7 @@ private function testSimpleGroup():void
 
 控制三组对象碰撞关系的 group 版本源码:
 
-````as
+````actionscript
 private function testMultiGroup():void
 {
     var groupA:InteractionGroup = new InteractionGroup(true);
@@ -248,7 +248,7 @@ private function testMultiGroup():void
     Bc1.group = groupC;
     Bc2.group = groupC;
 }
-```as
+```
 
 图示:
 
@@ -265,21 +265,18 @@ groupA.group = groupAC;
 对于多次嵌套树结构,需要通过查找他们的最近共同祖先(MRCA)来确定是属于哪一个 group 的.这里拿官方手册上的例子好了.
 
 
-````
-
-           Group1
-          /   |
-         /  Group2      Group3
-        /    |    \       |
-    Body1   /      Cmp1   |
-
+```text
+       Group1
+      /   |
+     /  Group2      Group3
+    /    |    \       |
+Body1   /      Cmp1   |
 / \ / / \ |
 Shp1 Shp2 Body2 Cmp2
 | |
 Shp3 Body3
 |
 Shp4
-
 ```
 
 
@@ -299,18 +296,15 @@ Shp4 依次往上递归得到碰到的第一个 group 是 G3.
 
 2:结合这几个 Group 的关系就能确定最终得到的 Group 关系图:
 
+
+```text
+    Group1
+    /   \           Group3
+Shp1    Group2        |
+        /    \      Shp4
+     Shp2    Shp3
 ```
 
-        Group1
-        /   \           Group3
-    Shp1    Group2        |
-            /    \      Shp4
-         Shp2    Shp3
-
-```
-
-
-```
 
 MRCA(Shp1, Shp2) == Group1;//Shp1 和 Shp2 属于同一个刚体,所以他们是一起运动的也就不存在交互作用了.
 
@@ -318,7 +312,6 @@ MRCA(Shp1, Shp3) == Group1;
 
 MRCA(Shp2, Shp3) == Group2;
 
-```
 
 Shp4 是孤立的,所以不存在 Shp1 和 Shp4 之类的交互控制,**所以 Shp4 和所有其他对象默认都是发生碰撞的**.
 
@@ -357,4 +350,4 @@ Shp4 是孤立的,所以不存在 Shp1 和 Shp4 之类的交互控制,**所以 S
 求两个节点的最近共同祖先(下图:来自<http://www.haogongju.net/art/581937>)
 
 [![Image(1)](./Image\(1\).png "Image(1)")](/images/uploads/2013/03/Image1.png)
-```
+````

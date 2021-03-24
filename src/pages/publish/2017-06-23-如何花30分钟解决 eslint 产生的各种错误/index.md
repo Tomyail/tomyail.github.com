@@ -26,7 +26,7 @@ yarn add -D eslint eslint eslint-plugin-react babel-eslint
 
 `.eslintrc.js` 配置如下:
 
-```js
+```javascript
 module.exports = {
   extends: ['eslint:recommended'],
   parser: 'babel-eslint',
@@ -157,7 +157,7 @@ js-codemod 的 `no-vars`指令还有一点缺陷,没法帮我们把 let 转成 c
 以下就是血的教训.
 比如
 
-```js
+```javascript
 const foobar = (a, b) => b;
 foobar(null, 3);
 ```
