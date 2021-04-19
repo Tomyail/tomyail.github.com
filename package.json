@@ -68,7 +68,7 @@
     "remark-stringify": "9.0.1",
     "to-vfile": "6.1.0",
     "unified": "9.2.1",
-    "unist-util-filter": "2.0.3",
+    "unist-util-filter": "3.0.0",
     "unist-util-visit": "2.0.3",
     "vfile-reporter": "6.0.2"
   },
