@@ -50,7 +50,7 @@
     "react-syntax-highlighter": "^15.4.3",
     "remark-gfm": "^1.0.0",
     "rsync": "^0.6.1",
-    "rxjs": "^6.6.6",
+    "rxjs": "^7.0.0",
     "typeface-merriweather": "1.1.13",
     "typeface-montserrat": "1.1.13",
     "typeface-roboto": "^1.1.13"
