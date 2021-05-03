@@ -14,7 +14,7 @@
     "clsx": "^1.1.1",
     "constate": "^3.2.0",
     "disqus-react": "^1.0.11",
-    "fs-extra": "^9.1.0",
+    "fs-extra": "^10.0.0",
     "gatsby": "^3.0.1",
     "gatsby-link": "^3.0.0",
     "gatsby-plugin-algolia": "^0.17.0",
